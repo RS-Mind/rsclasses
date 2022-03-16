@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ModdingUtils.MonoBehaviours;
 using System.Text;
 using System.Threading.Tasks;
 using UnboundLib;
@@ -9,21 +10,26 @@ using UnityEngine;
 
 namespace RSCards.Cards
 {
-    class BounceAbsorption : CustomCard
+    class LastStand : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            cardInfo.categories = new CardCategory[] { RSCardCategories.BounceAbsorptionCategory };
-            gun.damage = 1.5f;
-            gun.projectileSpeed = 1.5f;
-            gun.reflects = -2;
-
             UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup.");
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Edits values on player when card is selected
+            //HealthBasedEffect effect = player.gameObject.AddComponent<HealthBasedEffect>();
+            //effect.characterStatModifiersModifier.health_mult = 10f;
+            //effect.SetPercThresholdMax(0.1f);
+            //effect.SetColor(Color.green);
+            HealthBasedEffect effect = player.gameObject.AddComponent<HealthBasedEffect>();
+            effect.gunStatModifier.attackSpeedMultiplier_mult = 0.75f;
+            effect.gunAmmoStatModifier.reloadTimeMultiplier_mult = 0.5f;
+            effect.gunStatModifier.projectileSpeed_mult = 1.5f;
+            effect.SetPercThresholdMax(0.5f);
+            effect.SetColor(Color.red);
             UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}.");
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -34,11 +40,11 @@ namespace RSCards.Cards
 
         protected override string GetTitle()
         {
-            return "Bounce Absorption";
+            return "Last Stand";
         }
         protected override string GetDescription()
         {
-            return "Converts bounces to raw power";
+            return "+1000% HP when below 10% HP";
         }
         protected override GameObject GetCardArt()
         {
@@ -46,38 +52,17 @@ namespace RSCards.Cards
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Common;
         }
         protected override CardInfoStat[] GetStats()
         {
             return new CardInfoStat[]
             {
-                new CardInfoStat()
-                {
-                    positive = true,
-                    stat = "DMG",
-                    amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = true,
-                    stat = "Bullet speed",
-                    amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = false,
-                    stat = "Bullet bounces",
-                    amount = "-2",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.MagicPink;
+            return CardThemeColor.CardThemeColorType.DefensiveBlue;
         }
         public override string GetModName()
         {

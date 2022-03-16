@@ -9,16 +9,13 @@ using UnityEngine;
 
 namespace RSCards.Cards
 {
-    class BounceAbsorption : CustomCard
+    class Hitscan : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            cardInfo.categories = new CardCategory[] { RSCardCategories.BounceAbsorptionCategory };
-            gun.damage = 1.5f;
-            gun.projectileSpeed = 1.5f;
-            gun.reflects = -2;
-
+            gun.projectileSpeed = 100f;
+            gun.reflects = -1000;
             UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup.");
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -34,11 +31,11 @@ namespace RSCards.Cards
 
         protected override string GetTitle()
         {
-            return "Bounce Absorption";
+            return "Hitscan";
         }
         protected override string GetDescription()
         {
-            return "Converts bounces to raw power";
+            return "";
         }
         protected override GameObject GetCardArt()
         {
@@ -55,29 +52,22 @@ namespace RSCards.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "DMG",
-                    amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = true,
                     stat = "Bullet speed",
-                    amount = "+50%",
+                    amount = "+10000%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = false,
                     stat = "Bullet bounces",
-                    amount = "-2",
+                    amount = "No",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.MagicPink;
+            return CardThemeColor.CardThemeColorType.TechWhite;
         }
         public override string GetModName()
         {

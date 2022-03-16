@@ -9,15 +9,14 @@ using UnityEngine;
 
 namespace RSCards.Cards
 {
-    class BounceAbsorption : CustomCard
+    class Repentance : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            cardInfo.categories = new CardCategory[] { RSCardCategories.BounceAbsorptionCategory };
-            gun.damage = 1.5f;
-            gun.projectileSpeed = 1.5f;
-            gun.reflects = -2;
+            cardInfo.categories = new CardCategory[] { RSCardCategories.RepentanceCategory };
+            statModifiers.health = 2f;
+            statModifiers.lifeSteal = -0.5f;
 
             UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup.");
         }
@@ -34,11 +33,11 @@ namespace RSCards.Cards
 
         protected override string GetTitle()
         {
-            return "Bounce Absorption";
+            return "Repentance";
         }
         protected override string GetDescription()
         {
-            return "Converts bounces to raw power";
+            return "Convert your sinful lifesteal into proper health";
         }
         protected override GameObject GetCardArt()
         {
@@ -46,7 +45,7 @@ namespace RSCards.Cards
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Common;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -55,29 +54,22 @@ namespace RSCards.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "DMG",
-                    amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = true,
-                    stat = "Bullet speed",
-                    amount = "+50%",
+                    stat = "HP",
+                    amount = "+100%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = false,
-                    stat = "Bullet bounces",
-                    amount = "-2",
+                    stat = "Life steal",
+                    amount = "-50%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.MagicPink;
+            return CardThemeColor.CardThemeColorType.NatureBrown;
         }
         public override string GetModName()
         {

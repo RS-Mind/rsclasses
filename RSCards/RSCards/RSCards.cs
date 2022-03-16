@@ -6,6 +6,8 @@ using HarmonyLib;
 using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using System.Collections.Generic;
 using ModdingUtils.Extensions;
+using System.Collections;
+using UnboundLib.GameModes;
 
 namespace RSCards
 {
@@ -22,8 +24,6 @@ namespace RSCards
         public const string ModInitials = "RSC";
         public static RSCards instance { get; private set; }
 
-        public static CardCategory BounceAbsorptionCategory = CustomCardCategories.instance.CardCategory("Bounce Absorption");
-
         void Awake()
         {
             var harmony = new Harmony(ModId);
@@ -34,22 +34,55 @@ namespace RSCards
         {
             instance = this;
 
-            foreach (var player in PlayerManager.instance.players)
-            {
-                ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.RemoveAll((category) => category == CustomCardCategories.instance.CardCategory("Default"));
-                if (!ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Contains(BounceAbsorptionCategory))
-                {
-                    ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(BounceAbsorptionCategory);
-                }
-            }
+            GameModeManager.AddHook(GameModeHooks.HookGameStart, GameStart);
+            GameModeManager.AddHook(GameModeHooks.HookPlayerPickStart, PlayerPickStart);
 
             CustomCard.BuildCard<BounceAbsorption>();
             CustomCard.BuildCard<Changeup>();
+            CustomCard.BuildCard<Hitscan>();
             CustomCard.BuildCard<OpenChamber>();
             CustomCard.BuildCard<RecklessAttack>();
-            CustomCard.BuildCard<Repentence>();
+            CustomCard.BuildCard<Repentance>();
             CustomCard.BuildCard<Slug>();
             CustomCard.BuildCard<Split>();
         }
+        IEnumerator GameStart(IGameModeHandler gm)
+        {
+            // Runs at start of match
+            yield break;
+        }
+        IEnumerator PlayerPickStart(IGameModeHandler gm)
+        {
+            // Runs at start of pick phase
+            foreach (var player in PlayerManager.instance.players)
+            {
+                ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.RemoveAll((category) => category == CustomCardCategories.instance.CardCategory("Default"));
+                if (ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Contains(RSCardCategories.BounceAbsorptionCategory) && player.data.GetComponent<Holding>().holdable.GetComponent<Gun>().reflects >= 2)
+                {
+                    ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Remove(RSCardCategories.BounceAbsorptionCategory);
+                }
+                else if (!ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Contains(RSCardCategories.BounceAbsorptionCategory) && player.data.GetComponent<Holding>().holdable.GetComponent<Gun>().reflects < 2)
+                {
+                    ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(RSCardCategories.BounceAbsorptionCategory);
+                }
+
+                if (ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Contains(RSCardCategories.RepentanceCategory) && player.GetComponent<CharacterStatModifiers>().lifeSteal >= 0.5f)
+                {
+                    ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Remove(RSCardCategories.RepentanceCategory);
+                }
+                else if (!ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Contains(RSCardCategories.RepentanceCategory) && player.GetComponent<CharacterStatModifiers>().lifeSteal < 0.5f)
+                {
+                    ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(RSCardCategories.RepentanceCategory);
+                }
+            }
+
+            yield break;
+        }
     }
+    static class RSCardCategories
+    {
+        public static CardCategory BounceAbsorptionCategory = CustomCardCategories.instance.CardCategory("Bounce Absorption");
+        public static CardCategory RepentanceCategory = CustomCardCategories.instance.CardCategory("Repentance");
+    }
+
 }
