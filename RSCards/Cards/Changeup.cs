@@ -40,7 +40,7 @@ namespace RSCards.Cards
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return RSCards.ChangeupArt;
         }
         protected override CardInfo.Rarity GetRarity()
         {

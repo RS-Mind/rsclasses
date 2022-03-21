@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using ModdingUtils.Extensions;
 using System.Collections;
 using UnboundLib.GameModes;
+using Unity;
+using UnityEngine;
 
 namespace RSCards
 {
@@ -46,6 +48,11 @@ namespace RSCards
             CustomCard.BuildCard<Slug>();
             CustomCard.BuildCard<Split>();
         }
+
+        private static readonly AssetBundle Bundle = Jotunn.Utils.AssetUtils.LoadAssetBundleFromResources("rscardart", typeof(RSCards).Assembly);
+
+        public static GameObject ChangeupArt = Bundle.LoadAsset<GameObject>("C_Changeup");
+
         IEnumerator GameStart(IGameModeHandler gm)
         {
             // Runs at start of match
@@ -84,5 +91,4 @@ namespace RSCards
         public static CardCategory BounceAbsorptionCategory = CustomCardCategories.instance.CardCategory("Bounce Absorption");
         public static CardCategory RepentanceCategory = CustomCardCategories.instance.CardCategory("Repentance");
     }
-
 }
