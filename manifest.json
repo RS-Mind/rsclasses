@@ -1,10 +1,12 @@
 {
     "name": "RSCards",
-    "version_number": "0.2.0",
+    "version_number": "0.3.0",
     "website_url": "https://github.com/RS-Mind/rscards",
     "description": "Cards for ROUNDS focused on adding variety with vanilla stats",
     "dependencies": [
         "Pykess-ModdingUtils-0.2.7",
-		"willis81808-UnboundLib-2.10.2"
+		"willis81808-UnboundLib-2.10.2",
+		"TeamDK-ZeroGBulletPatch-1.1.0",
+		"Pykess-CardChoiceSpawnUniqueCardPatch-0.1.7"
     ]
 }

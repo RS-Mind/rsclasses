@@ -18,17 +18,17 @@ namespace RSCards.Cards
             gun.reloadTimeAdd = -0.5f;
             gun.damage = 0.5f;
 
-            UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup.");
+            if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Edits values on player when card is selected
-            UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}.");
+            if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
-            UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}.");
+            if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
         protected override string GetTitle()
@@ -41,7 +41,7 @@ namespace RSCards.Cards
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return RSCards.ArtAssets.LoadAsset<GameObject>("C_Split");
         }
         protected override CardInfo.Rarity GetRarity()
         {

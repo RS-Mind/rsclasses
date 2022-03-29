@@ -1,15 +1,12 @@
 ﻿using BepInEx;
-using UnboundLib;
-using UnboundLib.Cards;
-using RSCards.Cards;
-using HarmonyLib;
 using CardChoiceSpawnUniqueCardPatch.CustomCategories;
-using System.Collections.Generic;
-using ModdingUtils.Extensions;
-using System.Collections;
+using HarmonyLib;
+using RSCards.Cards;
+using UnboundLib.Cards;
 using UnboundLib.GameModes;
-using Unity;
+using Jotunn.Utils;
 using UnityEngine;
+using System.Collections;
 
 namespace RSCards
 {
@@ -36,22 +33,26 @@ namespace RSCards
         {
             instance = this;
 
-            GameModeManager.AddHook(GameModeHooks.HookGameStart, GameStart);
-            GameModeManager.AddHook(GameModeHooks.HookPlayerPickStart, PlayerPickStart);
+            RSCards.ArtAssets = AssetUtils.LoadAssetBundleFromResources("rscardart", typeof(RSCards).Assembly);
+
+            if (RSCards.ArtAssets == null)
+            {
+                UnityEngine.Debug.Log("Failed to load RSCards art asset bundle");
+            }
 
             CustomCard.BuildCard<BounceAbsorption>();
             CustomCard.BuildCard<Changeup>();
+            CustomCard.BuildCard<HarmingField>();
             CustomCard.BuildCard<Hitscan>();
             CustomCard.BuildCard<OpenChamber>();
             CustomCard.BuildCard<RecklessAttack>();
             CustomCard.BuildCard<Repentance>();
             CustomCard.BuildCard<Slug>();
             CustomCard.BuildCard<Split>();
+
+            GameModeManager.AddHook(GameModeHooks.HookGameStart, GameStart);
+            GameModeManager.AddHook(GameModeHooks.HookPlayerPickStart, PlayerPickStart);
         }
-
-        private static readonly AssetBundle Bundle = Jotunn.Utils.AssetUtils.LoadAssetBundleFromResources("rscardart", typeof(RSCards).Assembly);
-
-        public static GameObject ChangeupArt = Bundle.LoadAsset<GameObject>("C_Changeup");
 
         IEnumerator GameStart(IGameModeHandler gm)
         {
@@ -63,7 +64,7 @@ namespace RSCards
             // Runs at start of pick phase
             foreach (var player in PlayerManager.instance.players)
             {
-                ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.RemoveAll((category) => category == CustomCardCategories.instance.CardCategory("Default"));
+                
                 if (ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Contains(RSCardCategories.BounceAbsorptionCategory) && player.data.GetComponent<Holding>().holdable.GetComponent<Gun>().reflects >= 2)
                 {
                     ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Remove(RSCardCategories.BounceAbsorptionCategory);
@@ -85,7 +86,11 @@ namespace RSCards
 
             yield break;
         }
+
+        public static bool Debug = false;
+        internal static AssetBundle ArtAssets;
     }
+
     static class RSCardCategories
     {
         public static CardCategory BounceAbsorptionCategory = CustomCardCategories.instance.CardCategory("Bounce Absorption");

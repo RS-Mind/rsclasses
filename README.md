@@ -18,7 +18,6 @@ Bullets keep the default trajectory
 
 ### Hitscan
 
-(Consider disabling when playing with more mods)
 - +10000% Bullet speed
 - No Bullet bounces
 
@@ -34,8 +33,8 @@ Bullets keep the default trajectory
 - -50% DMG
 
 ### Repentance
-Convert your sinful lifesteal into proper health
 
+Convert your sinful lifesteal into proper health
 - +100% HP
 - -50% Life steal
 
