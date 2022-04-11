@@ -31,33 +31,6 @@ namespace RSCards.Cards
             //Run when the card is removed from the player
             if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
-
-        public Action<BlockTrigger.BlockTriggerType> GetDoBlockAction(Player player, Block block)
-        {
-            return delegate (BlockTrigger.BlockTriggerType trigger)
-            {
-                if (trigger != BlockTrigger.BlockTriggerType.None)
-                {
-                    Vector2 pos = block.transform.position;
-                    Player[] players = PlayerManager.instance.players.ToArray();
-
-                    for (int i = 0; i < players.Length; i++)
-                    {
-                        // don't apply the effect to the player who activated it...
-                        if (players[i].playerID == player.playerID) { continue; }
-
-                        // apply to players within range, that are within line-of-sight
-                        if (Vector2.Distance(pos, players[i].transform.position) < block.GetAdditionalData().harmingFieldRange && PlayerManager.instance.CanSeePlayer(player.transform.position, players[i]).canSee)
-                        {
-                            //NetworkingManager.RPC(typeof(HarmingField), "OnHarmingFieldActivate", new object[] { players[i].playerID, block.GetAdditionalData().discombobulateDuration });
-                        }
-                    }
-
-
-                }
-            };
-        }
-
         protected override string GetTitle()
         {
             return "Harming Field";
@@ -94,6 +67,10 @@ namespace RSCards.Cards
         public override string GetModName()
         {
             return RSCards.ModInitials;
+        }
+        public override bool GetEnabled()
+        {
+            return false;
         }
     }
 }

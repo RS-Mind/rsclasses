@@ -15,9 +15,7 @@ namespace RSCards.Cards
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            cardInfo.categories = cardInfo.categories.ToList().Concat(new List<CardCategory>() { CardChoiceSpawnUniqueCardPatch.CustomCategories.CustomCardCategories.CanDrawMultipleCategory }).ToArray();
-            statModifiers.health = 10f;
-            statModifiers.sizeMultiplier = 0.5f;
+            statModifiers.health = 1 / 50f;
             gun.damage = 10f;
             if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
@@ -42,7 +40,7 @@ namespace RSCards.Cards
         }
         protected override GameObject GetCardArt()
         {
-            return RSCards.ArtAssets.LoadAsset<GameObject>("C_Repentance");
+            return RSCards.ArtAssets.LoadAsset<GameObject>("C_Repen10ce");
         }
         protected override CardInfo.Rarity GetRarity()
         {
@@ -55,15 +53,15 @@ namespace RSCards.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "HP",
+                    stat = "Damage",
                     amount = "+900%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
-                    positive = true,
-                    stat = "Damage",
-                    amount = "+900%",
+                    positive = false,
+                    stat = "HP",
+                    amount = "-5000%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
@@ -75,6 +73,10 @@ namespace RSCards.Cards
         public override string GetModName()
         {
             return RSCards.ModInitials;
+        }
+        public override bool GetEnabled()
+        {
+            return false;
         }
     }
 }

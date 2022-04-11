@@ -15,6 +15,7 @@ namespace RSCards.Cards
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
+            cardInfo.categories = cardInfo.categories.ToList().Concat(new List<CardCategory>() { CardChoiceSpawnUniqueCardPatch.CustomCategories.CustomCardCategories.CanDrawMultipleCategory }).ToArray();
             statModifiers.health = 2f;
             statModifiers.lifeSteal = -0.5f;
 

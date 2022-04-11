@@ -7,6 +7,8 @@ using UnboundLib.GameModes;
 using Jotunn.Utils;
 using UnityEngine;
 using System.Collections;
+using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace RSCards
 {
@@ -42,15 +44,20 @@ namespace RSCards
 
             CustomCard.BuildCard<BounceAbsorption>();
             CustomCard.BuildCard<Changeup>();
-            CustomCard.BuildCard<HarmingField>();
+
+            CustomCard.BuildCard<HarmingField>((cardInfo) => { try { UnboundLib.Utils.CardManager.EnableCard(cardInfo); } catch { } });
+
             CustomCard.BuildCard<Hitscan>();
             CustomCard.BuildCard<OpenChamber>();
             CustomCard.BuildCard<RecklessAttack>();
             CustomCard.BuildCard<Repentance>();
             CustomCard.BuildCard<Repentence>();
-            CustomCard.BuildCard<Repen10ce>();
+            CustomCard.BuildCard<Repen10ce>((cardInfo) => ModdingUtils.Utils.Cards.instance.AddHiddenCard(cardInfo));
             CustomCard.BuildCard<Slug>();
             CustomCard.BuildCard<Split>();
+
+            
+
 
             GameModeManager.AddHook(GameModeHooks.HookGameStart, GameStart);
             GameModeManager.AddHook(GameModeHooks.HookPlayerPickStart, PlayerPickStart);
