@@ -30,6 +30,12 @@
     <Reference Include="ModdingUtils">
       <HintPath>C:\Users\jnet\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ROUNDS\profiles\Development\BepInEx\plugins\Pykess-ModdingUtils\ModdingUtils.dll</HintPath>
     </Reference>
+    <Reference Include="PhotonRealtime">
+      <HintPath>E:\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\PhotonRealtime.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonUnityNetworking">
+      <HintPath>E:\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+    </Reference>
     <Reference Include="UnboundLib">
       <HintPath>C:\Users\jnet\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ROUNDS\profiles\Development\BepInEx\plugins\willis81808-UnboundLib\UnboundLib.dll</HintPath>
     </Reference>

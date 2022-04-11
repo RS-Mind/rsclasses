@@ -47,6 +47,8 @@ namespace RSCards
             CustomCard.BuildCard<OpenChamber>();
             CustomCard.BuildCard<RecklessAttack>();
             CustomCard.BuildCard<Repentance>();
+            CustomCard.BuildCard<Repentence>();
+            CustomCard.BuildCard<Repen10ce>();
             CustomCard.BuildCard<Slug>();
             CustomCard.BuildCard<Split>();
 
@@ -83,6 +85,13 @@ namespace RSCards
                     ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(RSCardCategories.RepentanceCategory);
                 }
             }
+            foreach (Player player in PlayerManager.instance.players.ToArray())
+            {
+                if (player.data.view.Owner.NickName != "willuwontu")
+                {
+                    ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(RSCardCategories.HarmingFieldCategory);
+                }
+            }
 
             yield break;
         }
@@ -95,5 +104,6 @@ namespace RSCards
     {
         public static CardCategory BounceAbsorptionCategory = CustomCardCategories.instance.CardCategory("Bounce Absorption");
         public static CardCategory RepentanceCategory = CustomCardCategories.instance.CardCategory("Repentance");
+        public static CardCategory HarmingFieldCategory = CustomCardCategories.instance.CardCategory("Harming Field");
     }
 }
