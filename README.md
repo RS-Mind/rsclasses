@@ -48,3 +48,10 @@ Convert your sinful lifesteal into proper health
 - +3 Ammo
 - -0.5s Reload Time
 - -50% DMG
+
+## Patch Notes:
+#### 0.3.1:
+- Fixed issue where incomplete card "Harming Field" shows up in-game.
+
+#### 0.3.2
+- Fixed internal version number.

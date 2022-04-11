@@ -19,7 +19,7 @@ namespace RSCards
     {
         private const string ModId = "com.rsmind.rounds.RSCards";
         private const string ModName = "RSCards";
-        public const string Version = "0.1.0";
+        public const string Version = "0.3.2";
         public const string ModInitials = "RSC";
         public static RSCards instance { get; private set; }
 
