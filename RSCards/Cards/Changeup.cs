@@ -15,7 +15,7 @@ namespace RSCards.Cards
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
             gun.projectielSimulatonSpeed = 0.75f;
-            gun.attackSpeedMultiplier = 1.3f;
+            gun.attackSpeedMultiplier = 0.7f;
 
             if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup."); }
         }

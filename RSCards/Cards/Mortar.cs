@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSCards.MonoBehaviors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,21 +10,21 @@ using UnityEngine;
 
 namespace RSCards.Cards
 {
-    class Hitscan : CustomCard
+    class Mortar : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            gun.projectielSimulatonSpeed = 100f;
-            gun.gravity = 0f;
-            gun.reflects = -1000;
-            gun.attackSpeed = 2f;
+            gun.reloadTime = 0.5f;
             cardInfo.allowMultiple = false;
             if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Edits values on player when card is selected
+            List <ObjectsToSpawn> list = gun.objectsToSpawn.ToList();
+            list.Add(new ObjectsToSpawn { AddToProjectile = new GameObject("Mortar_Mono", new Type[] { typeof(Mortar_Mono) }) });
+            gun.objectsToSpawn = list.ToArray();
             if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -34,15 +35,15 @@ namespace RSCards.Cards
 
         protected override string GetTitle()
         {
-            return "Hitscan";
+            return "Mortar";
         }
         protected override string GetDescription()
         {
-            return "";
+            return "Shooting redirects your bullets towards the cursor.";
         }
         protected override GameObject GetCardArt()
         {
-            return RSCards.ArtAssets.LoadAsset<GameObject>("C_Hitscan");
+            return RSCards.ArtAssets.LoadAsset<GameObject>("C_Mortar");
         }
         protected override CardInfo.Rarity GetRarity()
         {
@@ -55,13 +56,6 @@ namespace RSCards.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Projectile speed",
-                    amount = "+10000%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = true,
                     stat = "Bullet gravity",
                     amount = "No",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
@@ -69,15 +63,8 @@ namespace RSCards.Cards
                 new CardInfoStat()
                 {
                     positive = false,
-                    stat = "Bullet bounces",
-                    amount = "No",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = false,
-                    stat = "ATKSPD",
-                    amount = "-50%",
+                    stat = "Reload time",
+                    amount = "+0.5s",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

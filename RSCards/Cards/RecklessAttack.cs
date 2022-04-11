@@ -55,7 +55,7 @@ namespace RSCards.Cards
                 {
                     positive = true,
                     stat = "ATKSPD",
-                    amount = "+150%",
+                    amount = "+100%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()

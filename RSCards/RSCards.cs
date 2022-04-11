@@ -21,7 +21,7 @@ namespace RSCards
     {
         private const string ModId = "com.rsmind.rounds.RSCards";
         private const string ModName = "RSCards";
-        public const string Version = "0.3.2";
+        public const string Version = "1.0.0";
         public const string ModInitials = "RSC";
         public static RSCards instance { get; private set; }
 
@@ -44,10 +44,9 @@ namespace RSCards
 
             CustomCard.BuildCard<BounceAbsorption>();
             CustomCard.BuildCard<Changeup>();
-
             CustomCard.BuildCard<HarmingField>((cardInfo) => { try { UnboundLib.Utils.CardManager.EnableCard(cardInfo); } catch { } });
-
             CustomCard.BuildCard<Hitscan>();
+            CustomCard.BuildCard<Mortar>();
             CustomCard.BuildCard<OpenChamber>();
             CustomCard.BuildCard<RecklessAttack>();
             CustomCard.BuildCard<Repentance>();

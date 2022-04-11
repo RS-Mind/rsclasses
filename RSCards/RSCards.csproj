@@ -27,6 +27,9 @@
     <Reference Include="CardChoiceSpawnUniqueCardPatch">
       <HintPath>C:\Users\jnet\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ROUNDS\profiles\Development\BepInEx\plugins\Pykess-CardChoiceSpawnUniqueCardPatch\CardChoiceSpawnUniqueCardPatch.dll</HintPath>
     </Reference>
+    <Reference Include="InControl">
+      <HintPath>E:\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\InControl.dll</HintPath>
+    </Reference>
     <Reference Include="ModdingUtils">
       <HintPath>C:\Users\jnet\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ROUNDS\profiles\Development\BepInEx\plugins\Pykess-ModdingUtils\ModdingUtils.dll</HintPath>
     </Reference>

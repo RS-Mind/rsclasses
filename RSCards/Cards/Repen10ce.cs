@@ -61,7 +61,7 @@ namespace RSCards.Cards
                 {
                     positive = false,
                     stat = "HP",
-                    amount = "-5000%",
+                    amount = "-98%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
