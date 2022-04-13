@@ -18,10 +18,11 @@ Bullets keep the default trajectory
 
 ### Hitscan
 [Uncommon]
-- +10000% Bullet speed
+- +900% Bullet speed
 - No Bullet gravity
 - No Bullet bounces
 - -50% ATKSPD
+- +0.5s Reload time
 
 ### Mortar
 [Uncommon]
@@ -58,6 +59,11 @@ Convert your sinful lifesteal into proper health
 - -50% DMG
 
 ## Patch Notes:
+
+#### 1.1.0:
+- Added a trail to Hitscan.
+- Nerfed Hitscan
+- Fixed Changeup's attack speed bonus
 
 #### 1.0.0:
 - Added Mortar

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSCards.MonoBehaviors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,16 +15,20 @@ namespace RSCards.Cards
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            gun.projectielSimulatonSpeed = 100f;
+            gun.projectielSimulatonSpeed = 10f;
             gun.gravity = 0f;
             gun.reflects = -1000;
             gun.attackSpeed = 2f;
+            gun.reloadTime = 0.5f;
             cardInfo.allowMultiple = false;
             if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Edits values on player when card is selected
+            List<ObjectsToSpawn> list = gun.objectsToSpawn.ToList();
+            list.Add(new ObjectsToSpawn { AddToProjectile = new GameObject("Hitscan_Mono", new Type[] { typeof(Hitscan_Mono) }) });
+            gun.objectsToSpawn = list.ToArray();
             if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -56,7 +61,7 @@ namespace RSCards.Cards
                 {
                     positive = true,
                     stat = "Projectile speed",
-                    amount = "+10000%",
+                    amount = "+900%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
@@ -78,6 +83,13 @@ namespace RSCards.Cards
                     positive = false,
                     stat = "ATKSPD",
                     amount = "-50%",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
+                    positive = false,
+                    stat = "Reload Speed",
+                    amount = "+0.5s",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

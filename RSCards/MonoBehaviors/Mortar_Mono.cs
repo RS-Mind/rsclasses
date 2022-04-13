@@ -44,7 +44,7 @@ namespace RSCards.MonoBehaviors
                     vector.Normalize();
                 }
 
-                this.trigger = this.spawned.spawner.data.weaponHandler.gun.ReadyAmount() < 0.1f;
+                this.trigger = this.spawned.spawner.data.weaponHandler.gun.ReadyAmount() < 0.01f;
 
                 vector += Vector3.Cross(Vector3.forward, vector) * this.move.selectedSpread;
                 this.c += TimeHandler.deltaTime;
@@ -89,7 +89,7 @@ namespace RSCards.MonoBehaviors
 
 		public bool snap;
         public bool trigger;
-		public float rotateSpeed = 100f;
+		public float rotateSpeed = 1000f;
 		private SpawnedAttack spawned;
 		private MoveTransform move;
 		private float startVelocity;
