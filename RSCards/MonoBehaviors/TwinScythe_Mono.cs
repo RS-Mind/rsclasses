@@ -1,8 +1,6 @@
 ﻿using UnboundLib;
 using UnboundLib.GameModes;
 using UnityEngine;
-using Photon.Pun;
-using RSCards;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +11,11 @@ namespace RSCards.MonoBehaviors
 {
 	class Scythe : MonoBehaviour
 	{
+        private void OnDestroy()
+        {
+            Destroy(scythe);
+        }
+
 		private void Start()
 		{
 			Player = this.GetComponentInParent<Player>();
@@ -20,7 +23,6 @@ namespace RSCards.MonoBehaviors
             scythe = GameObject.Instantiate(RSCards.ArtAssets.LoadAsset<GameObject>("Scythe"), Player.transform);
             scythe.SetActive(true);
             scythe.GetComponent<SpriteRenderer>().color = Player.GetTeamColors().color;
-            UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] Created.");
         }
 
 		public void DoHit()
@@ -126,6 +128,7 @@ namespace RSCards.MonoBehaviors
             }
 			else if (scythes.Count() > scytheCount)
             {
+                Destroy(scythes[0]);
 				scythes.Remove(scythes[0]);
             }
 
