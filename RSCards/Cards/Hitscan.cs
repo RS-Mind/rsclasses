@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
@@ -17,7 +14,6 @@ namespace RSCards.Cards
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
             gun.projectielSimulatonSpeed = 10f;
             gun.gravity = 0f;
-            gun.reflects = -1000;
             gun.attackSpeed = 2f;
             gun.reloadTime = 0.5f;
             cardInfo.allowMultiple = false;
@@ -26,6 +22,7 @@ namespace RSCards.Cards
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Edits values on player when card is selected
+            gun.reflects = int.MinValue;
             List<ObjectsToSpawn> list = gun.objectsToSpawn.ToList();
             list.Add(new ObjectsToSpawn { AddToProjectile = new GameObject("Hitscan_Mono", new Type[] { typeof(Hitscan_Mono) }) });
             gun.objectsToSpawn = list.ToArray();

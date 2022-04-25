@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using UnboundLib.Cards;
-using UnboundLib.Extensions;
-using UnboundLib.Networking;
-using UnboundLib.Utils;
+﻿using UnboundLib.Cards;
 using UnityEngine;
 
 namespace RSCards.Cards
@@ -17,7 +9,6 @@ namespace RSCards.Cards
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            cardInfo.categories = new CardCategory[] { RSCardCategories.HarmingFieldCategory };
             if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -36,7 +27,7 @@ namespace RSCards.Cards
         }
         protected override string GetDescription()
         {
-            return "This card does nothing. Sorry Will.";
+            return "This card does nothing. Sorry Will";
         }
         protected override GameObject GetCardArt()
         {

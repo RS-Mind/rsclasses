@@ -26,7 +26,7 @@ Bullets keep the default trajectory
 
 ### Mortar
 [Uncommon]
-Shooting redirects your bullets towards the cursor.
+Shooting redirects your bullets towards the cursor
 - No Bullet gravity
 - +0.5s Reload time
 
@@ -58,10 +58,21 @@ Convert your sinful lifesteal into proper health
 - -0.5s Reload Time
 - -50% DMG
 
+### Twin Scythes
+[Uncommon]
+A twin scythe will orbit you, dealing damage and destroying bullets
+
+Every copy of this card after the 4th doesn't give a new scythe, instead only increasing damage.
+
 ## Patch Notes:
 
+#### 1.2.0:
+- Added Twin Scythes
+- Changed Repentence (not Repentance) to only appear during the week of April 1st
+- Removed Harming Field from Will
+
 #### 1.1.0:
-- Added a trail to Hitscan.
+- Added a trail to Hitscan
 - Nerfed Hitscan
 - Fixed Changeup's attack speed bonus
 

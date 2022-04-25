@@ -2,26 +2,26 @@
 using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using HarmonyLib;
 using RSCards.Cards;
+using RSCards.Utilities;
 using UnboundLib.Cards;
 using UnboundLib.GameModes;
 using Jotunn.Utils;
 using UnityEngine;
 using System.Collections;
-using System.Linq;
-using System.Collections.ObjectModel;
 
 namespace RSCards
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("pykess.rounds.plugins.moddingutils", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("pykess.rounds.plugins.cardchoicespawnuniquecardpatch", BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency("com.dk.rounds.plugins.zerogpatch", BepInDependency.DependencyFlags.HardDependency)]
     [BepInPlugin(ModId, ModName, Version)]
     [BepInProcess("Rounds.exe")]
     public class RSCards : BaseUnityPlugin
     {
         private const string ModId = "com.rsmind.rounds.RSCards";
         private const string ModName = "RSCards";
-        public const string Version = "1.1.0";
+        public const string Version = "1.2.1";
         public const string ModInitials = "RSC";
         public static RSCards instance { get; private set; }
 
@@ -44,19 +44,19 @@ namespace RSCards
 
             CustomCard.BuildCard<BounceAbsorption>();
             CustomCard.BuildCard<Changeup>();
-            CustomCard.BuildCard<HarmingField>((cardInfo) => { try { UnboundLib.Utils.CardManager.EnableCard(cardInfo); } catch { } });
+            //CustomCard.BuildCard<HarmingField>((cardInfo) => { try { UnboundLib.Utils.CardManager.EnableCard(cardInfo); } catch { } });
             CustomCard.BuildCard<Hitscan>();
             CustomCard.BuildCard<Mortar>();
             CustomCard.BuildCard<OpenChamber>();
             CustomCard.BuildCard<RecklessAttack>();
             CustomCard.BuildCard<Repentance>();
-            CustomCard.BuildCard<Repentence>();
-            CustomCard.BuildCard<Repen10ce>((cardInfo) => ModdingUtils.Utils.Cards.instance.AddHiddenCard(cardInfo));
+            if (DateTools.WeekOf(new System.DateTime(System.DateTime.UtcNow.Year, 4, 1))) {
+                CustomCard.BuildCard<Repentence>();
+                CustomCard.BuildCard<Repen10ce>((cardInfo) => ModdingUtils.Utils.Cards.instance.AddHiddenCard(cardInfo));
+            }
             CustomCard.BuildCard<Slug>();
             CustomCard.BuildCard<Split>();
-
-            
-
+            CustomCard.BuildCard<TwinScythe>();
 
             GameModeManager.AddHook(GameModeHooks.HookGameStart, GameStart);
             GameModeManager.AddHook(GameModeHooks.HookPlayerPickStart, PlayerPickStart);
@@ -91,14 +91,6 @@ namespace RSCards
                     ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(RSCardCategories.RepentanceCategory);
                 }
             }
-            foreach (Player player in PlayerManager.instance.players.ToArray())
-            {
-                if (player.data.view.Owner.NickName != "willuwontu")
-                {
-                    ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(RSCardCategories.HarmingFieldCategory);
-                }
-            }
-
             yield break;
         }
 
@@ -110,6 +102,5 @@ namespace RSCards
     {
         public static CardCategory BounceAbsorptionCategory = CustomCardCategories.instance.CardCategory("Bounce Absorption");
         public static CardCategory RepentanceCategory = CustomCardCategories.instance.CardCategory("Repentance");
-        public static CardCategory HarmingFieldCategory = CustomCardCategories.instance.CardCategory("Harming Field");
     }
 }

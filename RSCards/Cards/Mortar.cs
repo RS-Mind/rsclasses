@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
@@ -40,7 +37,7 @@ namespace RSCards.Cards
         }
         protected override string GetDescription()
         {
-            return "Shooting redirects your bullets towards the cursor.";
+            return "Shooting redirects your bullets towards the cursor";
         }
         protected override GameObject GetCardArt()
         {

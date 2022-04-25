@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
-using Photon.Pun;
-using RSCards;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using UnboundLib;
 
 namespace RSCards.MonoBehaviors
