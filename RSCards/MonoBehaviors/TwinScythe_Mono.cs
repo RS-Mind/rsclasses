@@ -86,8 +86,9 @@ namespace RSCards.MonoBehaviors
 		{
 			Player = this.GetComponentInParent<Player>();
 
-			GameModeManager.AddHook(GameModeHooks.HookPointStart, RoundStart);
-			GameModeManager.AddHook(GameModeHooks.HookBattleStart, BattleStart);
+			GameModeManager.AddHook(GameModeHooks.HookPointStart, PointStart);
+            GameModeManager.AddHook(GameModeHooks.HookPointEnd, PointEnd);
+            GameModeManager.AddHook(GameModeHooks.HookBattleStart, BattleStart);
 		}
 
 		private void Update()
@@ -144,20 +145,25 @@ namespace RSCards.MonoBehaviors
 			yield break;
 		}
 
-		IEnumerator RoundStart(IGameModeHandler gm)
+		IEnumerator PointStart(IGameModeHandler gm)
 		{
 			rotation = 0f;
 			angle = 0.0;
-			active = false;
 			yield break;
 		}
 
-		private float radius = 2.5f;
+        IEnumerator PointEnd(IGameModeHandler gm)
+        {
+            active = false;
+            yield break;
+        }
+
+        private float radius = 2.5f;
 		private double angle = 0;
 		private float rotation = 0;
 		public int count = 0;
 		private float damage = 55;
-		private bool active = true;
+		private bool active = false;
 		List<Scythe> scythes = new List<Scythe>();
         Player Player;
 	}

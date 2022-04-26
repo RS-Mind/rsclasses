@@ -62,7 +62,7 @@ Convert your sinful lifesteal into proper health
 [Uncommon]
 A twin scythe will orbit you, dealing damage and destroying bullets
 
-Every copy of this card after the 4th doesn't give a new scythe, instead only increasing damage.
+Every copy of this card after the 4th doesn't give a new scythe, instead only increasing damage. This card will not work in sandbox.
 
 ## Patch Notes:
 
