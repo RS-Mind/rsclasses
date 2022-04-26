@@ -1,0 +1,12 @@
+{
+    "name": "RSClasses",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/RS-Mind/rsclasses",
+    "description": "Classes for ROUNDS that leverage unique mechanics.",
+    "dependencies": [
+        "Pykess-ModdingUtils-0.3.1",
+		"willis81808-UnboundLib-2.11.1",
+		"Pykess-CardChoiceSpawnUniqueCardPatch-0.1.7",
+		"Root-Classes_Manager_Reborn-1.1.1"
+    ]
+}
