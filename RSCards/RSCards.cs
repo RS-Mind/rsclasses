@@ -21,7 +21,7 @@ namespace RSCards
     {
         private const string ModId = "com.rsmind.rounds.RSCards";
         private const string ModName = "RSCards";
-        public const string Version = "1.2.3";
+        public const string Version = "1.2.4";
         public const string ModInitials = "RSC";
         public static RSCards instance { get; private set; }
 
@@ -33,6 +33,16 @@ namespace RSCards
 
         void Start()
         {
+            bool RSClasses = false;
+            foreach (BaseUnityPlugin plugin in BepInEx.Bootstrap.Chainloader.Plugins)
+            {
+                if (plugin.Info.Metadata.GUID == "com.rsmind.rounds.RSClasses")
+                {
+                    RSClasses = true;
+                    break;
+                }
+            }
+
             instance = this;
 
             RSCards.ArtAssets = AssetUtils.LoadAssetBundleFromResources("rscardart", typeof(RSCards).Assembly);
@@ -56,7 +66,7 @@ namespace RSCards
             }
             CustomCard.BuildCard<Slug>();
             CustomCard.BuildCard<Split>();
-            CustomCard.BuildCard<TwinScythe>();
+            if (!RSClasses) CustomCard.BuildCard<TwinScythe>();
 
             GameModeManager.AddHook(GameModeHooks.HookGameStart, GameStart);
             GameModeManager.AddHook(GameModeHooks.HookPlayerPickStart, PlayerPickStart);

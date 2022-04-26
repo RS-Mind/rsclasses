@@ -58,13 +58,17 @@ Convert your sinful lifesteal into proper health
 - -0.5s Reload Time
 - -50% DMG
 
-### Twin Scythes
+### Twin Scythe
 [Uncommon]
 A twin scythe will orbit you, dealing damage and destroying bullets
 
-Every copy of this card after the 4th doesn't give a new scythe, instead only increasing damage. This card will not work in sandbox.
+Every copy of this card after the 4th doesn't give a new scythe, instead only increasing damage. This card will not work in sandbox. This card will not appear if RSClasses is installed, being replaced by the astronomer class.
 
-## Patch Notes:
+<details open>
+<summary>
+Patch Notes:
+</summary>
+<br>
 
 #### 1.2.0:
 - Added Twin Scythes
@@ -80,8 +84,9 @@ Every copy of this card after the 4th doesn't give a new scythe, instead only in
 - Added Mortar
 - Fixed various cards
 
+#### 0.3.2:
+- Fixed internal version number.
+
 #### 0.3.1:
 - Fixed issue where incomplete card "Harming Field" shows up in-game.
-
-#### 0.3.2
-- Fixed internal version number.
+</details>
