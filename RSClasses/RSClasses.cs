@@ -17,7 +17,7 @@ namespace RSClasses
     {
         private const string ModId = "com.rsmind.rounds.RSClasses";
         private const string ModName = "RSClasses";
-        public const string Version = "1.1.0";
+        public const string Version = "1.1.2";
         public const string ModInitials = "RSC";
         public static RSClasses instance { get; private set; }
 

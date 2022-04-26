@@ -31,21 +31,16 @@ namespace RSClasses.MonoBehaviors
 
             foreach (var hit in hits)
             {
-                var Keys = recent.Keys.ToArray();
-                foreach (int Key in Keys)
-                {
-                    recent[Key] -= TimeHandler.deltaTime;
-                }
                 var damageable = hit.gameObject.GetComponent<Damagable>();
                 var healthHandler = hit.gameObject.GetComponent<HealthHandler>();
                 if (healthHandler)
                 {
-                    healthHandler.CallTakeForce(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * 100, ForceMode2D.Impulse, true);
-                    int id = ((Player)healthHandler.GetFieldValue("player")).playerID;
-                    if (id == Player.playerID || (recent.ContainsKey(id) && recent[id] > 0)) { continue; }
+                    Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
+                    if (hitPlayer.playerID == Player.playerID || recent.ContainsKey(hitPlayer.playerID)) { continue; }
                     SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, this.transform, damageable.transform);
-                    healthHandler.CallTakeForce(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * 10000, ForceMode2D.Impulse, true);
-                    recent[id] = 0.5f;
+                    healthHandler.CallTakeForce(((Vector2)hitPlayer.transform.position - (Vector2)scythe.transform.position).normalized * 5000, ForceMode2D.Impulse, true);
+                    recent[hitPlayer.playerID] = 0.5f;
+                    if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame) { continue; }
                 }
                 if (damageable)
                 {
@@ -80,7 +75,7 @@ namespace RSClasses.MonoBehaviors
         public float damage = 55;
         public bool hitBullets = true;
         private Player Player;
-        private Dictionary<int, float> recent = new Dictionary<int, float>();
+        public Dictionary<int, float> recent = new Dictionary<int, float>();
         GameObject scythe;
     }
 
@@ -105,7 +100,15 @@ namespace RSClasses.MonoBehaviors
 
         private void Update()
         {
-            angle = (angle + (speed * TimeHandler.deltaTime)) % 360;
+            angle = (angle + (speed * TimeHandler.deltaTime));
+            if (angle > 360)
+            {
+                foreach (Scythe scythe in scythes)
+                {
+                    scythe.recent.Clear();
+                }
+                angle -= 360;
+            }
             rotation = (rotation - (1200 * TimeHandler.deltaTime)) % 360;
 
             int index = 0;
@@ -187,12 +190,12 @@ namespace RSClasses.MonoBehaviors
             yield break;
         }
 
-        public float speed = 300f;
+        public float speed = 250f;
         public float radius = 2.5f;
         private double angle = 0;
         private float rotation = 0;
         public int count = 0;
-        public float damage = 25;
+        public float damage = 20;
         private bool active = false;
         Color color = new Color(1f, 1f, 0.7411765f);
         List<Scythe> scythes = new List<Scythe>();

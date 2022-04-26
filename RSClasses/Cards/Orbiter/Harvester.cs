@@ -11,6 +11,7 @@ namespace RSClasses.Cards.Astronomer
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
+            statModifiers.health = 0.75f;
 
             cardInfo.allowMultiple = false;
             gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.name;

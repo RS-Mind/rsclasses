@@ -38,7 +38,10 @@ namespace RSClasses.MonoBehaviors
             shieldCollider.transform.localScale = Vector3.Scale(shield.transform.localScale, Player.transform.localScale);
         }
 
-        
+        private void Update()
+        {
+            shieldCollider.gameObject.SetActive(!Player.data.dead);
+        }
 
         public void SetColor(Color color)
         {
@@ -66,7 +69,7 @@ namespace RSClasses.MonoBehaviors
 
         public void Update()
         {
-            this.gameObject.SetActive(Player.isActiveAndEnabled);
+            this.gameObject.SetActive(!Player.data.dead);
         }
 
         Player Player;

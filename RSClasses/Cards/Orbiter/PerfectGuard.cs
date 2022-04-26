@@ -21,6 +21,7 @@ namespace RSClasses.Cards.Astronomer
             //Edits values on player when card is selected
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             shield.count += 8;
+            shield.radius += 1f;
             RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
@@ -29,6 +30,7 @@ namespace RSClasses.Cards.Astronomer
             //Run when the card is removed from the player
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             shield.count -= 8;
+            shield.radius -= 1f;
             RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
@@ -59,6 +61,13 @@ namespace RSClasses.Cards.Astronomer
                     positive = true,
                     stat = "Shields",
                     amount = "+8",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
+                    positive = true,
+                    stat = "Shield size",
+                    amount = "+1",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
