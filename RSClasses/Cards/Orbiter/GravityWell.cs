@@ -24,22 +24,23 @@ namespace RSClasses.Cards.Astronomer
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             scythe.speed *= 2;
             shield.speed *= 2;
-            scythe.UpdateStats();
-            shield.UpdateStats();
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
-            var scythe = player.gameObject.GetComponent<ScytheMono>();
-            var shield = player.gameObject.GetComponent<ShieldMono>();
+            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
+            var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             scythe.speed /= 2;
             shield.speed /= 2;
-            scythe.UpdateStats();
-            shield.UpdateStats();
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
+        internal static CardInfo Card = null;
         protected override string GetTitle()
         {
             return "Gravity Well";

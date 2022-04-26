@@ -75,9 +75,8 @@ Reapers of souls. Defense is not their concern. Their scythes don't cut through 
 [Rare]
 *Requires Harvester*
 A horrifying sight to behold
-- +50% Scythe damage
+- +100% Scythe damage
 - +25% Lifesteal
-- +50% Scythe speed
 </details>
 
 <details open>
@@ -86,6 +85,25 @@ Patch Notes:
 </summary>
 <br>
 
-#### 1.0.0:
+<details open>
+<summary>
+1.1.0
+</summmary>
+<br>
+- Scythes not cutting bullets has been moved from Harvester to a base trait
+- Base scythe speed increased 100 -> 300
+- Base scythe damage decreased 55 -> 25
+- Base shield speed decreased 200 -> 100
+- Fixed issues with cards involving race conditions
+- Dark Harvest now gives 50% -> 100% scythe damage and 50% -> 0% scythe speed
+- Sharper Scythes now gives 75% -> 50% scythe damage
+</details>
+
+<details open>
+<summary>
+1.0.0
+</summmary>
+<br>
 - Added Astronomer Class
+</details>
 </details>

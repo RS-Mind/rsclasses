@@ -18,13 +18,13 @@ namespace RSClasses.Cards.Astronomer
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Edits values on player when card is selected
-            var scythe = player.gameObject.GetComponent<ScytheMono>();
-            var shield = player.gameObject.GetComponent<ShieldMono>();
+            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
+            var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             scythe.damage *= 0.75f;
             scythe.radius += 0.5f;
             shield.radius += 0.5f;
-            scythe.UpdateStats();
-            shield.UpdateStats();
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -40,6 +40,7 @@ namespace RSClasses.Cards.Astronomer
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
+        internal static CardInfo Card = null;
         protected override string GetTitle()
         {
             return "Domain Extension";

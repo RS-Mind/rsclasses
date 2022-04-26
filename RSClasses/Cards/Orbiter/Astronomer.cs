@@ -31,8 +31,8 @@ namespace RSClasses.Cards.Astronomer
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
-            var scythe = player.gameObject.GetComponent<ScytheMono>();
-            var shield = player.gameObject.GetComponent<ShieldMono>();
+            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
+            var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             scythe.count -= 2;
             shield.count -= 2;
             RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
@@ -40,6 +40,7 @@ namespace RSClasses.Cards.Astronomer
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
+        internal static CardInfo Card = null;
         protected override string GetTitle()
         {
             return "Astronomer";

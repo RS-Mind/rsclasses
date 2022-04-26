@@ -25,33 +25,32 @@ namespace RSClasses.Cards.Astronomer
             scythe.speed *= 2;
             shield.count -= 4;
             scythe.setColor(new Color(178f / 255f, 0f, 1f));
-            scythe.hitBullets = false;
-            scythe.UpdateStats();
-            shield.UpdateStats();
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
-            var scythe = player.gameObject.GetComponent<ScytheMono>();
-            var shield = player.gameObject.GetComponent<ShieldMono>();
+            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
+            var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             scythe.count -= 4;
             scythe.speed /= 2;
             shield.count += 4;
             scythe.setColor(new Color(0.6156863f, 0.227451f, 1f));
-            scythe.hitBullets = true;
-            scythe.UpdateStats();
-            shield.UpdateStats();
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
+        internal static CardInfo Card = null;
         protected override string GetTitle()
         {
             return "Harvester";
         }
         protected override string GetDescription()
         {
-            return "Reapers of souls. Defense is not their concern. Their scythes don't cut through bullets";
+            return "Reapers of souls. Defense is not their concern";
         }
         protected override GameObject GetCardArt()
         {

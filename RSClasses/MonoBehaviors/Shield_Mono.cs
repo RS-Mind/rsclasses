@@ -38,6 +38,8 @@ namespace RSClasses.MonoBehaviors
             shieldCollider.transform.localScale = Vector3.Scale(shield.transform.localScale, Player.transform.localScale);
         }
 
+        
+
         public void SetColor(Color color)
         {
             shield.GetComponent<SpriteRenderer>().color = color;
@@ -58,8 +60,16 @@ namespace RSClasses.MonoBehaviors
         void Start()
         {
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
+            Player = this.GetComponentInParent<Player>();
             this.gameObject.transform.SetParent(null, true);
         }
+
+        public void Update()
+        {
+            this.gameObject.SetActive(Player.isActiveAndEnabled);
+        }
+
+        Player Player;
     }
 
     public class ShieldMono : MonoBehaviour
@@ -132,7 +142,7 @@ namespace RSClasses.MonoBehaviors
             yield break;
         }
 
-        public float speed = 200f;
+        public float speed = 100f;
         public float radius = 1.5f;
         private double angle = 0;
         public int count = 0;

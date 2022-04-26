@@ -21,21 +21,20 @@ namespace RSClasses.Cards.Astronomer
         {
             //Edits values on player when card is selected
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
-            scythe.damage *= 1.5f;
-            scythe.speed *= 1.5f;
-            scythe.UpdateStats();
+            scythe.damage *= 2f;
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
-            var scythe = player.gameObject.GetComponent<ScytheMono>();
-            scythe.damage /= 1.5f;
-            scythe.speed /= 1.5f;
-            scythe.UpdateStats();
+            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
+            scythe.damage /= 2f;
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
+        internal static CardInfo Card = null;
         protected override string GetTitle()
         {
             return "Dark Harvest";
@@ -60,7 +59,7 @@ namespace RSClasses.Cards.Astronomer
                 {
                     positive = true,
                     stat = "Scythe damage",
-                    amount = "+50%",
+                    amount = "+100%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
@@ -68,13 +67,6 @@ namespace RSClasses.Cards.Astronomer
                     positive = true,
                     stat = "Lifesteal",
                     amount = "+25%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = true,
-                    stat = "Scythe speed",
-                    amount = "+50%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

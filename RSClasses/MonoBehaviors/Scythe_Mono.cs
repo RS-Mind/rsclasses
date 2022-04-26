@@ -36,7 +36,6 @@ namespace RSClasses.MonoBehaviors
                 {
                     recent[Key] -= TimeHandler.deltaTime;
                 }
-                var bullet = hit.gameObject.GetComponentInParent<ProjectileHit>();
                 var damageable = hit.gameObject.GetComponent<Damagable>();
                 var healthHandler = hit.gameObject.GetComponent<HealthHandler>();
                 if (healthHandler)
@@ -52,11 +51,6 @@ namespace RSClasses.MonoBehaviors
                 {
                     damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * damage,
                         (Vector2)this.transform.position, this.gameObject, Player);
-                }
-                if (bullet && hitBullets)
-                {
-                    bullet.deathEvent.Invoke();
-                    Destroy(bullet.gameObject);
                 }
             }
         }
@@ -161,7 +155,6 @@ namespace RSClasses.MonoBehaviors
             foreach (Scythe scythe in scythes)
             {
                 scythe.damage = damage;
-                scythe.hitBullets = hitBullets;
                 RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.SetScale(radius / 16f));
             }
         }
@@ -194,14 +187,13 @@ namespace RSClasses.MonoBehaviors
             yield break;
         }
 
-        public float speed = 100f;
+        public float speed = 300f;
         public float radius = 2.5f;
         private double angle = 0;
         private float rotation = 0;
         public int count = 0;
-        public float damage = 55;
+        public float damage = 25;
         private bool active = false;
-        public bool hitBullets = true;
         Color color = new Color(1f, 1f, 0.7411765f);
         List<Scythe> scythes = new List<Scythe>();
         Player Player;
