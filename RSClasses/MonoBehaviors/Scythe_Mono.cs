@@ -181,6 +181,7 @@ namespace RSClasses.MonoBehaviors
         {
             rotation = 0f;
             angle = 0.0;
+            this.UpdateStats();
             yield break;
         }
 

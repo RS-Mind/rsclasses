@@ -24,8 +24,6 @@ namespace RSClasses.Cards.Astronomer
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             scythe.speed += 250;
             shield.speed += 100;
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -35,8 +33,6 @@ namespace RSClasses.Cards.Astronomer
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             scythe.speed -= 250;
             shield.speed -= 100;
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
@@ -64,7 +60,7 @@ namespace RSClasses.Cards.Astronomer
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Speed",
+                    stat = "Movement Speed",
                     amount = "+25%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },

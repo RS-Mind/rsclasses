@@ -23,8 +23,6 @@ namespace RSClasses.Cards.Astronomer
             scythe.damage *= 0.75f;
             scythe.radius += 0.5f;
             shield.radius += 0.5f;
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -35,8 +33,6 @@ namespace RSClasses.Cards.Astronomer
             scythe.damage /= 0.75f;
             scythe.radius -= 0.25f;
             shield.radius -= 0.25f;
-            scythe.UpdateStats();
-            shield.UpdateStats();
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 

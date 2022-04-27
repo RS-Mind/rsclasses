@@ -142,6 +142,7 @@ namespace RSClasses.MonoBehaviors
         IEnumerator RoundStart(IGameModeHandler gm)
         {
             angle = 0.0;
+            this.UpdateStats();
             yield break;
         }
 

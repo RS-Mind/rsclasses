@@ -26,8 +26,6 @@ namespace RSClasses.Cards.Astronomer
             shield.count += 4;
             shield.radius += 2f;
             shield.setColor(new Color(0.4f, 1f, 1f));
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -39,8 +37,6 @@ namespace RSClasses.Cards.Astronomer
             shield.count -= 4;
             shield.radius -= 2f;
             shield.setColor(new Color(1f, 1f, 0.7411765f));
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 

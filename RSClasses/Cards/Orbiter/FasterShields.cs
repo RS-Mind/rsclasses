@@ -21,7 +21,6 @@ namespace RSClasses.Cards.Astronomer
             //Edits values on player when card is selected
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             shield.speed += 100f;
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -29,7 +28,6 @@ namespace RSClasses.Cards.Astronomer
             //Run when the card is removed from the player
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             shield.speed -= 100f;
-            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
