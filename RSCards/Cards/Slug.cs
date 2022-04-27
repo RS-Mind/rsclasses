@@ -9,7 +9,7 @@ namespace RSCards.Cards
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
             gun.projectileSpeed = 0.5f;
-            gun.damage = 2.5f;
+            gun.damage = 2f;
 
             if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
@@ -48,7 +48,7 @@ namespace RSCards.Cards
                 {
                     positive = true,
                     stat = "DMG",
-                    amount = "+150%",
+                    amount = "+100%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()

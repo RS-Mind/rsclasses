@@ -49,7 +49,7 @@ Convert your sinful lifesteal into proper health
 
 ### Slug
 [Common]
-- +150% DMG
+- +100% DMG
 - -50% Bullet speed
 
 ### Split
@@ -69,6 +69,9 @@ Every copy of this card after the 4th doesn't give a new scythe, instead only in
 Patch Notes:
 </summary>
 <br>
+
+#### 1.2.5:
+- Slug damage 150% -> 100%
 
 #### 1.2.0:
 - Added Twin Scythes
