@@ -23,7 +23,7 @@ Increases the size of orbitals and their orbits
 ### Faster Shields
 [Common]
 Increases the speed of shields
-- +50% Shield speed
+- +100% Shield speed
 - +0.25s Block cooldown
 
 ### Gravity Well
@@ -35,7 +35,7 @@ Increases the speed of orbitals
 
 ### Sharper Scythes
 [Uncommon]
-- +75% Scythe damage
+- +50% Scythe damage
 - -25% Damage
 
 ### Dual Shields
@@ -62,6 +62,7 @@ Stalwart Defenders. Their shields defend them from all bullets
 *Requires Guardian*
 An inpenetrable shield of light
 - +8 Shields
+- +2 Shield size
 
 ### Harvester
 [Uncommon Subclass]

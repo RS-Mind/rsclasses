@@ -20,7 +20,7 @@ namespace RSClasses.Cards.Astronomer
         {
             //Edits values on player when card is selected
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            shield.speed *= 1.5f;
+            shield.speed += 100f;
             RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
@@ -28,7 +28,7 @@ namespace RSClasses.Cards.Astronomer
         {
             //Run when the card is removed from the player
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            shield.speed /= 1.5f;
+            shield.speed -= 100f;
             RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
@@ -58,7 +58,7 @@ namespace RSClasses.Cards.Astronomer
                 {
                     positive = true,
                     stat = "Shield speed",
-                    amount = "+50%",
+                    amount = "+100%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()

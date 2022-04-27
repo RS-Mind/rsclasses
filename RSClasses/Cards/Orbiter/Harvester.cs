@@ -23,7 +23,7 @@ namespace RSClasses.Cards.Astronomer
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             scythe.count += 4;
-            scythe.speed *= 2;
+            scythe.speed += 250;
             shield.count -= 4;
             scythe.setColor(new Color(178f / 255f, 0f, 1f));
             RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
@@ -36,7 +36,7 @@ namespace RSClasses.Cards.Astronomer
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             scythe.count -= 4;
-            scythe.speed /= 2;
+            scythe.speed -= 250;
             shield.count += 4;
             scythe.setColor(new Color(0.6156863f, 0.227451f, 1f));
             RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());

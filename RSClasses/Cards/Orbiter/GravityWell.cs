@@ -22,8 +22,8 @@ namespace RSClasses.Cards.Astronomer
             //Edits values on player when card is selected
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.speed *= 2;
-            shield.speed *= 2;
+            scythe.speed += 250;
+            shield.speed += 100;
             RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
             RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
@@ -33,8 +33,8 @@ namespace RSClasses.Cards.Astronomer
             //Run when the card is removed from the player
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.speed /= 2;
-            shield.speed /= 2;
+            scythe.speed -= 250;
+            shield.speed -= 100;
             RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.UpdateStats());
             RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.UpdateStats());
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
