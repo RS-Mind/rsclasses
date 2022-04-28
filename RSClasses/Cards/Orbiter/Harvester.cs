@@ -78,7 +78,7 @@ namespace RSClasses.Cards.Astronomer
                 new CardInfoStat()
                 {
                     positive = false,
-                    stat = "Shields",
+                    stat = "Barriers",
                     amount = "-4",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }

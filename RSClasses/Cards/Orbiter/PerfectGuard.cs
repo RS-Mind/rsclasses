@@ -40,7 +40,7 @@ namespace RSClasses.Cards.Astronomer
         }
         protected override string GetDescription()
         {
-            return "An inpenetrable shield of light";
+            return "An inpenetrable ring of light";
         }
         protected override GameObject GetCardArt()
         {
@@ -57,7 +57,7 @@ namespace RSClasses.Cards.Astronomer
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Shields",
+                    stat = "Barriers",
                     amount = "+8",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },

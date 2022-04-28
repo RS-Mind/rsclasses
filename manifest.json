@@ -1,6 +1,6 @@
 {
     "name": "RSClasses",
-    "version_number": "1.1.5",
+    "version_number": "1.2.0",
     "website_url": "https://github.com/RS-Mind/rsclasses",
     "description": "Classes for ROUNDS that leverage unique mechanics.",
     "dependencies": [

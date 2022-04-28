@@ -34,11 +34,11 @@ namespace RSClasses.Cards.Astronomer
         internal static CardInfo Card = null;
         protected override string GetTitle()
         {
-            return "Faster Shields";
+            return "Faster Barriers";
         }
         protected override string GetDescription()
         {
-            return "Increases the speed of shields";
+            return "Increases the speed of barriers";
         }
         protected override GameObject GetCardArt()
         {
@@ -55,7 +55,7 @@ namespace RSClasses.Cards.Astronomer
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Shield speed",
+                    stat = "Barrier speed",
                     amount = "+100%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },

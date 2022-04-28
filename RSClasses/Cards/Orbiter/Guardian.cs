@@ -47,7 +47,7 @@ namespace RSClasses.Cards.Astronomer
         }
         protected override string GetDescription()
         {
-            return "Stalwart Defenders. Their shields defend them from all bullets";
+            return "Stalwart Defenders. Their barriers defend them from all bullets";
         }
         protected override GameObject GetCardArt()
         {
@@ -64,7 +64,7 @@ namespace RSClasses.Cards.Astronomer
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Shields",
+                    stat = "Barriers",
                     amount = "+4",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },

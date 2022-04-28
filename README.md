@@ -20,10 +20,10 @@ Increases the size of orbitals and their orbits
 - +1 Orbital size
 - -25% Scythe damage
 
-### Faster Shields
+### Faster Barriers
 [Common]
-Increases the speed of shields
-- +100% Shield speed
+Increases the speed of barriers
+- +100% Barrier speed
 - +0.25s Block cooldown
 
 ### Gravity Well
@@ -51,8 +51,8 @@ Increases the speed of orbitals
 ### Guardian
 [Uncommon Subclass]
 *Requires Dual Shields and Twin Scythes*
-Stalwart Defenders. Their shields defend them from all bullets
-- +4 Shields
+Stalwart Defenders. Their barriers defend them from all bullets
+- +4 Barriers
 - +50% Health
 - +4 Shield size
 - -4 Scythes
@@ -60,8 +60,8 @@ Stalwart Defenders. Their shields defend them from all bullets
 ### Perfect Guard
 [Rare]
 *Requires Guardian*
-An inpenetrable shield of light
-- +8 Shields
+An inpenetrable ring of light
+- +8 Barriers
 - +2 Shield size
 
 ### Harvester
@@ -70,7 +70,7 @@ An inpenetrable shield of light
 Reapers of souls. Defense is not their concern. Their scythes don't cut through bullets
 - +4 Scythes
 - +100% Rotation speed
-- -4 Shields
+- -4 Barriers
 
 ### Dark Harvest
 [Rare]
@@ -85,6 +85,14 @@ A horrifying sight to behold
 Patch Notes:
 </summary>
 <br>
+
+<details open>
+<summary>
+1.2.0
+</summmary>
+<br>
+- Changed wording from "Shield" to "Barrier"
+</details>
 
 <details open>
 <summary>
