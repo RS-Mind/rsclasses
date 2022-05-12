@@ -7,7 +7,7 @@ using UnboundLib;
 using UnboundLib.GameModes;
 using UnityEngine;
 
-namespace RSClasses.MonoBehaviors
+namespace RSClasses.MonoBehaviours
 {
     class Scythe : MonoBehaviour
     {
@@ -18,9 +18,9 @@ namespace RSClasses.MonoBehaviors
 
         private void Start()
         {
-            Player = this.GetComponentInParent<Player>();
+            Player = GetComponentInParent<Player>();
 
-            scythe = GameObject.Instantiate(RSClasses.ArtAssets.LoadAsset<GameObject>("Scythe"), Player.transform);
+            scythe = Instantiate(RSClasses.ArtAssets.LoadAsset<GameObject>("Scythe"), Player.transform);
             scythe.SetActive(true);
         }
 
@@ -29,23 +29,26 @@ namespace RSClasses.MonoBehaviors
             var radius = transform.localScale.y;
             var hits = Physics2D.OverlapCircleAll(scythe.transform.position, radius);
 
-            foreach (var hit in hits)
+            if (Player.data.view.IsMine)
             {
-                var damageable = hit.gameObject.GetComponent<Damagable>();
-                var healthHandler = hit.gameObject.GetComponent<HealthHandler>();
-                if (healthHandler)
+                foreach (var hit in hits)
                 {
-                    Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
-                    if (hitPlayer.playerID == Player.playerID || recent.ContainsKey(hitPlayer.playerID)) { continue; }
-                    SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, this.transform, damageable.transform);
-                    healthHandler.CallTakeForce(((Vector2)hitPlayer.transform.position - (Vector2)scythe.transform.position).normalized * 5000, ForceMode2D.Impulse, true);
-                    recent[hitPlayer.playerID] = 0.5f;
-                    if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame) { continue; }
-                }
-                if (damageable)
-                {
-                    damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * damage,
-                        (Vector2)this.transform.position, this.gameObject, Player);
+                    var damageable = hit.gameObject.GetComponent<Damagable>();
+                    var healthHandler = hit.gameObject.GetComponent<HealthHandler>();
+                    if (healthHandler)
+                    {
+                        Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
+                        if (hitPlayer.playerID == Player.playerID || recent.ContainsKey(hitPlayer.playerID)) { continue; }
+                        SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, this.transform, damageable.transform);
+                        healthHandler.CallTakeForce(((Vector2)hitPlayer.transform.position - (Vector2)scythe.transform.position).normalized * 5000, ForceMode2D.Impulse, true);
+                        recent[hitPlayer.playerID] = 0.5f;
+                        if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame) { continue; }
+                    }
+                    if (damageable)
+                    {
+                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * damage,
+                            (Vector2)this.transform.position, this.gameObject, Player);
+                    }
                 }
             }
         }
@@ -88,6 +91,10 @@ namespace RSClasses.MonoBehaviors
                 Destroy(scythes[0]);
                 scythes.Remove(scythes[0]);
             }
+
+            GameModeManager.RemoveHook(GameModeHooks.HookPointStart, PointStart);
+            GameModeManager.RemoveHook(GameModeHooks.HookBattleStart, BattleStart);
+            GameModeManager.RemoveHook(GameModeHooks.HookPointEnd, PointEnd);
         }
         private void Start()
         {
@@ -141,8 +148,6 @@ namespace RSClasses.MonoBehaviors
             {
                 GameObject scythe = new GameObject("Scythe", typeof(Scythe));
                 scythe.transform.SetParent(Player.transform);
-                Player.transform.position = Player.transform.position;
-                RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.GetComponent<Scythe>().SetColor(color));
                 scythes.Add(scythe.GetComponent<Scythe>());
             }
             while (scythes.Count() > Math.Max(count, 0))
@@ -158,7 +163,8 @@ namespace RSClasses.MonoBehaviors
             foreach (Scythe scythe in scythes)
             {
                 scythe.damage = damage;
-                RSClasses.instance.ExecuteAfterSeconds(0.5f, () => scythe.SetScale(radius / 16f));
+                RSClasses.instance.ExecuteAfterSeconds(1f, () => scythe.GetComponent<Scythe>().SetColor(color));
+                RSClasses.instance.ExecuteAfterSeconds(1f, () => scythe.SetScale(radius / 16f));
             }
         }
 

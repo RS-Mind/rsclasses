@@ -1,57 +1,53 @@
 ﻿using ClassesManagerReborn.Util;
-using RSClasses.MonoBehaviors;
+using RSClasses.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace RSClasses.Cards.Astronomer
 {
-    class GravityWell : CustomCard
+    class DualShields : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            statModifiers.health = 0.75f;
-            statModifiers.movementSpeed = 1.25f;
+            block.cdAdd = 0.5f;
 
+            cardInfo.allowMultiple = false;
             gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.name;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Edits values on player when card is selected
-            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.speed += 250;
-            shield.speed += 100;
+            shield.count += 2;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
-            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.speed -= 250;
-            shield.speed -= 100;
+            shield.count -= 2;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
         internal static CardInfo Card = null;
         protected override string GetTitle()
         {
-            return "Gravity Well";
+            return "Dual Shields";
         }
         protected override string GetDescription()
         {
-            return "Increases the speed of orbitals";
+            return "";
         }
         protected override GameObject GetCardArt()
         {
-            return RSClasses.ArtAssets.LoadAsset<GameObject>("C_GravityWell");
+            return RSClasses.ArtAssets.LoadAsset<GameObject>("C_DualShields");
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Common;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -60,22 +56,15 @@ namespace RSClasses.Cards.Astronomer
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Movement Speed",
-                    amount = "+25%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = true,
-                    stat = "Orbital Speed",
-                    amount = "+100%",
+                    stat = "Barriers",
+                    amount = "+2",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = false,
-                    stat = "Health",
-                    amount = "-25%",
+                    stat = "Block cooldown",
+                    amount = "+0.5s",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

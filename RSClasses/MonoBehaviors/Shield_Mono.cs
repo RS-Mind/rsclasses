@@ -6,7 +6,7 @@ using UnboundLib;
 using UnboundLib.GameModes;
 using UnityEngine;
 
-namespace RSClasses.MonoBehaviors
+namespace RSClasses.MonoBehaviours
 {
     class Shield : MonoBehaviour
     {
@@ -84,6 +84,8 @@ namespace RSClasses.MonoBehaviors
                 Destroy(shields[0]);
                 shields.Remove(shields[0]);
             }
+
+            GameModeManager.RemoveHook(GameModeHooks.HookPointStart, RoundStart);
         }
         private void Start()
         {
@@ -112,7 +114,6 @@ namespace RSClasses.MonoBehaviors
                 GameObject shield = new GameObject("Shield", typeof(Shield));
                 shield.transform.SetParent(Player.transform);
                 Player.transform.position = Player.transform.position;
-                RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.GetComponent<Shield>().SetColor(color));
                 shields.Add(shield.GetComponent<Shield>());
             }
             while (shields.Count() > Math.Max(count, 0))
@@ -127,7 +128,8 @@ namespace RSClasses.MonoBehaviors
 
             foreach (Shield shield in shields)
             {
-                RSClasses.instance.ExecuteAfterSeconds(0.5f, () => shield.SetScale(radius / 11.9f));
+                RSClasses.instance.ExecuteAfterSeconds(1f, () => shield.GetComponent<Shield>().SetColor(color));
+                RSClasses.instance.ExecuteAfterSeconds(1f, () => shield.SetScale(radius / 11.9f));
             }
         }
         public void setColor(Color newColor)

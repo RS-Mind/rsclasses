@@ -1,41 +1,40 @@
 ﻿using ClassesManagerReborn.Util;
-using RSClasses.MonoBehaviors;
+using RSClasses.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace RSClasses.Cards.Astronomer
 {
-    class DualShields : CustomCard
+    class SharperScythes : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            block.cdAdd = 0.5f;
+            gun.damage = 0.75f;
 
-            cardInfo.allowMultiple = false;
             gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.name;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Edits values on player when card is selected
-            var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            shield.count += 2;
+            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
+            scythe.damage *= 1.5f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
-            var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            shield.count -= 2;
+            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
+            scythe.damage /= 1.5f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
         internal static CardInfo Card = null;
         protected override string GetTitle()
         {
-            return "Dual Shields";
+            return "Sharper Scythes";
         }
         protected override string GetDescription()
         {
@@ -43,11 +42,11 @@ namespace RSClasses.Cards.Astronomer
         }
         protected override GameObject GetCardArt()
         {
-            return RSClasses.ArtAssets.LoadAsset<GameObject>("C_DualShields");
+            return RSClasses.ArtAssets.LoadAsset<GameObject>("C_SharperScythes");
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -56,15 +55,15 @@ namespace RSClasses.Cards.Astronomer
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Barriers",
-                    amount = "+2",
+                    stat = "Scythe damage",
+                    amount = "+50%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = false,
-                    stat = "Block cooldown",
-                    amount = "+0.5s",
+                    stat = "Damage",
+                    amount = "-25%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

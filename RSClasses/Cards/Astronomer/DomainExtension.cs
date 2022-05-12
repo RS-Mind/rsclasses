@@ -1,19 +1,17 @@
 ﻿using ClassesManagerReborn.Util;
-using RSClasses.MonoBehaviors;
+using RSClasses.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace RSClasses.Cards.Astronomer
 {
-    class Harvester : CustomCard
+    class DomainExtension : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            statModifiers.health = 0.75f;
 
-            cardInfo.allowMultiple = false;
             gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.name;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
@@ -22,10 +20,9 @@ namespace RSClasses.Cards.Astronomer
             //Edits values on player when card is selected
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.count += 4;
-            scythe.speed += 250;
-            shield.count -= 4;
-            scythe.setColor(new Color(178f / 255f, 0f, 1f));
+            scythe.damage *= 0.75f;
+            scythe.radius += 0.5f;
+            shield.radius += 0.5f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -33,29 +30,28 @@ namespace RSClasses.Cards.Astronomer
             //Run when the card is removed from the player
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.count -= 4;
-            scythe.speed -= 250;
-            shield.count += 4;
-            scythe.setColor(new Color(0.6156863f, 0.227451f, 1f));
+            scythe.damage /= 0.75f;
+            scythe.radius -= 0.25f;
+            shield.radius -= 0.25f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
         internal static CardInfo Card = null;
         protected override string GetTitle()
         {
-            return "Harvester";
+            return "Domain Extension";
         }
         protected override string GetDescription()
         {
-            return "Reapers of souls. Defense is not their concern";
+            return "Increases the size of orbitals and their orbits";
         }
         protected override GameObject GetCardArt()
         {
-            return RSClasses.ArtAssets.LoadAsset<GameObject>("C_Harvester");
+            return RSClasses.ArtAssets.LoadAsset<GameObject>("C_DomainExtension");
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Common;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -64,29 +60,22 @@ namespace RSClasses.Cards.Astronomer
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Scythes",
-                    amount = "+4",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = true,
-                    stat = "Rotation speed",
-                    amount = "+100%",
+                    stat = "Orbital size",
+                    amount = "+1",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = false,
-                    stat = "Barriers",
-                    amount = "-4",
+                    stat = "Scythe damage",
+                    amount = "-25%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.EvilPurple;
+            return CardThemeColor.CardThemeColorType.FirepowerYellow;
         }
         public override string GetModName()
         {

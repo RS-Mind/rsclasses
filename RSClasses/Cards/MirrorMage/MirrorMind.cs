@@ -1,53 +1,47 @@
 ﻿using ClassesManagerReborn.Util;
-using RSClasses.MonoBehaviors;
+using RSClasses.Extensions;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
-namespace RSClasses.Cards.Astronomer
+namespace RSClasses.Cards.MirrorMage
 {
-    class Astronomer : CustomCard
+    class MirrorMind : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            gun.damage = 0.75f;
+            statModifiers.movementSpeed = 1.15f;
+            statModifiers.jump = 1.15f;
 
             cardInfo.allowMultiple = false;
-            gameObject.GetOrAddComponent<ClassNameMono>();
+            gameObject.GetOrAddComponent<ClassNameMono>().className = MirrorMageClass.name;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Edits values on player when card is selected
-            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
-            var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.count += 2;
-            shield.count += 2;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
-            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
-            var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.count -= 2;
-            shield.count -= 2;
+            data.GetAdditionalData().invert = false;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
         internal static CardInfo Card = null;
         protected override string GetTitle()
         {
-            return "Astronomer";
+            return "Mirror Mind";
         }
         protected override string GetDescription()
         {
-            return "Uses orbiting objects to fend off foes";
+            return "Swap minds with your reflection when you would cross the mirror";
         }
         protected override GameObject GetCardArt()
         {
-            return RSClasses.ArtAssets.LoadAsset<GameObject>("C_Astronomer");
+            return RSClasses.ArtAssets.LoadAsset<GameObject>("C_MirrorMind");
         }
         protected override CardInfo.Rarity GetRarity()
         {
@@ -60,29 +54,22 @@ namespace RSClasses.Cards.Astronomer
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Scythes",
-                    amount = "+2",
+                    stat = "Movement speed",
+                    amount = "+15%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Barriers",
-                    amount = "+2",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = false,
-                    stat = "Damage",
-                    amount = "-25%",
+                    stat = "Jump height",
+                    amount = "+15%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.FirepowerYellow;
+            return CardThemeColor.CardThemeColorType.PoisonGreen;
         }
         public override string GetModName()
         {

@@ -1,6 +1,5 @@
 ﻿using ClassesManagerReborn;
 using System.Collections;
-using UnboundLib.Cards;
 
 namespace RSClasses.Cards.Astronomer
 {
@@ -17,11 +16,11 @@ namespace RSClasses.Cards.Astronomer
             ClassesRegistry.Register(FasterShields.Card, CardType.Card, Astronomer.Card);
             ClassesRegistry.Register(GravityWell.Card, CardType.Card, Astronomer.Card);
             ClassesRegistry.Register(SharperScythes.Card, CardType.Card, Astronomer.Card);
-            ClassesRegistry.Register(DualShields.Card, CardType.Branch, Astronomer.Card);
-            ClassesRegistry.Register(TwinScythes.Card, CardType.Branch, Astronomer.Card);
+            ClassesRegistry.Register(DualShields.Card, CardType.Gate, Astronomer.Card);
+            ClassesRegistry.Register(TwinScythes.Card, CardType.Gate, Astronomer.Card);
             ClassesRegistry.Register(Guardian.Card, CardType.SubClass, new CardInfo[] { DualShields.Card, TwinScythes.Card });
             ClassesRegistry.Register(PerfectGuard.Card, CardType.Card, Guardian.Card);
-            ClassesRegistry.Register(Harvester.Card, CardType.SubClass, new CardInfo[] { DualShields.Card, TwinScythes.Card});
+            ClassesRegistry.Register(Harvester.Card, CardType.SubClass, new CardInfo[] { DualShields.Card, TwinScythes.Card });
             ClassesRegistry.Register(DarkHarvest.Card, CardType.Card, Harvester.Card);
         }
 

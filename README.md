@@ -88,6 +88,14 @@ Patch Notes:
 
 <details open>
 <summary>
+1.2.1
+</summmary>
+<br>
+- Reduced scythe knockback
+</details>
+
+<details open>
+<summary>
 1.2.0
 </summmary>
 <br>
