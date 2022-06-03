@@ -27,37 +27,39 @@ namespace RSCards.MonoBehaviors
 
 		public void DoHit()
         {
-            var radius = transform.localScale.y;
-            var hits = Physics2D.OverlapCircleAll(scythe.transform.position, radius);
-
-            foreach (var hit in hits)
+            if (Player.data.view.IsMine)
             {
-                var Keys = recent.Keys.ToArray();
-                foreach (int Key in Keys)
+                var radius = transform.localScale.y;
+                var hits = Physics2D.OverlapCircleAll(scythe.transform.position, radius);
+
+                foreach (var hit in hits)
                 {
-                    recent[Key] -= TimeHandler.deltaTime;
-                }
-                var bullet = hit.gameObject.GetComponentInParent<ProjectileHit>();
-                var damageable = hit.gameObject.GetComponent<Damagable>();
-                var healthHandler = hit.gameObject.GetComponent<HealthHandler>();
-                if (healthHandler)
-                {
-                    healthHandler.CallTakeForce(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * 100, ForceMode2D.Impulse, true);
-                    int id = ((Player)healthHandler.GetFieldValue("player")).playerID;
-                    if (id == Player.playerID || (recent.ContainsKey(id) && recent[id] > 0)) { continue; }
-                    SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, this.transform, damageable.transform);
-                    healthHandler.CallTakeForce(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * 10000, ForceMode2D.Impulse, true);
-                    recent[id] = 0.5f;
-                }
-                if (damageable)
-                {
-                    damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * damage,
-                        (Vector2)this.transform.position, this.gameObject, Player);
-                }
-                if (bullet)
-                {
-                    bullet.deathEvent.Invoke();
-                    Destroy(bullet.gameObject);
+                    var Keys = recent.Keys.ToArray();
+                    foreach (int Key in Keys)
+                    {
+                        recent[Key] -= TimeHandler.deltaTime;
+                    }
+                    var bullet = hit.gameObject.GetComponentInParent<ProjectileHit>();
+                    var damageable = hit.gameObject.GetComponent<Damagable>();
+                    var healthHandler = hit.gameObject.GetComponent<HealthHandler>();
+                    if (healthHandler)
+                    {
+                        int id = ((Player)healthHandler.GetFieldValue("player")).playerID;
+                        if (id == Player.playerID || (recent.ContainsKey(id) && recent[id] > 0)) { continue; }
+                        SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, this.transform, damageable.transform);
+                        healthHandler.CallTakeForce(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * 2500, ForceMode2D.Impulse, true);
+                        recent[id] = 0.5f;
+                    }
+                    if (damageable)
+                    {
+                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * damage,
+                            (Vector2)this.transform.position, this.gameObject, Player);
+                    }
+                    if (bullet)
+                    {
+                        bullet.deathEvent.Invoke();
+                        Destroy(bullet.gameObject);
+                    }
                 }
             }
         }
@@ -162,7 +164,7 @@ namespace RSCards.MonoBehaviors
 		private double angle = 0;
 		private float rotation = 0;
 		public int count = 0;
-		private float damage = 55;
+		private float damage = 35;
 		private bool active = false;
 		List<Scythe> scythes = new List<Scythe>();
         Player Player;
