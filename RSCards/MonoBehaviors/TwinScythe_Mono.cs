@@ -18,9 +18,9 @@ namespace RSCards.MonoBehaviors
 
 		private void Start()
 		{
-			Player = this.GetComponentInParent<Player>();
+			Player = GetComponentInParent<Player>();
 
-            scythe = GameObject.Instantiate(RSCards.ArtAssets.LoadAsset<GameObject>("Scythe"), Player.transform);
+            scythe = Instantiate(RSCards.ArtAssets.LoadAsset<GameObject>("Scythe"), Player.transform);
             scythe.SetActive(true);
             scythe.GetComponent<SpriteRenderer>().color = Player.GetTeamColors().color;
         }
@@ -46,14 +46,14 @@ namespace RSCards.MonoBehaviors
                     {
                         int id = ((Player)healthHandler.GetFieldValue("player")).playerID;
                         if (id == Player.playerID || (recent.ContainsKey(id) && recent[id] > 0)) { continue; }
-                        SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, this.transform, damageable.transform);
-                        healthHandler.CallTakeForce(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * 2500, ForceMode2D.Impulse, true);
+                        SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, transform, damageable.transform);
+                        healthHandler.CallTakeForce(((Vector2)damageable.transform.position - (Vector2)transform.position).normalized * 2500, ForceMode2D.Impulse, true);
                         recent[id] = 0.5f;
                     }
                     if (damageable)
                     {
-                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * damage,
-                            (Vector2)this.transform.position, this.gameObject, Player);
+                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)transform.position).normalized * damage,
+                            (Vector2)transform.position, gameObject, Player);
                     }
                     if (bullet)
                     {

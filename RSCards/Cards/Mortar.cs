@@ -12,7 +12,7 @@ namespace RSCards.Cards
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            gun.reloadTime = 0.5f;
+            gun.reloadTimeAdd = 0.5f;
             gun.gravity = 0f;
             cardInfo.allowMultiple = false;
             if (RSCards.Debug) { UnityEngine.Debug.Log($"[{RSCards.ModInitials}][Card] {GetTitle()} has been setup."); }

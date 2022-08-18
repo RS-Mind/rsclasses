@@ -36,7 +36,7 @@ namespace RSCards.Cards
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return RSCards.ArtAssets.LoadAsset<GameObject>("C_BounceAbsorption");
         }
         protected override CardInfo.Rarity GetRarity()
         {

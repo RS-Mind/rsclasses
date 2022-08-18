@@ -70,6 +70,18 @@ Patch Notes:
 </summary>
 <br>
 
+#### 1.3.2:
+- Fixed an error in Mortar's reload time modification
+
+#### 1.3.1:
+- Added art for Bounce Absorption
+
+#### 1.3.0:
+- Updated card art
+
+#### 1.2.6:
+- Fixed issues with Twin Scythe
+
 #### 1.2.5:
 - Slug damage 150% -> 100%
 
