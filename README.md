@@ -1,6 +1,11 @@
 # RSClasses
 Classes for ROUNDS that leverage unique mechanics.
 
+### **NOTICE:**
+I will not be able to work on this mod for a very long time. Feel free to update and reupload this mod to fix any bugs with cards, but please do not add content to this mod. At the same time, this is under MIT license, so do whatever you want.
+
+If anyone figures out how to make Mirror Mage work, *please* upload it. I give full permission to use the existing art assets and code for Mirror Mage.
+
 ## Card List:
 
 <details open>
@@ -85,6 +90,22 @@ A horrifying sight to behold
 Patch Notes:
 </summary>
 <br>
+
+<details open>
+<summary>
+1.2.5
+</summmary>
+<br>
+- Disabled some unused code
+</details>
+
+<details open>
+<summary>
+1.2.3
+</summmary>
+<br>
+- Forced orbitals to be removed on game end. Removing Astronomer will cause issues until a proper fix is found
+</details>
 
 <details open>
 <summary>

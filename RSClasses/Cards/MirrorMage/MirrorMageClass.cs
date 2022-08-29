@@ -18,6 +18,7 @@ namespace RSClasses.Cards.MirrorMage
             ClassesRegistry.Register(ReflectionReplacement.Card, CardType.Gate, MirrorMage.Card);
             ClassesRegistry.Register(Shatter.Card, CardType.Card, ReflectionReplacement.Card);
             // Card that causes your gravity to face the prism line
+            yield return null;
         }
     }
 }

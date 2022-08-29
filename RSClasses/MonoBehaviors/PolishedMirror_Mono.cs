@@ -1,4 +1,4 @@
-﻿using RSClasses.Cards.MirrorMage;
+﻿using RSClasses.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -32,7 +32,7 @@ namespace RSClasses.MonoBehaviours
                     }
                     reflections[other.playerID][0].transform.SetPositionAndRotation(new Vector3(-other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation);
 
-                    if (player.data.currentCards.Contains(Prism.Card))
+                    if (player.data.GetAdditionalData().prism)
                     {
                         reflections[other.playerID][1].transform.SetPositionAndRotation(new Vector3(other.transform.position.x, -other.transform.position.y, other.transform.position.z), other.transform.rotation);
                         reflections[other.playerID][2].transform.SetPositionAndRotation(new Vector3(-other.transform.position.x, -other.transform.position.y, other.transform.position.z), other.transform.rotation);

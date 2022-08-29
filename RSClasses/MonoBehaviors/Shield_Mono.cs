@@ -79,19 +79,21 @@ namespace RSClasses.MonoBehaviours
     {
         private void OnDestroy()
         {
+            GameModeManager.RemoveHook(GameModeHooks.HookPointStart, RoundStart);
+            RSClasses.instance.ExecuteAfterSeconds(1f, () => GameModeManager.RemoveHook(GameModeHooks.HookGameEnd, GameEnd));
+
             while (shields.Count() > 0)
             {
                 Destroy(shields[0]);
                 shields.Remove(shields[0]);
             }
-
-            GameModeManager.RemoveHook(GameModeHooks.HookPointStart, RoundStart);
         }
         private void Start()
         {
             Player = this.GetComponentInParent<Player>();
 
             GameModeManager.AddHook(GameModeHooks.HookPointStart, RoundStart);
+            GameModeManager.AddHook(GameModeHooks.HookGameEnd, GameEnd);
         }
 
         private void Update()
@@ -145,6 +147,12 @@ namespace RSClasses.MonoBehaviours
         {
             angle = 0.0;
             this.UpdateStats();
+            yield break;
+        }
+
+        IEnumerator GameEnd(IGameModeHandler gm)
+        {
+            Destroy(this);
             yield break;
         }
 

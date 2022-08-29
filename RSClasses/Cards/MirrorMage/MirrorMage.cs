@@ -19,13 +19,18 @@ namespace RSClasses.Cards.MirrorMage
             player.transform.position = Vector3.Scale(new Vector3(-1, 1, 1), player.transform.position);
             yield break;
         }
+
+        public override void Callback()
+        {
+            gameObject.GetOrAddComponent<ClassNameMono>();
+        }
+
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
             gun.reloadTimeAdd = 0.25f;
 
             cardInfo.allowMultiple = false;
-            gameObject.GetOrAddComponent<ClassNameMono>();
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -37,8 +42,6 @@ namespace RSClasses.Cards.MirrorMage
             objectsToSpawn.Add(mirror);
 
             gun.objectsToSpawn = objectsToSpawn.ToArray();
-
-            player.gameObject.GetOrAddComponent<spawnBulletMono>();
             GameModeManager.AddHook($"TimeLoop-{player.playerID}-Load", gm => TimeReflect(player));
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }

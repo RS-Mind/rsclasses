@@ -18,7 +18,7 @@ namespace RSClasses
     {
         private const string ModId = "com.rsmind.rounds.RSClasses";
         private const string ModName = "RSClasses";
-        public const string Version = "1.3.0";
+        public const string Version = "1.2.5";
         public const string ModInitials = "RSC";
         public static RSClasses instance { get; private set; }
 
@@ -51,12 +51,12 @@ namespace RSClasses
             CustomCard.BuildCard<SharperScythes>((card) => SharperScythes.Card = card);
             CustomCard.BuildCard<TwinScythes>((card) => TwinScythes.Card = card);
 
-            CustomCard.BuildCard<MirrorMage>((card) => MirrorMage.Card = card);
-            CustomCard.BuildCard<MirrorMind>((card) => MirrorMind.Card = card);
-            CustomCard.BuildCard<PolishedMirror>((card) => PolishedMirror.Card = card);
-            CustomCard.BuildCard<Prism>((card) => Prism.Card = card);
-            CustomCard.BuildCard<ReflectionReplacement>((card) => ReflectionReplacement.Card = card);
-            CustomCard.BuildCard<Shatter>((card) => Shatter.Card = card);
+            //CustomCard.BuildCard<MirrorMage>((card) => MirrorMage.Card = card);
+            //CustomCard.BuildCard<MirrorMind>((card) => MirrorMind.Card = card);
+            //CustomCard.BuildCard<PolishedMirror>((card) => PolishedMirror.Card = card);
+            //CustomCard.BuildCard<Prism>((card) => Prism.Card = card);
+            //CustomCard.BuildCard<ReflectionReplacement>((card) => ReflectionReplacement.Card = card);
+            //CustomCard.BuildCard<Shatter>((card) => Shatter.Card = card);
         }
 
         public static bool Debug = false;

@@ -86,15 +86,16 @@ namespace RSClasses.MonoBehaviours
     {
         private void OnDestroy()
         {
+            GameModeManager.RemoveHook(GameModeHooks.HookPointStart, PointStart);
+            GameModeManager.RemoveHook(GameModeHooks.HookBattleStart, BattleStart);
+            GameModeManager.RemoveHook(GameModeHooks.HookPointEnd, PointEnd);
+            RSClasses.instance.ExecuteAfterSeconds(1f, () => GameModeManager.RemoveHook(GameModeHooks.HookGameEnd, GameEnd));
+
             while (scythes.Count() > 0)
             {
                 Destroy(scythes[0]);
                 scythes.Remove(scythes[0]);
             }
-
-            GameModeManager.RemoveHook(GameModeHooks.HookPointStart, PointStart);
-            GameModeManager.RemoveHook(GameModeHooks.HookBattleStart, BattleStart);
-            GameModeManager.RemoveHook(GameModeHooks.HookPointEnd, PointEnd);
         }
         private void Start()
         {
@@ -103,6 +104,7 @@ namespace RSClasses.MonoBehaviours
             GameModeManager.AddHook(GameModeHooks.HookPointStart, PointStart);
             GameModeManager.AddHook(GameModeHooks.HookBattleStart, BattleStart);
             GameModeManager.AddHook(GameModeHooks.HookPointEnd, PointEnd);
+            GameModeManager.AddHook(GameModeHooks.HookGameEnd, GameEnd);
         }
 
         private void Update()
@@ -194,6 +196,12 @@ namespace RSClasses.MonoBehaviours
         IEnumerator PointEnd(IGameModeHandler gm)
         {
             active = false;
+            yield break;
+        }
+
+        IEnumerator GameEnd(IGameModeHandler gm)
+        {
+            Destroy(this);
             yield break;
         }
 

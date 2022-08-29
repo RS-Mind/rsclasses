@@ -8,6 +8,12 @@ namespace RSClasses.Cards.Astronomer
 {
     class Harvester : CustomCard
     {
+
+        public override void Callback()
+        {
+            gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.name;
+        }
+
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
