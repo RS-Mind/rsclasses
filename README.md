@@ -1,6 +1,9 @@
 # rscards
 Cards for ROUNDS focused on adding variety with vanilla stats
 
+### **NOTICE:**
+I will not be able to work on this mod for a very long time. Feel free to update this mod to fix any bugs with cards, but please do not add content if this occurs.
+
 ## Current Card List:
 
 ### Bounce Absorption
