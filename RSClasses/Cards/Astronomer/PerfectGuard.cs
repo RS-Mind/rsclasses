@@ -1,4 +1,5 @@
 ﻿using ClassesManagerReborn.Util;
+using RSClasses.Extensions;
 using RSClasses.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
@@ -24,7 +25,7 @@ namespace RSClasses.Cards.Astronomer
         {
             //Edits values on player when card is selected
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            shield.count += 8;
+            player.data.GetAdditionalData().barrierCount += 8;
             shield.radius += 1f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
@@ -32,7 +33,7 @@ namespace RSClasses.Cards.Astronomer
         {
             //Run when the card is removed from the player
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            shield.count -= 8;
+            player.data.GetAdditionalData().barrierCount -= 8;
             shield.radius -= 1f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }

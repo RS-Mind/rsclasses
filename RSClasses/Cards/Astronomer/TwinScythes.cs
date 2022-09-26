@@ -1,4 +1,5 @@
 ﻿using ClassesManagerReborn.Util;
+using RSClasses.Extensions;
 using RSClasses.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
@@ -25,14 +26,13 @@ namespace RSClasses.Cards.Astronomer
         {
             //Edits values on player when card is selected
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
-            scythe.count += 2;
+            player.data.GetAdditionalData().scytheCount += 2;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
-            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
-            scythe.count -= 2;
+            player.data.GetAdditionalData().scytheCount -= 2;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 

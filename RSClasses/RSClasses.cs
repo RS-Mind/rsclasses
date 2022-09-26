@@ -51,6 +51,11 @@ namespace RSClasses
             CustomCard.BuildCard<SharperScythes>((card) => SharperScythes.Card = card);
             CustomCard.BuildCard<TwinScythes>((card) => TwinScythes.Card = card);
 
+            // TODO
+            // Make Mirror Mage function
+            // Add "Shield Spikes" card for Guardian. On-block ability to deal damage using the barriers (pulse effect?)
+            // Mirror Mage "Mirror Block" card? Would cause on-block effects to occur at the reflected position
+
             //CustomCard.BuildCard<MirrorMage>((card) => MirrorMage.Card = card);
             //CustomCard.BuildCard<MirrorMind>((card) => MirrorMind.Card = card);
             //CustomCard.BuildCard<PolishedMirror>((card) => PolishedMirror.Card = card);
@@ -59,7 +64,7 @@ namespace RSClasses
             //CustomCard.BuildCard<Shatter>((card) => Shatter.Card = card);
         }
 
-        public static bool Debug = false;
+        public static bool Debug = true;
         internal static AssetBundle ArtAssets;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ClassesManagerReborn.Util;
+using RSClasses.Extensions;
 using RSClasses.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
@@ -27,10 +28,9 @@ namespace RSClasses.Cards.Astronomer
         {
             //Edits values on player when card is selected
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
-            var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.count += 4;
+            player.data.GetAdditionalData().scytheCount += 4;
             scythe.speed += 250;
-            shield.count -= 4;
+            player.data.GetAdditionalData().barrierCount -= 4;
             scythe.setColor(new Color(178f / 255f, 0f, 1f));
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
@@ -39,9 +39,9 @@ namespace RSClasses.Cards.Astronomer
             //Run when the card is removed from the player
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.count -= 4;
+            player.data.GetAdditionalData().scytheCount -= 4;
             scythe.speed -= 250;
-            shield.count += 4;
+            player.data.GetAdditionalData().barrierCount += 4;
             scythe.setColor(new Color(0.6156863f, 0.227451f, 1f));
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }

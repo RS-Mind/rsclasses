@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSClasses.Extensions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace RSClasses.MonoBehaviours
         }
         private void Start()
         {
-            Player = this.GetComponentInParent<Player>();
+            player = GetComponentInParent<Player>();
 
-            shield = GameObject.Instantiate(RSClasses.ArtAssets.LoadAsset<GameObject>("Shield"), Player.transform);
+            shield = GameObject.Instantiate(RSClasses.ArtAssets.LoadAsset<GameObject>("Shield"), player.transform);
             shield.SetActive(true);
             shieldCollider = shield.transform.GetChild(0).gameObject.GetOrAddComponent<ShieldCollider>();
         }
@@ -35,12 +36,12 @@ namespace RSClasses.MonoBehaviours
             shield.transform.rotation = currentRotation;
             shieldCollider.transform.position = shield.transform.position;
             shieldCollider.transform.rotation = shield.transform.rotation;
-            shieldCollider.transform.localScale = Vector3.Scale(shield.transform.localScale, Player.transform.localScale);
+            shieldCollider.transform.localScale = Vector3.Scale(shield.transform.localScale, player.transform.localScale);
         }
 
         private void Update()
         {
-            shieldCollider.gameObject.SetActive(!Player.data.dead);
+            shieldCollider.gameObject.SetActive(!player.data.dead);
         }
 
         public void SetColor(Color color)
@@ -53,7 +54,7 @@ namespace RSClasses.MonoBehaviours
             shield.transform.localScale = new Vector3(scale, scale, scale);
         }
 
-        private Player Player;
+        private Player player;
         ShieldCollider shieldCollider;
         GameObject shield;
     }
@@ -63,16 +64,16 @@ namespace RSClasses.MonoBehaviours
         void Start()
         {
             this.gameObject.layer = LayerMask.NameToLayer("Projectile");
-            Player = this.GetComponentInParent<Player>();
+            player = this.GetComponentInParent<Player>();
             this.gameObject.transform.SetParent(null, true);
         }
 
         public void Update()
         {
-            this.gameObject.SetActive(!Player.data.dead);
+            this.gameObject.SetActive(!player.data.dead);
         }
 
-        Player Player;
+        Player player;
     }
 
     public class ShieldMono : MonoBehaviour
@@ -80,7 +81,7 @@ namespace RSClasses.MonoBehaviours
         private void OnDestroy()
         {
             GameModeManager.RemoveHook(GameModeHooks.HookPointStart, RoundStart);
-            RSClasses.instance.ExecuteAfterSeconds(1f, () => GameModeManager.RemoveHook(GameModeHooks.HookGameEnd, GameEnd));
+            //RSClasses.instance.ExecuteAfterSeconds(1f, () => GameModeManager.RemoveHook(GameModeHooks.HookGameEnd, GameEnd));
 
             while (shields.Count() > 0)
             {
@@ -90,10 +91,10 @@ namespace RSClasses.MonoBehaviours
         }
         private void Start()
         {
-            Player = this.GetComponentInParent<Player>();
+            player = this.GetComponentInParent<Player>();
 
             GameModeManager.AddHook(GameModeHooks.HookPointStart, RoundStart);
-            GameModeManager.AddHook(GameModeHooks.HookGameEnd, GameEnd);
+            //GameModeManager.AddHook(GameModeHooks.HookGameEnd, GameEnd);
         }
 
         private void Update()
@@ -111,19 +112,19 @@ namespace RSClasses.MonoBehaviours
 
         public void UpdateStats()
         {
-            while (shields.Count() < count)
+            while (shields.Count() < player.data.GetAdditionalData().barrierCount)
             {
                 GameObject shield = new GameObject("Shield", typeof(Shield));
-                shield.transform.SetParent(Player.transform);
-                Player.transform.position = Player.transform.position;
+                shield.transform.SetParent(player.transform);
+                player.transform.position = player.transform.position;
                 shields.Add(shield.GetComponent<Shield>());
             }
-            while (shields.Count() > Math.Max(count, 0))
+            while (shields.Count() > Math.Max(player.data.GetAdditionalData().barrierCount, 0))
             {
                 Destroy(shields[0]);
                 shields.Remove(shields[0]);
             }
-            if (count <= 0)
+            if (player.data.GetAdditionalData().barrierCount <= 0)
             {
                 Destroy(this);
             }
@@ -159,10 +160,9 @@ namespace RSClasses.MonoBehaviours
         public float speed = 100f;
         public float radius = 1.5f;
         private double angle = 0;
-        public int count = 0;
         Color color = new Color(1f, 1f, 0.7411765f);
 
         List<Shield> shields = new List<Shield>();
-        Player Player;
+        Player player;
     }
 }

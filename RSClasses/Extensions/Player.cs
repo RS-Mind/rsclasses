@@ -12,12 +12,16 @@ namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this cod
         public bool invert;
         public bool prism;
         public int posMult;
+        public int scytheCount;
+        public int barrierCount;
 
         public PlayerAdditionalData()
         {
             invert = false;
             posMult = 1;
             prism = false;
+            scytheCount = 0;
+            barrierCount = 0;
         }
     }
     public static class PlayerExtension
