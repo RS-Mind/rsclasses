@@ -73,6 +73,9 @@ Patch Notes:
 </summary>
 <br>
 
+#### 1.3.3
+- Made Mortar and Hitscan exclusive
+
 #### 1.3.2:
 - Fixed an error in Mortar's reload time modification
 

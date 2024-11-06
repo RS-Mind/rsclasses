@@ -5,9 +5,12 @@ using RSCards.Cards;
 using RSCards.Utilities;
 using UnboundLib.Cards;
 using UnboundLib.GameModes;
+using UnboundLib.Utils;
 using Jotunn.Utils;
 using UnityEngine;
 using System.Collections;
+using UnboundLib;
+using System.Linq;
 
 namespace RSCards
 {
@@ -21,7 +24,7 @@ namespace RSCards
     {
         private const string ModId = "com.rsmind.rounds.RSCards";
         private const string ModName = "RSCards";
-        public const string Version = "1.3.2";
+        public const string Version = "1.3.3";
         public const string ModInitials = "RSC";
         public static RSCards instance { get; private set; }
 
@@ -70,6 +73,14 @@ namespace RSCards
 
             GameModeManager.AddHook(GameModeHooks.HookGameStart, GameStart);
             GameModeManager.AddHook(GameModeHooks.HookPlayerPickStart, PlayerPickStart);
+
+            this.ExecuteAfterSeconds(0.4f, () =>
+            {
+                CustomCardCategories.instance.MakeCardsExclusive(
+                    CardManager.cards.Values.First(card => card.cardInfo.cardName == "Hitscan").cardInfo,
+                    CardManager.cards.Values.First(card => card.cardInfo.cardName == "Mortar").cardInfo);
+
+            });
         }
 
         IEnumerator GameStart(IGameModeHandler gm)
@@ -83,20 +94,20 @@ namespace RSCards
             foreach (var player in PlayerManager.instance.players)
             {
                 
-                if (ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Contains(RSCardCategories.BounceAbsorptionCategory) && player.data.GetComponent<Holding>().holdable.GetComponent<Gun>().reflects >= 2)
+                if (player.data.GetComponent<Holding>().holdable.GetComponent<Gun>().reflects >= 2)
                 {
                     ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Remove(RSCardCategories.BounceAbsorptionCategory);
                 }
-                else if (!ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Contains(RSCardCategories.BounceAbsorptionCategory) && player.data.GetComponent<Holding>().holdable.GetComponent<Gun>().reflects < 2)
+                else
                 {
                     ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(RSCardCategories.BounceAbsorptionCategory);
                 }
 
-                if (ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Contains(RSCardCategories.RepentanceCategory) && player.GetComponent<CharacterStatModifiers>().lifeSteal >= 0.5f)
+                if (player.GetComponent<CharacterStatModifiers>().lifeSteal >= 0.5f)
                 {
                     ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Remove(RSCardCategories.RepentanceCategory);
                 }
-                else if (!ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Contains(RSCardCategories.RepentanceCategory) && player.GetComponent<CharacterStatModifiers>().lifeSteal < 0.5f)
+                else
                 {
                     ModdingUtils.Extensions.CharacterStatModifiersExtension.GetAdditionalData(player.data.stats).blacklistedCategories.Add(RSCardCategories.RepentanceCategory);
                 }
