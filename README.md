@@ -1,9 +1,6 @@
 # rscards
 Cards for ROUNDS focused on adding variety with vanilla stats
 
-### **NOTICE:**
-I will not be able to work on this mod for a very long time. Feel free to update and reupload this mod to fix any bugs with cards, but please do not add content to this mod. At the same time, this is under MIT license, so do whatever you want.
-
 ## Current Card List:
 
 ### Bounce Absorption
@@ -72,8 +69,8 @@ Every copy of this card after the 4th doesn't give a new scythe, instead only in
 Patch Notes:
 </summary>
 <br>
-
 #### 1.3.3
+- Increased Mortar's rarity to Rare
 - Made Mortar and Hitscan exclusive
 
 #### 1.3.2:
