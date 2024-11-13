@@ -1,157 +1,276 @@
-﻿using System;
-using UnboundLib;
-using UnityEngine;
-using HarmonyLib;
+﻿using UnityEngine;
 using Photon.Pun;
-using System.Reflection;
-using System.Collections.Generic;
+using SimulationChamber;
 using System.Linq;
+using RSClasses.Extensions;
 
 namespace RSClasses.MonoBehaviours
 {
-    public class MirrorAssets
+    public class MirrorMono : MonoBehaviour
     {
-        private static GameObject _mirror = null;
+        Player player;
+        Gun gun;
 
-        internal static GameObject mirror
+        public SimulatedGun[] savedGuns = new SimulatedGun[4];
+
+        public static GameObject _stopRecursionObj = null;
+        public static GameObject _PoisonObj = null;
+        public static GameObject _DazzleObj = null;
+        public static GameObject _ColdObj = null;
+
+        public static GameObject StopRecursionObj
         {
             get
             {
-                if (_mirror != null) { return _mirror; }
-                else
+                if (_stopRecursionObj == null)
                 {
-                    _mirror = new GameObject("RSC_Mirror", typeof(MirrorEffect), typeof(PhotonView));
-                    UnityEngine.Object.DontDestroyOnLoad(_mirror);
-
-                    return _mirror;
+                    _stopRecursionObj = new GameObject("A_StopRecursion", typeof(StopRecursion));
+                    DontDestroyOnLoad(_stopRecursionObj);
                 }
-            }
-            set { }
-        }
-    }
-    public class MirrorSpawner : MonoBehaviour
-    {
-        private static bool Initialized = false;
-
-
-
-        void Awake()
-        {
-            if (!Initialized)
-            {
-                PhotonNetwork.PrefabPool.RegisterPrefab(MirrorAssets.mirror.name, MirrorAssets.mirror);
+                return _stopRecursionObj;
             }
         }
 
-        void Start()
+        public static ObjectsToSpawn[] StopRecursionSpawn
         {
-            if (!Initialized)
+            get
             {
-                Initialized = true;
+                return new ObjectsToSpawn[] { new ObjectsToSpawn() { AddToProjectile = StopRecursionObj } };
+            }
+        }
+
+        public static GameObject PoisonObj
+        {
+            get
+            {
+                if (_PoisonObj == null)
+                {
+                    _PoisonObj = new GameObject("A_Poison", typeof(RayHitPoison));
+                    DontDestroyOnLoad(_PoisonObj);
+                }
+                return _PoisonObj;
+            }
+        }
+
+        public static ObjectsToSpawn[] PoisonSpawn
+        {
+            get
+            {
+                return new ObjectsToSpawn[] { new ObjectsToSpawn() { AddToProjectile = PoisonObj } };
+            }
+        }
+
+        public static GameObject DazzleObj
+        {
+            get
+            {
+                if (_DazzleObj == null)
+                {
+                    _DazzleObj = new GameObject("A_Dazzle", typeof(RayHitBash));
+                    DontDestroyOnLoad(_DazzleObj);
+                }
+                return _DazzleObj;
+            }
+        }
+
+        public static ObjectsToSpawn[] DazzleSpawn
+        {
+            get
+            {
+                return new ObjectsToSpawn[] { new ObjectsToSpawn() { AddToProjectile = DazzleObj } };
+            }
+        }
+
+        public static GameObject ColdObj
+        {
+            get
+            {
+                if (_ColdObj == null)
+                {
+                    _ColdObj = new GameObject("A_Cold", typeof(ChillingTouch));
+                    DontDestroyOnLoad(_ColdObj);
+                }
+                return _ColdObj;
+            }
+        }
+
+        public static ObjectsToSpawn[] ColdSpawn
+        {
+            get
+            {
+                return new ObjectsToSpawn[] { new ObjectsToSpawn() { AddToProjectile = ColdObj } };
+            }
+        }
+
+        public void Start()
+        {
+            // Get Player
+            player = GetComponentInParent<Player>();
+            // Get Gun
+            gun = player.data.weaponHandler.gun;
+            // Add action
+            gun.ShootPojectileAction += OnShootProjectileAction;
+
+            // Checks to see if we have a saved gun already, if not, make one.
+            if (savedGuns[0] == null)
+            {
+                savedGuns[0] = new GameObject("Mirror Gun").AddComponent<SimulatedGun>();
+            }
+
+            // Checks to see if we have a second saved gun already, if not, make one.
+            if (savedGuns[1] == null)
+            {
+                savedGuns[1] = new GameObject("Sapphire Gun").AddComponent<SimulatedGun>();
+            }
+
+            // Checks to see if we have a second saved gun already, if not, make one.
+            if (savedGuns[2] == null)
+            {
+                savedGuns[2] = new GameObject("Ruby Gun").AddComponent<SimulatedGun>();
+            }
+
+            // Checks to see if we have a second saved gun already, if not, make one.
+            if (savedGuns[3] == null)
+            {
+                savedGuns[3] = new GameObject("Emerald Gun").AddComponent<SimulatedGun>();
+            }
+        }
+
+        public void OnShootProjectileAction(GameObject obj)
+        {
+            // If the bullet has the StopRecursion component in it somewhere, we don't want to trigger.
+            if (obj.GetComponentsInChildren<StopRecursion>().Length > 0)
+            {
+                return;
+            }
+            
+            // Mirrored X/Kaleidoscope sapphire
+            SimulatedGun sapphireGun = savedGuns[0];
+
+            // Copy gun stats, including actions
+            sapphireGun.CopyGunStatsExceptActions(gun);
+            sapphireGun.CopyAttackAction(gun);
+            sapphireGun.CopyShootProjectileAction(gun);
+            sapphireGun.ShootPojectileAction -= OnShootProjectileAction;
+
+            // Only fire 1 bullet per bullet
+            sapphireGun.numberOfProjectiles = 1;
+            sapphireGun.bursts = 0;
+            sapphireGun.spread = 0f;
+            sapphireGun.evenSpread = 0f;
+            sapphireGun.objectsToSpawn = sapphireGun.objectsToSpawn.Concat(StopRecursionSpawn).ToArray();
+
+            if (player.data.GetAdditionalData().sapphire)
+            {
+                sapphireGun.slow = 0.7f;
+                sapphireGun.projectileColor = new Color(0, 172, 191);
+            }
+
+            // Mirrored Y/Kaledoscope no effect
+            SimulatedGun mirrorGun = savedGuns[1];
+
+            // Copy gun stats, including actions
+            mirrorGun.CopyGunStatsExceptActions(gun);
+            mirrorGun.CopyAttackAction(gun);
+            mirrorGun.CopyShootProjectileAction(gun);
+            mirrorGun.ShootPojectileAction -= OnShootProjectileAction;
+
+            // Invert gravity, only fire 1 bullet per bullet
+            mirrorGun.numberOfProjectiles = 1;
+            mirrorGun.bursts = 0;
+            mirrorGun.spread = 0f;
+            mirrorGun.evenSpread = 0f;
+            mirrorGun.gravity *= -1f;
+            mirrorGun.objectsToSpawn = mirrorGun.objectsToSpawn.Concat(StopRecursionSpawn).ToArray();
+
+            // Kaleidoscope emerald
+            SimulatedGun emeraldGun = savedGuns[2];
+
+            // Copy gun stats, including actions
+            emeraldGun.CopyGunStatsExceptActions(gun);
+            emeraldGun.CopyAttackAction(gun);
+            emeraldGun.CopyShootProjectileAction(gun);
+            emeraldGun.ShootPojectileAction -= OnShootProjectileAction;
+
+            // Only fire 1 bullet per bullet
+            emeraldGun.numberOfProjectiles = 1;
+            emeraldGun.bursts = 0;
+            emeraldGun.spread = 0f;
+            emeraldGun.evenSpread = 0f;
+            emeraldGun.objectsToSpawn = emeraldGun.objectsToSpawn.Concat(StopRecursionSpawn).ToArray();
+
+            if (player.data.GetAdditionalData().emerald)
+            {
+                emeraldGun.damage *= 1.25f;
+                emeraldGun.objectsToSpawn = emeraldGun.objectsToSpawn.Concat(PoisonSpawn).ToArray();
+                emeraldGun.projectileColor = Color.green;
+            }
+
+            // Kaleidoscope ruby
+            SimulatedGun rubyGun = savedGuns[3];
+
+            // Copy gun stats, including actions
+            rubyGun.CopyGunStatsExceptActions(gun);
+            rubyGun.CopyAttackAction(gun);
+            rubyGun.CopyShootProjectileAction(gun);
+            rubyGun.ShootPojectileAction -= OnShootProjectileAction;
+
+            // Only fire 1 bullet per bullet
+            rubyGun.numberOfProjectiles = 1;
+            rubyGun.bursts = 0;
+            rubyGun.spread = 0f;
+            rubyGun.evenSpread = 0f;
+            rubyGun.objectsToSpawn = rubyGun.objectsToSpawn.Concat(StopRecursionSpawn).ToArray();
+
+            if (player.data.GetAdditionalData().ruby)
+            {
+                rubyGun.objectsToSpawn = rubyGun.objectsToSpawn.Concat(DazzleSpawn).ToArray();
+                rubyGun.projectileColor = Color.magenta;
+            }
+
+            // Make sure to not fire for each player in the lobby
+            if (!(player.data.view.IsMine || PhotonNetwork.OfflineMode))
+            {
                 return;
             }
 
-            if (!PhotonNetwork.OfflineMode && !this.gameObject.transform.parent.GetComponent<ProjectileHit>().ownPlayer.data.view.IsMine) return;
+            // Opposite on X
+            sapphireGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x * -1f, obj.transform.position.y, 0), new Vector3(player.data.input.aimDirection.x * -1f, player.data.input.aimDirection.y, 0), 1f, 1);
+            // Only do these if the player has Prism
+            if (player.data.GetAdditionalData().prism)
+            {
+                // Opposite on Y
+                if (!player.data.GetAdditionalData().kaleido)
+                {
+                    mirrorGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x, obj.transform.position.y * -1f, 0), new Vector3(player.data.input.aimDirection.x, player.data.input.aimDirection.y * -1f, 0), 1f, 1);
+                }
+                // Opposite X & Y
+                mirrorGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x * -1f, obj.transform.position.y * -1f, 0), new Vector3(player.data.input.aimDirection.x * -1f, player.data.input.aimDirection.y * -1f, 0), 1f, 1);
+            }
+            if (player.data.GetAdditionalData().kaleido)
+            {
+                // Opposite on Y (prepped to be cold)
+                sapphireGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x, obj.transform.position.y * -1f, 0), new Vector3(player.data.input.aimDirection.x, player.data.input.aimDirection.y * -1f, 0), 1f, 1);
+                // idk how to talk about these
+                emeraldGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y, obj.transform.position.x, 0), new Vector3(player.data.input.aimDirection.y, player.data.input.aimDirection.x, 0), 1f, 1);
+                rubyGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y * -1f, obj.transform.position.x, 0), new Vector3(player.data.input.aimDirection.y * -1f, player.data.input.aimDirection.x, 0), 1f, 1);
+                rubyGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y, obj.transform.position.x * -1f, 0), new Vector3(player.data.input.aimDirection.y, player.data.input.aimDirection.x * -1f, 0), 1f, 1);
+                emeraldGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y * -1f, obj.transform.position.x * -1f, 0), new Vector3(player.data.input.aimDirection.y * -1f, player.data.input.aimDirection.x * -1f, 0), 1f, 1);
+            }
+        }
 
+        public void OnDestroy()
+        {
+            // Remove action when the mono is removed
+            gun.ShootPojectileAction -= OnShootProjectileAction;
 
-            PhotonNetwork.Instantiate(
-                MirrorAssets.mirror.name,
-                transform.position,
-                transform.rotation,
-                0,
-                new object[] { this.gameObject.transform.parent.GetComponent<PhotonView>().ViewID }
-            );
+            Destroy(savedGuns[0]);
+            Destroy(savedGuns[1]);
+            Destroy(savedGuns[2]);
+            Destroy(savedGuns[3]);
+            Destroy(savedGuns[4]);
+            Destroy(savedGuns[5]);
+            Destroy(savedGuns[6]);
         }
     }
-    [RequireComponent(typeof(PhotonView))]
-    public class MirrorEffect : MonoBehaviour, IPunInstantiateMagicCallback
-    {
-        private Player player;
-        private Gun gun;
-        private Gun mirrorGun;
-        private Gun realGun;
-        private ProjectileHit projectile;
-
-        public void OnPhotonInstantiate(Photon.Pun.PhotonMessageInfo info)
-        {
-            object[] instantiationData = info.photonView.InstantiationData;
-
-            GameObject parent = PhotonView.Find((int)instantiationData[0]).gameObject;
-
-            gameObject.transform.SetParent(parent.transform);
-
-            player = parent.GetComponent<ProjectileHit>().ownPlayer;
-            gun = player.GetComponent<Holding>().holdable.GetComponent<Gun>();
-        }
-
-        void Awake()
-        {
-
-        }
-        void Start()
-        {
-            // get the projectile, player, and gun this is attached to
-            projectile = gameObject.transform.parent.GetComponent<ProjectileHit>();
-            player = projectile.ownPlayer;
-            gun = player.GetComponent<Holding>().holdable.GetComponent<Gun>();
-
-            // create a new gun for the spawnbulletseffect
-            mirrorGun = player.gameObject.AddComponent<MirrorGun>();
-
-            SpawnBulletsEffect mirrorEffect = player.gameObject.AddComponent<SpawnBulletsEffect>();
-
-            // set the position and direction to fire
-            Quaternion rotation = projectile.transform.rotation;
-            rotation.x *= -1;
-            rotation.w *= -1;
-            mirrorEffect.SetDirection(rotation * Vector3.forward);
-
-            mirrorEffect.SetPosition(Vector3.Scale(projectile.transform.position, new Vector3(-1, 1, 1)));
-            mirrorEffect.SetNumBullets(1);
-            mirrorEffect.SetTimeBetweenShots(0f);
-            mirrorEffect.SetInitialDelay(0f);
-
-            // copy gun stats over
-            SpawnBulletsEffect.CopyGunStats(gun, mirrorGun);
-            mirrorGun.objectsToSpawn = mirrorGun.objectsToSpawn.Where(obj => obj.AddToProjectile.GetComponent<MirrorSpawner>() == null).ToArray();
-            mirrorGun.bursts = 1;
-            mirrorGun.numberOfProjectiles = 1;
-            mirrorGun.spread = 0;
-
-            // set the gun of the spawnbulletseffect
-            mirrorEffect.SetGun(mirrorGun);
-
-
-
-            // create a new gun for the spawnbulletseffect
-            realGun = player.gameObject.AddComponent<RealGun>();
-
-            SpawnBulletsEffect realEffect = player.gameObject.AddComponent<SpawnBulletsEffect>();
-            // set the position and direction to fire
-
-            realEffect.SetDirection(projectile.transform.rotation * Vector3.forward);
-
-            realEffect.SetPosition(projectile.transform.position);
-            realEffect.SetNumBullets(1);
-            realEffect.SetTimeBetweenShots(0f);
-            realEffect.SetInitialDelay(0f);
-
-            // copy gun stats over
-            SpawnBulletsEffect.CopyGunStats(gun, realGun); ;
-            realGun.objectsToSpawn = realGun.objectsToSpawn.Where(obj => obj.AddToProjectile.GetComponent<MirrorSpawner>() == null).ToArray();
-            realGun.bursts = 1;
-            realGun.numberOfProjectiles = 1;
-            realGun.spread = 0;
-
-            // set the gun of the spawnbulletseffect
-            realEffect.SetGun(realGun);
-
-            projectile.deathEvent.Invoke();
-            Destroy(projectile.gameObject);
-        }
-    }
-    class MirrorGun : Gun
-    { }
-    class RealGun : Gun
-    { }
 }

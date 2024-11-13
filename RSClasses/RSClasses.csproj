@@ -87,6 +87,15 @@
     <Reference Include="QuatCompress">
       <HintPath>E:\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\QuatCompress.dll</HintPath>
     </Reference>
+    <Reference Include="Rarity Bundle">
+      <HintPath>C:\Users\jnet\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ROUNDS\profiles\RSClasses Development\BepInEx\plugins\CrazyCoders-RarityBundle\Rarity Bundle.dll</HintPath>
+    </Reference>
+    <Reference Include="RarityLib">
+      <HintPath>C:\Users\jnet\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ROUNDS\profiles\RSClasses Development\BepInEx\plugins\Root-RarityLib\RarityLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SimulationChamber">
+      <HintPath>C:\Users\jnet\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ROUNDS\profiles\RSClasses Development\BepInEx\plugins\willuwontu-SimulationChamber\SimulationChamber.dll</HintPath>
+    </Reference>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>E:\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\Sirenix.OdinInspector.Attributes.dll</HintPath>
     </Reference>

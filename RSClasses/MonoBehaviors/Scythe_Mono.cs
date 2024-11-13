@@ -39,10 +39,9 @@ namespace RSClasses.MonoBehaviours
                     if (healthHandler)
                     {
                         Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
-                        if (hitPlayer.playerID == player.playerID || recent.ContainsKey(hitPlayer.playerID)) { continue; }
                         SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, this.transform, damageable.transform);
-                        healthHandler.CallTakeForce(((Vector2)hitPlayer.transform.position - (Vector2)scythe.transform.position).normalized * 5000, ForceMode2D.Impulse, true);
-                        recent[hitPlayer.playerID] = 0.5f;
+                        healthHandler.CallTakeForce(((Vector2)hitPlayer.transform.position - (Vector2)scythe.transform.position).normalized * 2500, ForceMode2D.Impulse, true);
+                        this.ableToHit = false;
                         if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame) { continue; }
                     }
                     if (damageable)
@@ -78,8 +77,8 @@ namespace RSClasses.MonoBehaviours
         public bool active = true;
         public float damage = 55;
         public bool hitBullets = true;
+        public bool ableToHit = true;
         private Player player;
-        public Dictionary<int, float> recent = new Dictionary<int, float>();
         GameObject scythe;
     }
 
@@ -87,7 +86,7 @@ namespace RSClasses.MonoBehaviours
     {
         private void OnDestroy()
         {
-            GameModeManager.RemoveHook(GameModeHooks.HookPointStart, PointStart);
+            GameModeManager.RemoveHook(GameModeHooks.HookPickEnd, PickEnd);
             GameModeManager.RemoveHook(GameModeHooks.HookBattleStart, BattleStart);
             GameModeManager.RemoveHook(GameModeHooks.HookPointEnd, PointEnd);
             //RSClasses.instance.ExecuteAfterSeconds(1f, () => GameModeManager.RemoveHook(GameModeHooks.HookGameEnd, GameEnd));
@@ -102,7 +101,7 @@ namespace RSClasses.MonoBehaviours
         {
             player = GetComponentInParent<Player>();
 
-            GameModeManager.AddHook(GameModeHooks.HookPointStart, PointStart);
+            GameModeManager.AddHook(GameModeHooks.HookPickEnd, PickEnd);
             GameModeManager.AddHook(GameModeHooks.HookBattleStart, BattleStart);
             GameModeManager.AddHook(GameModeHooks.HookPointEnd, PointEnd);
             //GameModeManager.AddHook(GameModeHooks.HookGameEnd, GameEnd);
@@ -115,7 +114,7 @@ namespace RSClasses.MonoBehaviours
             {
                 foreach (Scythe scythe in scythes)
                 {
-                    scythe.recent.Clear();
+                    scythe.ableToHit = true;
                 }
                 angle -= 360;
             }
@@ -127,6 +126,18 @@ namespace RSClasses.MonoBehaviours
                 double thisAngle = angle + ((360f / (float)scythes.Count()) * (float)index);
                 scythe.UpdatePos(thisAngle, rotation, radius);
                 index++;
+                if (scythe.ableToHit)
+                {
+                    Color setColor = color;
+                    setColor.a = 1;
+                    scythe.SetColor(setColor);
+                }
+                else
+                {
+                    Color setColor = color;
+                    setColor.a = 0.5f;
+                    scythe.SetColor(setColor);
+                }
             }
         }
 
@@ -136,7 +147,10 @@ namespace RSClasses.MonoBehaviours
             {
                 foreach (Scythe scythe in scythes)
                 {
-                    scythe.DoHit();
+                    if (scythe.ableToHit)
+                    {
+                        scythe.DoHit();
+                    }
                 }
             }
         }
@@ -186,7 +200,7 @@ namespace RSClasses.MonoBehaviours
             yield break;
         }
 
-        IEnumerator PointStart(IGameModeHandler gm)
+        IEnumerator PickEnd(IGameModeHandler gm)
         {
             rotation = 0f;
             angle = 0.0;

@@ -1,4 +1,5 @@
 ﻿using ClassesManagerReborn.Util;
+using RarityLib.Utils;
 using RSClasses.Extensions;
 using RSClasses.MonoBehaviours;
 using UnboundLib;
@@ -17,6 +18,7 @@ namespace RSClasses.Cards.Astronomer
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
+            block.cdAdd = -0.25f;
 
             cardInfo.allowMultiple = false;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been setup."); }
@@ -25,16 +27,16 @@ namespace RSClasses.Cards.Astronomer
         {
             //Edits values on player when card is selected
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            player.data.GetAdditionalData().barrierCount += 8;
-            shield.radius += 1f;
+            player.data.GetAdditionalData().barrierCount += 2;
+            shield.radius *= 1.5f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            player.data.GetAdditionalData().barrierCount -= 8;
-            shield.radius -= 1f;
+            player.data.GetAdditionalData().barrierCount -= 2;
+            shield.radius /= 1.5f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
@@ -53,7 +55,7 @@ namespace RSClasses.Cards.Astronomer
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Rare;
+            return RarityUtils.GetRarity("Exotic");
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -63,14 +65,21 @@ namespace RSClasses.Cards.Astronomer
                 {
                     positive = true,
                     stat = "Barriers",
-                    amount = "+8",
+                    amount = "+2",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
+                    positive = true,
+                    stat = "Block cooldown",
+                    amount = "-0.25s",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = true,
                     stat = "Shield size",
-                    amount = "+2",
+                    amount = "+50%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

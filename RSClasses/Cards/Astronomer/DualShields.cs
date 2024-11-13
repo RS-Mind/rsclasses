@@ -1,4 +1,5 @@
 ﻿using ClassesManagerReborn.Util;
+using RarityLib.Utils;
 using RSClasses.Extensions;
 using RSClasses.MonoBehaviours;
 using UnboundLib;
@@ -17,7 +18,7 @@ namespace RSClasses.Cards.Astronomer
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            block.cdAdd = 0.5f;
+            block.cdAdd = 0.25f;
 
             cardInfo.allowMultiple = false;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been setup."); }
@@ -51,7 +52,7 @@ namespace RSClasses.Cards.Astronomer
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Common;
+            return RarityUtils.GetRarity("Scarce");
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -68,7 +69,7 @@ namespace RSClasses.Cards.Astronomer
                 {
                     positive = false,
                     stat = "Block cooldown",
-                    amount = "+0.5s",
+                    amount = "+0.25s",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

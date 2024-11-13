@@ -1,11 +1,6 @@
 # RSClasses
 Classes for ROUNDS that leverage unique mechanics.
 
-### **NOTICE:**
-I will not be able to work on this mod for a very long time. Feel free to update and reupload this mod to fix any bugs with cards, but please do not add content to this mod. At the same time, this is under MIT license, so do whatever you want.
-
-If anyone figures out how to make Mirror Mage work, *please* upload it. I give full permission to use the existing art assets and code for Mirror Mage.
-
 ## Card List:
 
 <details open>
@@ -22,7 +17,7 @@ Uses orbiting objects to fend off foes
 ### Domain Extension
 [Common]
 Increases the size of orbitals and their orbits
-- +1 Orbital size
+- +25% Orbital size
 - -25% Scythe damage
 
 ### Faster Barriers
@@ -46,7 +41,7 @@ Increases the speed of orbitals
 ### Dual Shields
 [Common]
 - +2 Shields
-- +0.5s Block cooldown
+- +0.25s Block cooldown
 
 ### Twin Scythes
 [Common]
@@ -57,10 +52,15 @@ Increases the speed of orbitals
 [Uncommon Subclass]
 *Requires Dual Shields and Twin Scythes*
 Stalwart Defenders. Their barriers defend them from all bullets
-- +4 Barriers
+- +2 Barriers
+- +1 Block
 - +50% Health
-- +4 Shield size
+- +100% Barrier size
 - -4 Scythes
+
+### Shield Spikes
+When you block, your shields deal damage based on your maximum health
+- +0.25s Block cooldown
 
 ### Perfect Guard
 [Rare]
@@ -77,12 +77,18 @@ Reapers of souls. Defense is not their concern. Their scythes don't cut through 
 - +100% Rotation speed
 - -4 Barriers
 
+### Harvest Sickle
+[Uncommon]
+*Requires Harvester*
+- +1 Scythe
+- +10% Lifesteal
+
 ### Dark Harvest
 [Rare]
-*Requires Harvester*
+*Requires Harvest Sickle*
 A horrifying sight to behold
-- +100% Scythe damage
-- +25% Lifesteal
+- +50% Scythe damage
+- +15% Lifesteal
 </details>
 
 <details open>
@@ -90,6 +96,25 @@ A horrifying sight to behold
 Patch Notes:
 </summary>
 <br>
+
+<details open>
+<summary>
+1.3
+</summmary>
+<br>
+- Added Harvest Sickle. Dark Harvest now requires Harvest Sickle
+- Added Shield Spikes, a card which allows your barriers to deal damage on block.
+- Reduced Dark Harvest's damage and lifesteal
+- Altered the math for Domain Extension
+- Reduced the speed increase from Faster Shields. Removed block cooldown penalty
+- Scythe counts generally reworked
+- Reduced Scythe knockback
+- Scythes can now only hit 1 player per revolution
+- Barrier counts and size generally reworked
+- Guardian now gives less health, but grants an additional block
+- Added Mirror Mage class
+
+</details>
 
 <details open>
 <summary>

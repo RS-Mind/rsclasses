@@ -28,6 +28,10 @@ namespace RSClasses.MonoBehaviours
                         reflectionList.Add(reflection);
                         reflectionList.Add(Instantiate(reflection, other.transform));
                         reflectionList.Add(Instantiate(reflection, other.transform));
+                        reflectionList.Add(Instantiate(reflection, other.transform));
+                        reflectionList.Add(Instantiate(reflection, other.transform));
+                        reflectionList.Add(Instantiate(reflection, other.transform));
+                        reflectionList.Add(Instantiate(reflection, other.transform));
                         reflections[other.playerID] = reflectionList;
                     }
                     reflections[other.playerID][0].transform.SetPositionAndRotation(new Vector3(-other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation);
@@ -36,6 +40,13 @@ namespace RSClasses.MonoBehaviours
                     {
                         reflections[other.playerID][1].transform.SetPositionAndRotation(new Vector3(other.transform.position.x, -other.transform.position.y, other.transform.position.z), other.transform.rotation);
                         reflections[other.playerID][2].transform.SetPositionAndRotation(new Vector3(-other.transform.position.x, -other.transform.position.y, other.transform.position.z), other.transform.rotation);
+                    }
+                    if (player.data.GetAdditionalData().kaleido)
+                    {
+                        reflections[other.playerID][3].transform.SetPositionAndRotation(new Vector3(other.transform.position.y, other.transform.position.x, other.transform.position.z), other.transform.rotation);
+                        reflections[other.playerID][4].transform.SetPositionAndRotation(new Vector3(-other.transform.position.y, other.transform.position.x, other.transform.position.z), other.transform.rotation);
+                        reflections[other.playerID][5].transform.SetPositionAndRotation(new Vector3(other.transform.position.y, -other.transform.position.x, other.transform.position.z), other.transform.rotation);
+                        reflections[other.playerID][6].transform.SetPositionAndRotation(new Vector3(-other.transform.position.y, -other.transform.position.x, other.transform.position.z), other.transform.rotation);
                     }
                 }
             }

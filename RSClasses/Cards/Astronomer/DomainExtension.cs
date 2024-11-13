@@ -1,4 +1,5 @@
 ﻿using ClassesManagerReborn.Util;
+using RarityLib.Utils;
 using RSClasses.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
@@ -22,21 +23,27 @@ namespace RSClasses.Cards.Astronomer
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Edits values on player when card is selected
-            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
-            var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.damage *= 0.75f;
-            scythe.radius += 0.5f;
-            shield.radius += 0.5f;
+            var scythe = player.gameObject.GetComponent<ScytheMono>();
+            var shield = player.gameObject.GetComponent<ShieldMono>();
+            if (scythe != null)
+            {
+                scythe.damage *= 0.75f;
+                scythe.radius *= 1.25f;
+            }
+            if (shield != null) { shield.radius *= 1.25f; }
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
-            var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
-            var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            scythe.damage /= 0.75f;
-            scythe.radius -= 0.25f;
-            shield.radius -= 0.25f;
+            var scythe = player.gameObject.GetComponent<ScytheMono>();
+            var shield = player.gameObject.GetComponent<ShieldMono>();
+            if (scythe != null)
+            {
+                scythe.damage /= 0.75f;
+                scythe.radius /= 1.25f;
+            }
+            if (shield != null) { shield.radius /= 1.25f; }
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
@@ -55,7 +62,7 @@ namespace RSClasses.Cards.Astronomer
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Common;
+            return RarityUtils.GetRarity("Trinket");
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -65,7 +72,7 @@ namespace RSClasses.Cards.Astronomer
                 {
                     positive = true,
                     stat = "Orbital size",
-                    amount = "+1",
+                    amount = "+25%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()

@@ -16,7 +16,7 @@ namespace RSClasses.Cards.Astronomer
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            statModifiers.lifeSteal = 0.25f;
+            statModifiers.lifeSteal = 0.15f;
 
             cardInfo.allowMultiple = false;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been setup."); }
@@ -25,14 +25,14 @@ namespace RSClasses.Cards.Astronomer
         {
             //Edits values on player when card is selected
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
-            scythe.damage *= 2f;
+            scythe.damage *= 1.5f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             //Run when the card is removed from the player
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
-            scythe.damage /= 2f;
+            scythe.damage /= 1.5f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
@@ -61,14 +61,14 @@ namespace RSClasses.Cards.Astronomer
                 {
                     positive = true,
                     stat = "Scythe damage",
-                    amount = "+100%",
+                    amount = "+50%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = true,
                     stat = "Lifesteal",
-                    amount = "+25%",
+                    amount = "+15%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

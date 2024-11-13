@@ -5,12 +5,15 @@ using UnityEngine;
 
 namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this code
 {
-    // ADD FIELDS TO GUN
     [Serializable]
     public class PlayerAdditionalData
     {
         public bool invert;
         public bool prism;
+        public bool kaleido;
+        public bool sapphire;
+        public bool ruby;
+        public bool emerald;
         public int posMult;
         public int scytheCount;
         public int barrierCount;
@@ -20,6 +23,10 @@ namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this cod
             invert = false;
             posMult = 1;
             prism = false;
+            kaleido = false;
+            sapphire = false;
+            ruby = false;
+            emerald = false;
             scytheCount = 0;
             barrierCount = 0;
         }

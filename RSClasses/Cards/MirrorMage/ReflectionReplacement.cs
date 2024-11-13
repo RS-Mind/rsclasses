@@ -16,7 +16,7 @@ namespace RSClasses.Cards.MirrorMage
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            statModifiers.health = 0.75f;
+            statModifiers.health = 0.85f;
 
             cardInfo.allowMultiple = false;
             gameObject.GetOrAddComponent<ClassNameMono>().className = MirrorMageClass.name;
@@ -43,7 +43,7 @@ namespace RSClasses.Cards.MirrorMage
         }
         protected override string GetDescription()
         {
-            return "Reflect across the mirror when you take damage";
+            return "Reflect across the mirror and block when you take damage";
         }
         protected override GameObject GetCardArt()
         {
@@ -51,7 +51,7 @@ namespace RSClasses.Cards.MirrorMage
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -61,7 +61,7 @@ namespace RSClasses.Cards.MirrorMage
                 {
                     positive = false,
                     stat = "Health",
-                    amount = "-25%",
+                    amount = "-15%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

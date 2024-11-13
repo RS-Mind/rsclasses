@@ -1,4 +1,5 @@
 ﻿using ClassesManagerReborn.Util;
+using RarityLib.Utils;
 using RSClasses.Extensions;
 using RSClasses.MonoBehaviours;
 using UnboundLib;
@@ -28,7 +29,7 @@ namespace RSClasses.Cards.Astronomer
         {
             //Edits values on player when card is selected
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
-            player.data.GetAdditionalData().scytheCount += 4;
+            player.data.GetAdditionalData().scytheCount += 2;
             scythe.speed += 250;
             player.data.GetAdditionalData().barrierCount -= 4;
             scythe.setColor(new Color(178f / 255f, 0f, 1f));
@@ -39,7 +40,7 @@ namespace RSClasses.Cards.Astronomer
             //Run when the card is removed from the player
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
-            player.data.GetAdditionalData().scytheCount -= 4;
+            player.data.GetAdditionalData().scytheCount -= 2;
             scythe.speed -= 250;
             player.data.GetAdditionalData().barrierCount += 4;
             scythe.setColor(new Color(0.6156863f, 0.227451f, 1f));
@@ -61,7 +62,7 @@ namespace RSClasses.Cards.Astronomer
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Uncommon;
+            return RarityUtils.GetRarity("Exotic");
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -71,7 +72,7 @@ namespace RSClasses.Cards.Astronomer
                 {
                     positive = true,
                     stat = "Scythes",
-                    amount = "+4",
+                    amount = "+2",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()

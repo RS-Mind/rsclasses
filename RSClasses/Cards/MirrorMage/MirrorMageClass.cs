@@ -1,4 +1,5 @@
 ﻿using ClassesManagerReborn;
+using RSClasses.Cards.Astronomer;
 using System.Collections;
 
 namespace RSClasses.Cards.MirrorMage
@@ -10,15 +11,24 @@ namespace RSClasses.Cards.MirrorMage
         public override IEnumerator Init()
         {
             CardInfo classCard = null;
-            while (!(MirrorMage.Card && MirrorMind.Card && PolishedMirror.Card && Prism.Card && ReflectionReplacement.Card && Shatter.Card)) yield return null;
-            ClassesRegistry.Register(MirrorMage.Card, CardType.Entry);
-            ClassesRegistry.Register(MirrorMind.Card, CardType.Card, ReflectionReplacement.Card);
-            ClassesRegistry.Register(PolishedMirror.Card, CardType.Card, MirrorMage.Card);
-            ClassesRegistry.Register(Prism.Card, CardType.Card, MirrorMage.Card);
-            ClassesRegistry.Register(ReflectionReplacement.Card, CardType.Gate, MirrorMage.Card);
-            ClassesRegistry.Register(Shatter.Card, CardType.Card, ReflectionReplacement.Card);
-            // Card that causes your gravity to face the prism line
-            yield return null;
+            while (!(MirrorMage.Card && MirrorMind.Card && PolishedMirror.Card && Prism.Card && ReflectionReplacement.Card && Fracture.Card && Voidseer.Card && Shatter.Card && WeakenedMirror.Card 
+                && ForcedReflection.Card && ForcedRefraction.Card && KaleidoWitch.Card && EmeraldGlitter.Card && RubyDust.Card && SapphireShards.Card && KaleidoParty.Card)) yield return null;
+            ClassesRegistry.Register(MirrorMage.Card,               CardType.Entry);
+            ClassesRegistry.Register(PolishedMirror.Card,           CardType.Card,      MirrorMage.Card);
+            ClassesRegistry.Register(Prism.Card,                    CardType.Gate,      MirrorMage.Card);
+            ClassesRegistry.Register(ReflectionReplacement.Card,    CardType.Gate,      MirrorMage.Card);
+            ClassesRegistry.Register(MirrorMind.Card,               CardType.Card,      ReflectionReplacement.Card);
+            ClassesRegistry.Register(Fracture.Card,                 CardType.Gate,      ReflectionReplacement.Card);
+            ClassesRegistry.Register(Voidseer.Card,                 CardType.SubClass,  Fracture.Card);
+            ClassesRegistry.Register(Shatter.Card,                  CardType.Card,      Voidseer.Card);
+            ClassesRegistry.Register(WeakenedMirror.Card,           CardType.Card,      Voidseer.Card);
+            ClassesRegistry.Register(ForcedReflection.Card,         CardType.Card,      Voidseer.Card);
+            ClassesRegistry.Register(ForcedRefraction.Card,         CardType.Card, new CardInfo[] { Voidseer.Card, Prism.Card });
+            ClassesRegistry.Register(KaleidoWitch.Card,             CardType.SubClass,  Prism.Card);
+            ClassesRegistry.Register(EmeraldGlitter.Card,           CardType.Card,      KaleidoWitch.Card);
+            ClassesRegistry.Register(RubyDust.Card,                 CardType.Card,      KaleidoWitch.Card);
+            ClassesRegistry.Register(SapphireShards.Card,           CardType.Card,      KaleidoWitch.Card);
+            ClassesRegistry.Register(KaleidoParty.Card,             CardType.Card,      KaleidoWitch.Card);
         }
     }
 }

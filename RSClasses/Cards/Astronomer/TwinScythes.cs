@@ -1,4 +1,5 @@
 ﻿using ClassesManagerReborn.Util;
+using RarityLib.Utils;
 using RSClasses.Extensions;
 using RSClasses.MonoBehaviours;
 using UnboundLib;
@@ -51,7 +52,7 @@ namespace RSClasses.Cards.Astronomer
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Common;
+            return RarityUtils.GetRarity("Scarce");
         }
         protected override CardInfoStat[] GetStats()
         {
