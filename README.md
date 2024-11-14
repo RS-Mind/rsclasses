@@ -96,7 +96,7 @@ A horrifying sight to behold
 </details>
 
 <details open>
-<summary>Astronomer</summary>
+<summary>Mirror Mage</summary>
 <br>
 
 ### Mirror Mage
