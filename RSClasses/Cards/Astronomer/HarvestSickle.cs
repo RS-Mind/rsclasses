@@ -12,7 +12,7 @@ namespace RSClasses.Cards.Astronomer
     {
         public override void Callback()
         {
-            gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.name;
+            gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.nameHarvester;
         }
 
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)

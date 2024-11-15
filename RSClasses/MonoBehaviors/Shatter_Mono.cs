@@ -58,7 +58,7 @@ namespace RSClasses.MonoBehaviours
                             if (healthHandler)
                             {
                                 Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
-                                if (hitPlayer.playerID != player.playerID) healthHandler.CallTakeDamage(((Vector2)hitPlayer.transform.position - (Vector2)shatter.transform.position).normalized * Time.deltaTime * 45,
+                                if (hitPlayer.playerID != player.playerID) healthHandler.CallTakeDamage(((Vector2)hitPlayer.transform.position - (Vector2)shatter.transform.position).normalized * Time.deltaTime * player.data.weaponHandler.gun.damage,
                                (Vector2)this.transform.position, gameObject, player);
                             }
                         }
@@ -127,7 +127,7 @@ namespace RSClasses.MonoBehaviours
         SoundEvent shatterSound;
         public float radius = 0.0225f;
         public float duration = 1f;
-        public float cooldown = 1f;
+        public float cooldown = 3f;
         private float cooldownTimer = 0f;
         private Player player;
         private SoundParameterIntensity soundParameterIntensity = new SoundParameterIntensity(0f, UpdateMode.Continuous);

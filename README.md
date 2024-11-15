@@ -55,12 +55,12 @@ Increases the speed of orbitals
 Stalwart Defenders. Their barriers defend them from all bullets
 - +2 Barriers
 - +25% Health
-- +1 Block
+- -0.25s Block cooldown
 - +100% Barrier size
 - -4 Scythes
 
 ### Shield Spikes
-[Uncommon]
+[Rare]
 *Requires Guardian*
 When you block, your shields deal damage based on your maximum health
 - +0.25s Block cooldown
@@ -68,15 +68,16 @@ When you block, your shields deal damage based on your maximum health
 ### Perfect Guard
 [Rare]
 *Requires Guardian*
-An inpenetrable ring of light
+An impenetrable ring of light
 - +2 Barriers
-- -0.25s Block cooldown
-- +50% Shield size
+- +1 Block
+- +75% Barrier size
 
 ### Harvester
 [Uncommon Subclass]
 *Requires Dual Shields and Twin Scythes*
-Reapers of souls. Defense is not their concern. Their scythes don't cut through bullets
+Reapers of souls
+Deal more damage the more lifesteal you have
 - +2 Scythes
 - +100% Rotation speed (Scythes can hit once per rotation, so this is effectively an attack speed buff)
 - -4 Barriers
@@ -118,8 +119,8 @@ Gain the ability to perceive the prism (Your bullets are reflected vertically ac
 ### Reflection Replacement
 [Uncommon]
 *Requires Mirror Mage*
-Reflect across the mirror and block when you take damage (This block triggers additional blocks)
-- -15% Health
+Reflect across the mirror and block when you take damage (3 second cooldown. This block triggers additional blocks)
+- -30% Health
 
 ### Mirror Mind
 [Common]
@@ -144,9 +145,8 @@ Press 'E' or DPad-Up to deal damage to yourself (1 damage)
 ### Shatter
 [Uncommon]
 *Requires Voidseer*
-- +200% Fracture duration
+- +1s Fracture duration
 - +50% Fracture size
-- +50% Reflection cooldown
 
 ### Weakened Mirror
 [Uncommon]
@@ -201,6 +201,24 @@ Your bullets get an extra bounce for each remaining ammo you have
 Patch Notes:
 </summary>
 <br>
+
+<details open>
+<summary>
+2.1.0
+</summmary>
+<br>
+- Harvester now causes scythes to deal bonus damage based on your lifesteal. Scythe speed lowered to compensate
+- Shield Spikes rarity increased to Rare. Damage calculation altered and generally decreased
+- Reflection Replacement now decreases health by 30%. Cooldown of Reflection Replacement increased to 3 seconds
+- Swapped the block cooldown and echo effect between Guardian and Perfect Guard
+- Fracture damage now scales with gun damage
+- Adjusted the barrier size increase of Perfect Guard. Fixed the name of the stat
+- Removed reflection cooldown penalty from Shatter. Reduced duration increase to 1s. You can now get multiple copies of the card.
+- Adjusted barrier positions, causing them to form 2 sets of barriers, rather than evenly spacing. Overall coverage is identical to previous behavior
+- Added colors to class tags (the text at the bottom right of the cards
+- Fixed an issue with Mirror Mage and bullet spread
+
+</details>
 
 <details open>
 <summary>

@@ -13,7 +13,7 @@ namespace RSClasses.Cards.Astronomer
 
         public override void Callback()
         {
-            gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.name;
+            gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.nameHarvester;
         }
 
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
@@ -30,7 +30,7 @@ namespace RSClasses.Cards.Astronomer
             //Edits values on player when card is selected
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             player.data.GetAdditionalData().scytheCount += 2;
-            scythe.speed += 250;
+            scythe.speed += 150;
             player.data.GetAdditionalData().barrierCount -= 4;
             scythe.setColor(new Color(178f / 255f, 0f, 1f));
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
@@ -41,7 +41,7 @@ namespace RSClasses.Cards.Astronomer
             var scythe = player.gameObject.GetOrAddComponent<ScytheMono>();
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             player.data.GetAdditionalData().scytheCount -= 2;
-            scythe.speed -= 250;
+            scythe.speed -= 150;
             player.data.GetAdditionalData().barrierCount += 4;
             scythe.setColor(new Color(0.6156863f, 0.227451f, 1f));
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
@@ -54,7 +54,7 @@ namespace RSClasses.Cards.Astronomer
         }
         protected override string GetDescription()
         {
-            return "Reapers of souls. Defense is not their concern";
+            return "Reapers of souls\nDeal more damage the more lifesteal you have";
         }
         protected override GameObject GetCardArt()
         {
@@ -79,7 +79,7 @@ namespace RSClasses.Cards.Astronomer
                 {
                     positive = true,
                     stat = "Rotation speed",
-                    amount = "+100%",
+                    amount = "+60%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()

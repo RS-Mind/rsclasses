@@ -12,13 +12,13 @@ namespace RSClasses.Cards.Astronomer
     {
         public override void Callback()
         {
-            gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.name;
+            gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.nameGuardian;
         }
 
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            block.cdAdd = -0.25f;
+            block.additionalBlocks = 1;
 
             cardInfo.allowMultiple = false;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been setup."); }
@@ -28,7 +28,7 @@ namespace RSClasses.Cards.Astronomer
             //Edits values on player when card is selected
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             player.data.GetAdditionalData().barrierCount += 2;
-            shield.radius *= 1.5f;
+            shield.radius *= 1.75f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -36,7 +36,7 @@ namespace RSClasses.Cards.Astronomer
             //Run when the card is removed from the player
             var shield = player.gameObject.GetOrAddComponent<ShieldMono>();
             player.data.GetAdditionalData().barrierCount -= 2;
-            shield.radius /= 1.5f;
+            shield.radius /= 1.75f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
@@ -47,7 +47,7 @@ namespace RSClasses.Cards.Astronomer
         }
         protected override string GetDescription()
         {
-            return "An inpenetrable ring of light";
+            return "An impenetrable ring of light";
         }
         protected override GameObject GetCardArt()
         {
@@ -71,15 +71,15 @@ namespace RSClasses.Cards.Astronomer
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Block cooldown",
-                    amount = "-0.25s",
+                    stat = "Block",
+                    amount = "+1",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Shield size",
-                    amount = "+50%",
+                    stat = "Barrier size",
+                    amount = "+75%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

@@ -5,7 +5,9 @@ namespace RSClasses.Cards.Astronomer
 {
     class AstronomerClass : ClassHandler
     {
-        internal static string name = "Astro";
+        internal static string name = "<color=#ffff00>Astro</color>";
+        internal static string nameGuardian = "<color=#66ffff>Astro</color>";
+        internal static string nameHarvester = "<color=#b300ff>Astro</color>";
 
         public override IEnumerator Init()
         {

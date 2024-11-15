@@ -235,27 +235,29 @@ namespace RSClasses.MonoBehaviours
             }
 
             // Opposite on X
-            sapphireGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x * -1f, obj.transform.position.y, 0), new Vector3(player.data.input.aimDirection.x * -1f, player.data.input.aimDirection.y, 0), 1f, 1);
+            sapphireGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x * -1f, obj.transform.position.y, 0), obj.transform.forward - (2 * Vector3.Dot(obj.transform.forward, Vector3.left) * Vector3.left), 1f, 1);
             // Only do these if the player has Prism
             if (player.data.GetAdditionalData().prism)
             {
                 // Opposite on Y
                 if (!player.data.GetAdditionalData().kaleido)
                 {
-                    mirrorGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x, obj.transform.position.y * -1f, 0), new Vector3(player.data.input.aimDirection.x, player.data.input.aimDirection.y * -1f, 0), 1f, 1);
+                    mirrorGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x, obj.transform.position.y * -1f, 0), obj.transform.forward - (2 * Vector3.Dot(obj.transform.forward, Vector3.up) * Vector3.up), 1f, 1);
                 }
                 // Opposite X & Y
-                mirrorGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x * -1f, obj.transform.position.y * -1f, 0), new Vector3(player.data.input.aimDirection.x * -1f, player.data.input.aimDirection.y * -1f, 0), 1f, 1);
+                mirrorGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x * -1f, obj.transform.position.y * -1f, 0), new Vector3(obj.transform.forward.x * -1, obj.transform.forward.y * -1f, 0f), 1f, 1);
             }
             if (player.data.GetAdditionalData().kaleido)
             {
                 // Opposite on Y (prepped to be cold)
-                sapphireGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x, obj.transform.position.y * -1f, 0), new Vector3(player.data.input.aimDirection.x, player.data.input.aimDirection.y * -1f, 0), 1f, 1);
+                sapphireGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x, obj.transform.position.y * -1f, 0), obj.transform.forward - (2 * Vector3.Dot(obj.transform.forward, Vector3.up) * Vector3.up), 1f, 1);
                 // idk how to talk about these
-                emeraldGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y, obj.transform.position.x, 0), new Vector3(player.data.input.aimDirection.y, player.data.input.aimDirection.x, 0), 1f, 1);
-                rubyGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y * -1f, obj.transform.position.x, 0), new Vector3(player.data.input.aimDirection.y * -1f, player.data.input.aimDirection.x, 0), 1f, 1);
-                rubyGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y, obj.transform.position.x * -1f, 0), new Vector3(player.data.input.aimDirection.y, player.data.input.aimDirection.x * -1f, 0), 1f, 1);
-                emeraldGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y * -1f, obj.transform.position.x * -1f, 0), new Vector3(player.data.input.aimDirection.y * -1f, player.data.input.aimDirection.x * -1f, 0), 1f, 1);
+                Vector3 normalDir = Quaternion.AngleAxis(45, Vector3.forward) * Vector3.up;
+                emeraldGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y, obj.transform.position.x, 0), obj.transform.forward - (2 * Vector3.Dot(obj.transform.forward, normalDir) * normalDir), 1f, 1);
+                normalDir = Quaternion.AngleAxis(45, Vector3.forward) * Vector3.left;
+                emeraldGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y * -1f, obj.transform.position.x * -1f, 0), obj.transform.forward - (2 * Vector3.Dot(obj.transform.forward, normalDir) * normalDir), 1f, 1);
+                rubyGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y * -1f, obj.transform.position.x, 0), Quaternion.AngleAxis(90, Vector3.forward) * obj.transform.forward, 1f, 1);
+                rubyGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y, obj.transform.position.x * -1f, 0), Quaternion.AngleAxis(270, Vector3.forward) * obj.transform.forward, 1f, 1);
             }
         }
 

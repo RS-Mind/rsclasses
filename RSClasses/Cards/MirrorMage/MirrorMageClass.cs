@@ -6,7 +6,9 @@ namespace RSClasses.Cards.MirrorMage
 {
     class MirrorMageClass : ClassHandler
     {
-        internal static string name = "Mirror";
+        internal static string name = "<color=#00ff00>Mirror</color>";
+        internal static string nameKaleido = "<color=#ff00ff>Mirror</color>";
+        internal static string nameVoidseer = "<color=#0055ff>Mirror</color>";
 
         public override IEnumerator Init()
         {

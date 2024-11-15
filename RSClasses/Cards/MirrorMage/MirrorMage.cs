@@ -15,8 +15,7 @@ namespace RSClasses.Cards.MirrorMage
 
         public override void Callback()
         {
-            ClassNameMono className = gameObject.GetOrAddComponent<ClassNameMono>();
-            className.className = MirrorMageClass.name;
+            gameObject.GetOrAddComponent<ClassNameMono>();
         }
 
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)

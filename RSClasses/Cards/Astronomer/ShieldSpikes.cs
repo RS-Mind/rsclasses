@@ -10,7 +10,7 @@ namespace RSClasses.Cards.Astronomer
     {
         public override void Callback()
         {
-            gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.name;
+            gameObject.GetOrAddComponent<ClassNameMono>().className = AstronomerClass.nameGuardian;
         }
 
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
@@ -51,7 +51,7 @@ namespace RSClasses.Cards.Astronomer
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Rare;
         }
         protected override CardInfoStat[] GetStats()
         {

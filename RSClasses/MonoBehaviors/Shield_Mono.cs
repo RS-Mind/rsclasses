@@ -63,7 +63,7 @@ namespace RSClasses.MonoBehaviours
                     }
                     if (damageable)
                     {
-                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)origin.transform.position).normalized * 0.25f * player.data.maxHealth,
+                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)origin.transform.position).normalized * ((0.10f * player.data.maxHealth) + 10f),
                             (Vector2)origin.transform.position, shield.gameObject, player);
                     }
                 }
@@ -144,7 +144,7 @@ namespace RSClasses.MonoBehaviours
             int index = 0;
             foreach (Shield shield in shields)
             {
-                double thisAngle = angle + ((360f / (float)shields.Count()) * (float)index);
+                double thisAngle = (angle + (float)((index%2*180) + (45*(index/2)))) % 360f;
                 shield.UpdatePos(thisAngle, radius);
                 index++;
             }

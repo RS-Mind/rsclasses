@@ -16,7 +16,7 @@ namespace RSClasses.Cards.MirrorMage
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            statModifiers.health = 0.85f;
+            statModifiers.health = 0.7f;
 
             cardInfo.allowMultiple = false;
             gameObject.GetOrAddComponent<ClassNameMono>().className = MirrorMageClass.name;
@@ -61,7 +61,7 @@ namespace RSClasses.Cards.MirrorMage
                 {
                     positive = false,
                     stat = "Health",
-                    amount = "-15%",
+                    amount = "-30%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

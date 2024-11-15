@@ -16,18 +16,13 @@ namespace RSClasses.Cards.MirrorMage
     {
         GameObject shatter;
         ClassNameMono className;
-        bool pickPhase = false;
-        public void Callback()
-        {
-            gameObject.GetOrAddComponent<ClassNameMono>().className = MirrorMageClass.name;
-        }
 
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             //Edits values on card itself, which are then applied to the player in `ApplyCardStats`
-            cardInfo.allowMultiple = false;
+            cardInfo.allowMultiple = true;
             className = gameObject.GetOrAddComponent<ClassNameMono>();
-            className.className = MirrorMageClass.name;
+            className.className = MirrorMageClass.nameVoidseer;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been setup."); }
         }
 
@@ -66,8 +61,7 @@ namespace RSClasses.Cards.MirrorMage
             //Edits values on player when card is selected
             var fracture = player.gameObject.GetOrAddComponent<ShatterTrigger>().mono;
             fracture.radius *= 1.5f;
-            fracture.duration *= 3f;
-            fracture.cooldown += 0.5f;
+            fracture.duration += 1f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}."); }
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -75,8 +69,7 @@ namespace RSClasses.Cards.MirrorMage
             //Run when the card is removed from the player
             var fracture = player.gameObject.GetOrAddComponent<ShatterTrigger>().mono;
             fracture.radius /= 1.5f;
-            fracture.duration /= 3f;
-            fracture.cooldown -= 0.5f;
+            fracture.duration -= 1f;
             if (RSClasses.Debug) { UnityEngine.Debug.Log($"[{RSClasses.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}."); }
         }
 
@@ -105,20 +98,13 @@ namespace RSClasses.Cards.MirrorMage
                 {
                     positive = true,
                     stat = "Fracture duration",
-                    amount = "+200%",
+                    amount = "+1s",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = true,
                     stat = "Fracture size",
-                    amount = "+50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = false,
-                    stat = "Reflection cooldown",
                     amount = "+50%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }

@@ -46,7 +46,12 @@ namespace RSClasses.MonoBehaviours
                     }
                     if (damageable)
                     {
-                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * damage,
+                        float bonusDamage = 0f;
+                        if (player.data.GetAdditionalData().scytheCount > 4)
+                        {
+                            bonusDamage = (player.data.stats.lifeSteal * 0.5f);
+                        }
+                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * (damage + bonusDamage),
                             (Vector2)this.transform.position, this.gameObject, player);
                     }
                 }
