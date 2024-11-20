@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4641225315681381771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5327136366380999029}
+  - component: {fileID: 8766807394848810049}
+  m_Layer: 0
+  m_Name: CardHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5327136366380999029
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4641225315681381771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4089551, y: 0.36183858, z: 9.256807}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8766807394848810049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4641225315681381771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e159b629ca55e1a419f3905565950ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cards:
+  - {fileID: 1043437007509817, guid: 706daef5664327046986802565504186, type: 3}
+  - {fileID: 1043437007509817, guid: 35aac46962ca71144a17507142b11a09, type: 3}
+  - {fileID: 1043437007509817, guid: 4822c3095371ef0498847fabebdc9be5, type: 3}
+  - {fileID: 1043437007509817, guid: 814d96a6dcf7ffd42ae24241430b9bb7, type: 3}
+  - {fileID: 1043437007509817, guid: 4079318bd7adeb0489c28e50d71b25a4, type: 3}
+  - {fileID: 1043437007509817, guid: fb1a5e169b2ae5e48ab1df27b4046690, type: 3}
+  - {fileID: 1043437007509817, guid: 6f908fc00a29dda40adfad3dc732d873, type: 3}
+  - {fileID: 1043437007509817, guid: c9d7e53f527a68d47baecc8ce5de7ebe, type: 3}
+  - {fileID: 1043437007509817, guid: b8e41c304aaad014d83e5bdfeb9a18d0, type: 3}
+  - {fileID: 1043437007509817, guid: 0250d50e8d112e04da69f21f7674b378, type: 3}
+  HiddenCards:
+  - {fileID: 1043437007509817, guid: 0550fb1d6ace8144ca7b725d7dd056ee, type: 3}
