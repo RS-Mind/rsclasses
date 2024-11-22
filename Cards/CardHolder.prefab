@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5327136366380999029}
-  - component: {fileID: 8766807394848810049}
+  - component: {fileID: 114643713273762316}
   m_Layer: 0
   m_Name: CardHolder
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8766807394848810049
+--- !u!114 &114643713273762316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,19 +40,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 4641225315681381771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e159b629ca55e1a419f3905565950ee7, type: 3}
+  m_Script: {fileID: 11500000, guid: 075dd1fc8b268024496bf7acbbb6383f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Cards:
-  - {fileID: 1043437007509817, guid: 706daef5664327046986802565504186, type: 3}
-  - {fileID: 1043437007509817, guid: 35aac46962ca71144a17507142b11a09, type: 3}
-  - {fileID: 1043437007509817, guid: 4822c3095371ef0498847fabebdc9be5, type: 3}
-  - {fileID: 1043437007509817, guid: 814d96a6dcf7ffd42ae24241430b9bb7, type: 3}
-  - {fileID: 1043437007509817, guid: 4079318bd7adeb0489c28e50d71b25a4, type: 3}
-  - {fileID: 1043437007509817, guid: fb1a5e169b2ae5e48ab1df27b4046690, type: 3}
-  - {fileID: 1043437007509817, guid: 6f908fc00a29dda40adfad3dc732d873, type: 3}
-  - {fileID: 1043437007509817, guid: c9d7e53f527a68d47baecc8ce5de7ebe, type: 3}
-  - {fileID: 1043437007509817, guid: b8e41c304aaad014d83e5bdfeb9a18d0, type: 3}
-  - {fileID: 1043437007509817, guid: 0250d50e8d112e04da69f21f7674b378, type: 3}
-  HiddenCards:
-  - {fileID: 1043437007509817, guid: 0550fb1d6ace8144ca7b725d7dd056ee, type: 3}
+  - {fileID: 1043437007509817, guid: 78e105cd1202b084abbf930ab7deee7c, type: 3}
+  - {fileID: 1043437007509817, guid: e768e65ba9e96f2448a72c7abd376566, type: 3}
+  - {fileID: 1043437007509817, guid: da3c1f176a51a1142a4f6efffddae397, type: 3}
+  - {fileID: 1043437007509817, guid: 4270dae61065c4b46bbb5449a8d955c6, type: 3}
+  - {fileID: 1043437007509817, guid: 3f82761cea6464e42ba83d9cb6e1c599, type: 3}
+  - {fileID: 1043437007509817, guid: 416bba8889cfe8a49a599983441bb681, type: 3}
+  - {fileID: 1043437007509817, guid: 6b4c98bddff1224469c3f61bfb474371, type: 3}
+  - {fileID: 1043437007509817, guid: 52698b465b58a4541bec08e088405071, type: 3}
+  - {fileID: 1043437007509817, guid: 009cd74c5985780479cff29ef007a1f2, type: 3}
+  - {fileID: 1043437007509817, guid: 6eef2f423d601cf4587b106b53129979, type: 3}
+  - {fileID: 1043437007509817, guid: af5d18613c475fe4fa2da3e94d250cc0, type: 3}
+  - {fileID: 1043437007509817, guid: 40313f7353941c242a7b955c97875145, type: 3}
+  - {fileID: 1043437007509817, guid: 9e0ea25e778d77443a1f373da8a4b8dc, type: 3}
+  - {fileID: 1043437007509817, guid: ecf7ea1eca6421c4b8638cda72e929bb, type: 3}
+  - {fileID: 1043437007509817, guid: b243541639c04a54790921a4cfe361da, type: 3}
+  - {fileID: 1043437007509817, guid: 34d269be53310fc4fa6299c6ff40d638, type: 3}
+  - {fileID: 1043437007509817, guid: ad297c1910aa820488fe14548076b4cd, type: 3}
+  - {fileID: 1043437007509817, guid: 443c2b51d34e7194eba300d84c52e8af, type: 3}
+  - {fileID: 1043437007509817, guid: 9f20d6b7d06798041a07627725f86fd2, type: 3}
+  - {fileID: 1043437007509817, guid: 1c4fc8d0e8ec2e7468e22cfb7a39af72, type: 3}
+  - {fileID: 1043437007509817, guid: f56a547d9e0275d479c9110fa785eebf, type: 3}
+  - {fileID: 1043437007509817, guid: 0c2a3c79913ae4b4b8db770cbd1e8eb2, type: 3}
+  - {fileID: 1043437007509817, guid: 6e2ef7a2255ba6d42a19daa0db0970b9, type: 3}
+  - {fileID: 1043437007509817, guid: 6989d33fe2b7b4341ba57506b3b289c0, type: 3}
+  - {fileID: 1043437007509817, guid: 59268b28c42f9de4288cf84628fb915a, type: 3}
+  - {fileID: 1043437007509817, guid: d98831a9021effe40a7a316c80514cf4, type: 3}
+  - {fileID: 1043437007509817, guid: 338820bed3c6c294c8afec078af37422, type: 3}
+  - {fileID: 1043437007509817, guid: 61c3ed380349b3549a8d16b0ae04b26e, type: 3}
+  - {fileID: 1043437007509817, guid: 136a00d58e23ba742a40af39c5964502, type: 3}
+  HiddenCards: []

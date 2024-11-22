@@ -1,12 +1,14 @@
 {
-    "name": "RSCards",
-    "version_number": "1.3.5",
-    "website_url": "https://github.com/RS-Mind/rscards",
-    "description": "Cards for ROUNDS focused on adding variety with vanilla stats",
+    "name": "RSClasses",
+    "version_number": "2.2.0",
+    "website_url": "https://github.com/RS-Mind/rsclasses",
+    "description": "Classes for ROUNDS that leverage unique mechanics.",
     "dependencies": [
-        "Pykess-ModdingUtils-0.4.8",
-		"willis81808-UnboundLib-3.2.13",
-		"TeamDK-ZeroGBulletPatch-1.1.0",
-		"Pykess-CardChoiceSpawnUniqueCardPatch-0.1.10"
+        "Pykess-ModdingUtils-0.3.5",
+		"willis81808-UnboundLib-3.1.4",
+		"Pykess-CardChoiceSpawnUniqueCardPatch-0.1.8",
+		"Root-Classes_Manager_Reborn-1.4.1",
+		"willuwontu-SimulationChamber-0.0.3",
+		"CrazyCoders-RarityBundle-0.1.0"
     ]
 }
