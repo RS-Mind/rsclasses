@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573294355218666087}
-  - component: {fileID: 8037175044916295479}
+  - component: {fileID: 2731436270709897997}
   m_Layer: 10
   m_Name: Bg_Astro_Harvester
   m_TagString: Untagged
@@ -185,7 +185,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &8037175044916295479
+--- !u!95 &2731436270709897997
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -195,7 +195,7 @@ Animator:
   m_GameObject: {fileID: 6259383356941727823}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0655ac5e9f207284186c166aa442ab4f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5868608e3fa1137498f18c65710a550a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

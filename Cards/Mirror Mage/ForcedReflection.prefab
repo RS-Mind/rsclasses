@@ -148,7 +148,9 @@ MonoBehaviour:
   bodyRecoil: 0
   shake: 0
   forceSpecificShake: 0
-  projectiles: []
+  projectiles:
+  - objectToSpawn: {fileID: 0}
+    numberOfSpawns: 0
   shootPosition: {fileID: 0}
   player: {fileID: 0}
   isReloading: 0

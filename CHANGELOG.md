@@ -1,5 +1,13 @@
 ### Patch Notes:
 
+##### 2.3.0
+- Added Stargazer subclass to Astronomer. Includes 4 additional cards
+- Double Barriers renamed to Bigger Barriers
+- Gravity Well now increases comet speed as well
+- Updated base rarities for better card rarities in the event custom rarities fail
+- Moved some code previously in Update to FixedUpdate for more consistent performance
+- If I changed anything else I forgot what it was
+
 #### 2.2.0
 - Moved the backend to Unity
 - Added custom card models for Astronomer and Mirror Mage cards

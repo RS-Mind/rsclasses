@@ -18,7 +18,7 @@ Uses orbiting objects to fend off foes
 ### Domain Extension
 [Trinket]
 Increases the size of orbitals and their orbits
-- +50% Orbital size
+- +50% Orbital size (Comets grow half as quickly)
 - -25% Scythe damage
 
 ### Faster Barriers
@@ -36,7 +36,7 @@ Increases the size of orbitals and their orbits
 - +50% Scythe damage
 - -25% Damage
 
-### Double Barriers
+### Bigger Barriers
 [Scarce]
 - +2 Barriers
 - +0.25s Block cooldown
@@ -48,7 +48,7 @@ Increases the size of orbitals and their orbits
 
 ### Guardian
 [Exotic Subclass]
-*Requires Dual Shields and Twin Scythes*
+*Requires Bigger Barriers and Twin Scythes*
 Stalwart Defenders. Their barriers defend them from all bullets
 - +2 Barriers
 - +25% Health
@@ -72,7 +72,7 @@ An impenetrable ring of light
 
 ### Harvester
 [Uncommon Subclass]
-*Requires Dual Shields and Twin Scythes*
+*Requires Bigger Barriers and Twin Scythes*
 Reapers of souls. Defense is not their concern
 - +2 Scythes
 - +60% Scythe speed (Scythes can hit once per rotation, so this is effectively an attack speed buff)
@@ -90,6 +90,33 @@ Reapers of souls. Defense is not their concern
 Lifesteal adds bonus damage to your scythes
 - +50% Scythe damage
 - +15% Lifesteal
+
+### Stargazer
+[Exotic Subclass]
+*Requires Bigger Barriers and Twin Scythes*
+Gain a powerful comet that roams the map
+- +1 Comet
+- -1 Scythe
+
+### Coupled Comets
+[Rare]
+*Requires Stargazer*
+- +1 Comet
+
+### Icemelt
+[Uncommon]
+*Requires Stargazer*
+Your comets grow larger the closer they are to you
+
+### Stardust
+[Scarce]
+*Requires Stargazer*
+Your comets leave damaging trails of stardust
+
+### Stellar Impact
+[Exotic]
+*Requires Stargazer*
+Your comets get bonus damage when moving quickly
 </details>
 
 <details open>

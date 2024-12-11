@@ -1,6 +1,7 @@
 ﻿using ClassesManagerReborn;
-using RSClasses.Cards.Astronomer;
 using System.Collections;
+
+// Handles class setup for Mirror Mage
 
 namespace RSClasses.Cards.MirrorMage
 {
@@ -8,7 +9,7 @@ namespace RSClasses.Cards.MirrorMage
     {
         public override IEnumerator Init()
         {
-            CardInfo classCard = null;
+            CardInfo classCard = CardHolder.cards["Mirror Mage"];
             ClassesRegistry.Register(CardHolder.cards["Mirror Mage"],           CardType.Entry);
             ClassesRegistry.Register(CardHolder.cards["Polished Mirror"],       CardType.Card,      CardHolder.cards["Mirror Mage"]);
             ClassesRegistry.Register(CardHolder.cards["Prism"],                 CardType.Gate,      CardHolder.cards["Mirror Mage"]);

@@ -9,203 +9,196 @@ using UnboundLib;
 using UnboundLib.GameModes;
 using UnityEngine;
 
+// Handles the Astronomer's barriers
+
 namespace RSClasses.MonoBehaviours
 {
-    class Barrier : MonoBehaviour
+    class Barrier : MonoBehaviour // The individual barriers
     {
-        private void OnDestroy()
-        {
-            Destroy(barrier);
-            Destroy(barrierCollider);
-        }
+        private Transform origin;
+        private Animator anim;
+        private Player player;
+        private BarrierCollider barrierCollider;
+        private GameObject barrier;
         private void Start()
         {
-            player = GetComponentInParent<Player>();
+            player = GetComponentInParent<Player>(); // Get player
 
-            barrier = Instantiate(RSClasses.assets.LoadAsset<GameObject>("Barrier"), player.transform);
+            barrier = Instantiate(RSClasses.assets.LoadAsset<GameObject>("Barrier"), player.transform); // Create the barrier
             barrier.SetActive(true);
-            barrierCollider = barrier.transform.GetChild(0).gameObject.GetOrAddComponent<BarrierCollider>();
-            collider = barrierCollider.GetComponent<PolygonCollider2D>();
-            anim = barrier.GetComponent<Animator>();
-            origin = barrier.GetComponentsInChildren<Transform>().Last();
+            barrierCollider = barrier.transform.GetChild(0).gameObject.GetOrAddComponent<BarrierCollider>(); // Make sure the barrier has a collider and store it
+            anim = barrier.GetComponent<Animator>(); // Get animator
+            origin = barrier.GetComponentsInChildren<Transform>().Last(); //Store center position
+        }
+
+        private void Update()
+        {
+            barrierCollider.gameObject.SetActive(!player.data.dead); // Disable this object if the player is dead
         }
 
         public void UpdatePos(double angle, float radius)
         {
-            double angle_radians = (angle * Math.PI) / 180;
-            Vector3 position = new Vector3((float)(radius * Math.Sin(angle_radians)),
+            double angle_radians = (angle * Math.PI) / 180; // Convert from degrees to radians
+            Vector3 position = new Vector3((float)(radius * Math.Sin(angle_radians)), // Create a position based on the calculated angle
                 (float)((radius * Math.Cos(angle_radians))), 0);
-            Quaternion currentRotation = new Quaternion();
+            Quaternion currentRotation = new Quaternion(); // Handle the rotation
             currentRotation.eulerAngles = new Vector3(0, 0, -(float)angle);
-            barrier.transform.localPosition = position;
+            barrier.transform.localPosition = position; // Assign the calculated values
             barrier.transform.rotation = currentRotation;
-            barrierCollider.transform.position = barrier.transform.position;
+            barrierCollider.transform.position = barrier.transform.position; // Keep collider synced
             barrierCollider.transform.rotation = barrier.transform.rotation;
             barrierCollider.transform.localScale = Vector3.Scale(barrier.transform.localScale, player.transform.localScale);
         }
 
-        public void DoHit()
+        public void DoHit() // Triggered by the Shield Spikes card
         {
-            anim.SetTrigger("OnBlock");
-            var radius = barrier.transform.localScale.y * 10;
-            var hits = Physics2D.OverlapCircleAll(origin.transform.position, radius);
-            if (player.data.view.IsMine)
+            anim.SetTrigger("OnBlock"); // Trigger the animation
+            var radius = barrier.transform.lossyScale.y * 5;
+            var hits = Physics2D.OverlapCircleAll(origin.transform.position, radius); // Determine hit players
+            if (player.data.view.IsMine) // Only trigger once per server
             {
-                foreach (var hit in hits)
+                foreach (var hit in hits) // For each hit player
                 {
-                    var damageable = hit.gameObject.GetComponent<Damagable>();
-                    var healthHandler = hit.gameObject.GetComponent<HealthHandler>();
+                    var damageable = hit.gameObject.GetComponent<Damagable>(); // Grab the damageable object, if any
+                    var healthHandler = hit.gameObject.GetComponent<HealthHandler>(); // Grab the player's health handler, if any
+                    if (!damageable) // Skip non-damageable objects (e.g. terrain)
+                    {
+                        continue;
+                    }
                     if (healthHandler)
                     {
                         Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
-                        SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, origin.transform, damageable.transform);
-                        healthHandler.CallTakeForce(((Vector2)hitPlayer.transform.position - (Vector2)player.transform.position).normalized * 5000, ForceMode2D.Impulse, true);
-                        if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame) { continue; }
+                        SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, origin.transform, damageable.transform); // Play hit sound
+                        healthHandler.CallTakeForce(((Vector2)hitPlayer.transform.position - (Vector2)player.transform.position).normalized * 5000, ForceMode2D.Impulse, true); // Apply knockbacl
+                        if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame) { continue; } // Skip damage if the player blocked
                     }
-                    if (damageable)
-                    {
-                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)origin.transform.position).normalized * ((0.10f * player.data.maxHealth) + 10f),
-                            (Vector2)origin.transform.position, barrier.gameObject, player);
-                    }
+                    damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)origin.transform.position).normalized * ((0.10f * player.data.maxHealth) + 10f), // Deal damage, scaled off of max health
+                        (Vector2)origin.transform.position, barrier.gameObject, player);
                 }
             }
-        }
-
-        private void Update()
-        {
-            barrierCollider.gameObject.SetActive(!player.data.dead);
         }
 
         public void SetColor(Color color)
         {
-            barrier.GetComponent<SpriteRenderer>().color = color;
-            barrier.GetComponentsInChildren<SpriteRenderer>().Last().color = color;
+            barrier.GetComponent<SpriteRenderer>().color = color; // Set the color of the barrier
+            barrier.GetComponentsInChildren<SpriteRenderer>().Last().color = color; // And the spike
         }
 
-        public void SetScale(float scale)
+        public void SetScale(float scale) // Set the barrier's scale. I could 
         {
             barrier.transform.localScale = new Vector3(scale, scale, scale);
         }
 
-        private Transform origin;
-        private Animator anim;
-        private Player player;
-        private PolygonCollider2D collider;
-        BarrierCollider barrierCollider;
-        public GameObject barrier;
+        private void OnDestroy()
+        {
+            // Get rid of the barrier objects
+            Destroy(barrier);
+            Destroy(barrierCollider);
+        }
     }
 
-    class BarrierCollider : MonoBehaviour
+    class BarrierCollider : MonoBehaviour // A barrier's collider
     {
+        Player player;
+
         void Start()
         {
-            gameObject.layer = LayerMask.NameToLayer("Projectile");
+            gameObject.layer = LayerMask.NameToLayer("Projectile"); // Move the barrier collider to the projectile layer, allowing it to interact with bullets
             player = GetComponentInParent<Player>();
-            gameObject.transform.SetParent(null, true);
+            gameObject.transform.SetParent(null, true); // Set the parent to the scene. Not doing this makes the barrier an additional hurtbox for the player
         }
 
         public void Update()
         {
-            gameObject.SetActive(!player.data.dead);
+            gameObject.SetActive(!player.data.dead); // Disable this object if the player is dead
         }
-
-        Player player;
     }
 
-    public class Barrier_Mono : MonoBehaviour
+    public class Barrier_Mono : MonoBehaviour // Holds all the barriers for a player
     {
-        private void OnDestroy()
-        {
-            GameModeManager.RemoveHook(GameModeHooks.HookPickEnd, PickEnd);
-            //RSClasses.instance.ExecuteAfterSeconds(1f, () => GameModeManager.RemoveHook(GameModeHooks.HookGameEnd, GameEnd));
-
-            Block block = this.block;
-            block.BlockAction = (Action<BlockTrigger.BlockTriggerType>)Delegate.Remove(block.BlockAction, new Action<BlockTrigger.BlockTriggerType>(OnBlock));
-
-            while (barriers.Count() > 0)
-            {
-                Destroy(barriers[0]);
-                barriers.Remove(barriers[0]);
-            }
-        }
+        private Block block;
+        private double angle = 0;
+        private Color color = new Color(1f, 1f, 0.7411765f);
+        private List<Barrier> barriers = new List<Barrier>();
+        private Player player;
         private void Start()
         {
-            player = this.GetComponentInParent<Player>();
-            block = this.GetComponentInParent<CharacterData>().block;
-			block.BlockAction = (Action<BlockTrigger.BlockTriggerType>)Delegate.Combine(block.BlockAction, new Action<BlockTrigger.BlockTriggerType>(OnBlock));
+            player = GetComponentInParent<Player>(); // Get player
+            block = GetComponentInParent<CharacterData>().block; // Get player's block
+			block.BlockAction = (Action<BlockTrigger.BlockTriggerType>)Delegate.Combine(block.BlockAction, new Action<BlockTrigger.BlockTriggerType>(OnBlock)); // Add a block action (for Shield Spikes)
 
-            GameModeManager.AddHook(GameModeHooks.HookPickEnd, PickEnd);
-            //GameModeManager.AddHook(GameModeHooks.HookGameEnd, GameEnd);
+            GameModeManager.AddHook(GameModeHooks.HookPointStart, PointStart); // Add a point start hook
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            angle = (angle - (player.data.GetAdditionalData().barrierSpeed * TimeHandler.deltaTime)) % 360;
+            angle = (angle - (player.data.GetAdditionalData().barrierSpeed * TimeHandler.deltaTime)) % 360; // Update rotation
 
             int index = 0;
-            foreach (Barrier barrier in barriers)
+            foreach (Barrier barrier in barriers) // Tell each barrier what poisition to be at
             {
-                double thisAngle = (angle + (float)((index%2*180) + (45*(index/2)))) % 360f;
-                barrier.UpdatePos(thisAngle, player.data.GetAdditionalData().orbitalRadius * 0.0125f);
+                double thisAngle = (angle + ((index%2*180) + (45*(index/2)))) % 360f; // Place the barriers in opposing pairs, filling in as 2 pieces
+                barrier.UpdatePos(thisAngle, player.data.GetAdditionalData().orbitalRadius * 0.0125f); // Tell the barrier what angle and scale to exist at
                 index++;
             }
         }
 
-        private void OnBlock(BlockTrigger.BlockTriggerType blockTrigger)
+        private void OnBlock(BlockTrigger.BlockTriggerType blockTrigger) // On block effect
         {
-            if (player.data.currentCards.Contains(CardHolder.cards["Shield Spikes"]))
+            if (player.data.currentCards.Contains(CardHolder.cards["Shield Spikes"])) // If the player has the Shield Spikes card
             {
                 foreach (Barrier barrier in barriers)
                 {
-                    barrier.DoHit();
+                    barrier.DoHit(); // Perform the hit function
                 }
             }
         }
 
-        public void UpdateStats()
+        public void UpdateStats() // After each pick phase, update the barrier stats
         {
-            while (barriers.Count() < player.data.GetAdditionalData().barrierCount)
+            while (barriers.Count() < player.data.GetAdditionalData().barrierCount) // Add more barriers as needed
             {
-                GameObject shield = new GameObject("Shield", typeof(Barrier));
-                shield.transform.SetParent(player.transform);
-                player.transform.position = player.transform.position;
-                barriers.Add(shield.GetComponent<Barrier>());
+                GameObject barrier = new GameObject("Barrier", typeof(Barrier)); // Create a clone of the barrier prefab
+                barrier.transform.SetParent(player.transform); // Bind it to the player
+                barriers.Add(barrier.GetComponent<Barrier>()); // Add it to the list of barriers
             }
-            while (barriers.Count() > Math.Max(player.data.GetAdditionalData().barrierCount, 0))
+            while (barriers.Count() > Math.Max(player.data.GetAdditionalData().barrierCount, 0)) // Remove barriers as needed
+            {
+                Destroy(barriers[0]);
+                barriers.Remove(barriers[0]); // Don't forget to remove barriers from the list
+            }
+
+
+            if (player.data.currentCards.Contains(CardHolder.cards["Guardian"])) color = new Color(0.4f, 1f, 1f); // Change color based on subclass
+            else if (player.data.currentCards.Contains(CardHolder.cards["Stargazer"])) color = player.GetTeamColors().color * 1.75f;
+            else if (player.data.currentCards.Contains(CardHolder.cards["Harvester"])) color = new Color(178f / 255f, 0f, 1f);
+
+            foreach (Barrier barrier in barriers)
+            {
+                RSClasses.instance.ExecuteAfterSeconds(1f, () => barrier.GetComponent<Barrier>().SetColor(color)); // Update the color and scale
+                RSClasses.instance.ExecuteAfterSeconds(1f, () => barrier.SetScale(player.data.GetAdditionalData().orbitalRadius * 0.11875f)); // I guess and checked this value
+            }
+        }
+
+        private void OnDestroy()
+        {
+            GameModeManager.RemoveHook(GameModeHooks.HookPointStart, PointStart); // Remove the point start hook
+
+            // Remove the block action (Shield Spikes)
+            block.BlockAction = (Action<BlockTrigger.BlockTriggerType>)Delegate.Remove(block.BlockAction, new Action<BlockTrigger.BlockTriggerType>(OnBlock));
+
+            while (barriers.Count() > 0) // Destroy all barriers
             {
                 Destroy(barriers[0]);
                 barriers.Remove(barriers[0]);
             }
-
-
-            if (player.data.currentCards.Contains(CardHolder.cards["Guardian"])) color = new Color(0.4f, 1f, 1f);
-            else if (player.data.currentCards.Contains(CardHolder.cards["Harvester"])) color = new Color(178f / 255f, 0f, 1f);
-
-            foreach (Barrier shield in barriers)
-            {
-                RSClasses.instance.ExecuteAfterSeconds(1f, () => shield.GetComponent<Barrier>().SetColor(color));
-                RSClasses.instance.ExecuteAfterSeconds(1f, () => shield.SetScale(player.data.GetAdditionalData().orbitalRadius * 0.11875f)); // I guess and checked this value
-            }
         }
 
-        IEnumerator PickEnd(IGameModeHandler gm)
+        IEnumerator PointStart(IGameModeHandler gm) // At start of point, reset the angle to help maintain sync and update the stats while we have the chance
         {
             angle = 0.0;
             UpdateStats();
             yield break;
         }
-
-        IEnumerator GameEnd(IGameModeHandler gm)
-        {
-            Destroy(this);
-            yield break;
-        }
-
-        private Block block;
-        private double angle = 0;
-        Color color = new Color(1f, 1f, 0.7411765f);
-
-        List<Barrier> barriers = new List<Barrier>();
-        Player player;
     }
 }

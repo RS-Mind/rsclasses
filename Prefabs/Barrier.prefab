@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2320242863299669722}
   - component: {fileID: 1341571214520087940}
   m_Layer: 10
-  m_Name: Shield
+  m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 6711427572570197882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.11875, y: 0.11875, z: 0.11875}
   m_Children:
   - {fileID: 8125653619192952024}
   - {fileID: 8663927118538924797}

@@ -16,9 +16,8 @@ GameObject:
   - component: {fileID: 114997074887337774}
   - component: {fileID: 114969577739340399}
   - component: {fileID: 114193385136356738}
-  - component: {fileID: 114236998380372502}
   m_Layer: 0
-  m_Name: DoubleBarriers
+  m_Name: Stardust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,19 +63,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
-  cardName: Double Barriers
-  cardDestription: 
-  cardStats:
-  - positive: 1
-    amount: +2
-    simepleAmount: 0
-    stat: Barriers
-  - positive: 0
-    amount: +0.25s
-    simepleAmount: 0
-    stat: Block cooldown
+  cardName: Stardust
+  cardDestription: Your comets leave damaging trails of stardust
+  cardStats: []
   rarity: 0
-  cardArt: {fileID: 4081870177460762648, guid: 4d7c0cd27269f684fb2ae7851959e5be, type: 3}
+  cardArt: {fileID: 7322369389673769490, guid: ac3194785bac8f6489ab6bf7eafd7d4a, type: 3}
   sprite: {fileID: 21300000, guid: 5b742d082ddefaa489468fac5e1e3bff, type: 2}
   sourceCard: {fileID: 0}
   cardColor: {r: 0.10568709, g: 0.18812303, b: 0.23584908, a: 1}
@@ -84,7 +75,7 @@ MonoBehaviour:
   allowMultiple: 0
   blacklistedCategories: []
   cardBase: {fileID: 1720757555582362, guid: be3feb852f75aa44f88f7d460d7d063d, type: 3}
-  colorTheme: 1
+  colorTheme: 0
 --- !u!114 &114081461618018503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +234,7 @@ MonoBehaviour:
   cooldown: 0
   counter: 1000
   cdMultiplier: 1
-  cdAdd: 0.25
+  cdAdd: 0
   forceToAdd: 0
   forceToAddUp: 0
   autoBlock: 0
@@ -288,24 +279,3 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &114236998380372502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043437007509817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7b717b60ed33fa4abaed6e5da1f2900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scythes: 0
-  scytheDamage: 1
-  scytheSpeed: 1
-  barriers: 2
-  barrierSpeed: 1
-  orbitalRadius: 1
-  fractureDuration: 0
-  fractureSize: 1
-  reflectionCooldown: 1

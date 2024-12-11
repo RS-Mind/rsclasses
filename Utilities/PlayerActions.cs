@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this code
+namespace RSClasses.Extensions // Adds actions to players
 {
     [Serializable]
     public class PlayerActionsAdditionalData
@@ -20,7 +20,7 @@ namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this cod
         }
     }
 
-    public static class PlayerActionsExtension
+    public static class PlayerActionsExtension // Magic
     {
         public static readonly ConditionalWeakTable<PlayerActions, PlayerActionsAdditionalData> data =
             new ConditionalWeakTable<PlayerActions, PlayerActionsAdditionalData>();
@@ -45,7 +45,7 @@ namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this cod
     [HarmonyPatch(new Type[] { })]
     class PlayerActionsPatchPlayerActions
     {
-        private static void Postfix(PlayerActions __instance)
+        private static void Postfix(PlayerActions __instance) // Voidseer hotkey
         {
             __instance.GetAdditionalData().selfHarm = (PlayerAction)typeof(PlayerActions).InvokeMember("CreatePlayerAction",
                                     BindingFlags.Instance | BindingFlags.InvokeMethod |
@@ -54,7 +54,7 @@ namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this cod
         }
     }
 
-    [HarmonyPatch(typeof(PlayerActions), "CreateWithControllerBindings")]
+    [HarmonyPatch(typeof(PlayerActions), "CreateWithControllerBindings")] // Voidseer for controller
     class PlayerActionsPatchCreateWithControllerBindings
     {
         private static void Postfix(ref PlayerActions __result)
@@ -62,8 +62,8 @@ namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this cod
             __result.GetAdditionalData().selfHarm.AddDefaultBinding(InputControlType.DPadUp);
         }
     }
-
-    [HarmonyPatch(typeof(PlayerActions), "CreateWithKeyboardBindings")]
+    
+    [HarmonyPatch(typeof(PlayerActions), "CreateWithKeyboardBindings")] // Voidseer for keyboard
     class PlayerActionsPatchCreateWithKeyboardBindings
     {
         private static void Postfix(ref PlayerActions __result)
@@ -73,7 +73,7 @@ namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this cod
     }
 
     [HarmonyPatch(typeof(GeneralInput), "Update")]
-    class GeneralInputPatchUpdate
+    class GeneralInputPatchUpdate // Check if the actions happened
     {
         private static void Postfix(GeneralInput __instance)
         {
@@ -81,10 +81,8 @@ namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this cod
             {
                 if (__instance.GetComponent<CharacterData>().playerActions.GetAdditionalData().selfHarm.WasPressed)
                 {
-                    UnityEngine.Debug.Log("selfHarm");
-                    if (__instance.GetComponentInChildren<Voidseer_Mono>())
+                    if (__instance.GetComponentInChildren<Voidseer_Mono>()) // If they are a voidseer, trigger the effect
                     {
-                        UnityEngine.Debug.Log("Attempted call");
                         __instance.GetComponentInChildren<Voidseer_Mono>().Trigger();
                     }
                 }

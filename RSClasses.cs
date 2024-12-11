@@ -20,7 +20,7 @@ namespace RSClasses
     {
         private const string ModId = "com.rsmind.rounds.RSClasses";
         private const string ModName = "RSClasses";
-        public const string Version = "2.2.0";
+        public const string Version = "2.3.0";
         public const string ModInitials = "RSC";
         public static RSClasses instance { get; private set; }
 
@@ -41,10 +41,8 @@ namespace RSClasses
             instance = this;
 
             // TODO
-            // Mirror Mage "Mirror Block" card? Would cause on-block effects to occur at the reflected position
-            // Card that causes your gravity to face the prism line?
+            // Card that causes your gravity to face the prism line? -- Probably a bad idea
             // Voidseer card that summons eldritch worms from fractures?
-            // Adjustable Voidseer hotkey
         }
 
         public bool pickPhase = false;

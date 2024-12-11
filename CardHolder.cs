@@ -8,7 +8,7 @@ using UnboundLib.Utils;
 using UnityEngine;
 
 namespace RSClasses {
-    public class CardHolder : MonoBehaviour
+    public class CardHolder : MonoBehaviour // Loads cards
     {
         public List<GameObject> Cards;
         public List<GameObject> HiddenCards;

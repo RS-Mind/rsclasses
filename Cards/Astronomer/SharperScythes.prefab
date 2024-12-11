@@ -306,6 +306,8 @@ MonoBehaviour:
   barriers: 0
   barrierSpeed: 1
   orbitalRadius: 1
+  comets: 0
+  cometDamage: 1
   fractureDuration: 0
   fractureSize: 1
   reflectionCooldown: 1

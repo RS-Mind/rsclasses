@@ -17,7 +17,7 @@ namespace RSClasses.MonoBehaviours
 
         public void Trigger()
         {
-            player.GetComponent<Damagable>().CallTakeDamage(Vector2.up * 1, (Vector2)player.transform.position, null, player);
+            player.GetComponent<Damagable>().CallTakeDamage(Vector2.up * 1, (Vector2)player.transform.position, null, player); // Give the player the self-damage trigger
         }
     }
 }

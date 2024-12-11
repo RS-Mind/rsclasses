@@ -79,7 +79,7 @@ MonoBehaviour:
     amount: +75%
     simepleAmount: 0
     stat: Barrier Size
-  rarity: 0
+  rarity: 1
   cardArt: {fileID: 5193176180957893712, guid: 73488db2f92c61045bf05e7df6686b1a, type: 3}
   sprite: {fileID: 21300000, guid: 5b742d082ddefaa489468fac5e1e3bff, type: 2}
   sourceCard: {fileID: 0}
@@ -310,6 +310,9 @@ MonoBehaviour:
   barriers: 2
   barrierSpeed: 1
   orbitalRadius: 1.75
+  comets: 0
+  cometDamage: 1
+  cometSpeed: 1
   fractureDuration: 0
   fractureSize: 1
   reflectionCooldown: 1

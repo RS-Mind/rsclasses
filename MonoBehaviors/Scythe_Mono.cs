@@ -10,111 +10,103 @@ using UnityEngine;
 
 namespace RSClasses.MonoBehaviours
 {
-    class Scythe : MonoBehaviour
+    class Scythe : MonoBehaviour // An individual scythe
     {
-        private void OnDestroy()
-        {
-            Destroy(scythe);
-        }
+        public bool active = true;
+        public bool hitBullets = true;
+        public bool ableToHit = true;
+        private Player player;
+        private GameObject scythe;
 
         private void Start()
         {
-            player = GetComponentInParent<Player>();
+            player = GetComponentInParent<Player>(); // Get player
 
-            scythe = Instantiate(RSClasses.assets.LoadAsset<GameObject>("Scythe"), player.transform);
+            scythe = Instantiate(RSClasses.assets.LoadAsset<GameObject>("Scythe"), player.transform); // Load the scythe prefab
             scythe.SetActive(true);
         }
 
-        public void DoHit()
+        public void DoHit() // Hit players
         {
-            var radius = transform.localScale.y;
-            var hits = Physics2D.OverlapCircleAll(scythe.transform.position, radius);
+            var radius = transform.localScale.y; // This is here in case I need to tweak the radius compared to the local scale
+            var hits = Physics2D.OverlapCircleAll(scythe.transform.position, radius); // Get all targets in range
 
-            if (player.data.view.IsMine)
+            if (player.data.view.IsMine) // Only run on the card holder's client
             {
-                foreach (var hit in hits)
+                foreach (var hit in hits) // For each target
                 {
-                    var damageable = hit.gameObject.GetComponent<Damagable>();
-                    var healthHandler = hit.gameObject.GetComponent<HealthHandler>();
-                    if (healthHandler)
+                    var damageable = hit.gameObject.GetComponent<Damagable>(); // Grab the damageable object, if any
+                    var healthHandler = hit.gameObject.GetComponent<HealthHandler>(); // Grab the opponent's health handler, if any
+                    if (healthHandler) // If the target is a player basically
                     {
                         Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
-                        SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, this.transform, damageable.transform);
-                        healthHandler.CallTakeForce(((Vector2)hitPlayer.transform.position - (Vector2)scythe.transform.position).normalized * 2500, ForceMode2D.Impulse, true);
-                        this.ableToHit = false;
-                        if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame) { continue; }
+                        SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, this.transform, damageable.transform); // Play sfx
+                        healthHandler.CallTakeForce(((Vector2)hitPlayer.transform.position - (Vector2)scythe.transform.position).normalized * 2500, ForceMode2D.Impulse, true); // Apply knockback
+                        this.ableToHit = false; // Disable the scythe for the rest of the rotation
+                        if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame) { continue; } // Skip everything else if they blocked
                     }
-                    if (damageable)
+                    if (damageable) // If the target can take damage
                     {
                         float bonusDamage = 0f;
-                        if (player.data.currentCards.Contains(CardHolder.cards["Dark Harvest"]))
+                        if (player.data.currentCards.Contains(CardHolder.cards["Dark Harvest"])) // If the player has Dark Harvest, add the bonus damage from life steal
                         {
                             bonusDamage = (player.data.stats.lifeSteal * 50f);
                         }
                         damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * (player.data.GetAdditionalData().scytheDamage + bonusDamage),
-                            (Vector2)this.transform.position, this.gameObject, player);
+                            (Vector2)this.transform.position, this.gameObject, player); // Apply damage
                     }
                 }
             }
         }
 
-        public void UpdatePos(double angle, float rotation, float radius)
+        public void UpdatePos(double angle, float rotation, float radius) // Update the position
         {
-            double angle_radians = (angle * Math.PI) / 180;
-            Vector3 position = new Vector3((float)(radius * Math.Sin(angle_radians)),
+            double angle_radians = (angle * Math.PI) / 180; // Convert degrees to radians
+            Vector3 position = new Vector3((float)(radius * Math.Sin(angle_radians)), // Convert angle to position
                 (float)((radius * Math.Cos(angle_radians))), 0);
             Quaternion currentRotation = new Quaternion();
-            currentRotation.eulerAngles = new Vector3(0, 0, rotation);
-            scythe.transform.localPosition = position;
+            currentRotation.eulerAngles = new Vector3(0, 0, rotation); // Rotate the scythe
+            scythe.transform.localPosition = position; // Write values
             scythe.transform.rotation = currentRotation;
         }
 
         public void SetColor(Color color)
         {
-            scythe.GetComponent<SpriteRenderer>().color = color;
+            scythe.GetComponent<SpriteRenderer>().color = color; // set the color
         }
 
         public void SetScale(float scale)
         {
-            scythe.transform.localScale = new Vector3(scale, scale, scale);
+            scythe.transform.localScale = new Vector3(scale, scale, scale); // set the scale
         }
 
-        public bool active = true;
-        public bool hitBullets = true;
-        public bool ableToHit = true;
-        private Player player;
-        GameObject scythe;
-    }
-
-    public class Scythe_Mono : MonoBehaviour
-    {
         private void OnDestroy()
         {
-            GameModeManager.RemoveHook(GameModeHooks.HookPickEnd, PickEnd);
-            GameModeManager.RemoveHook(GameModeHooks.HookBattleStart, BattleStart);
-            GameModeManager.RemoveHook(GameModeHooks.HookPointEnd, PointEnd);
-            //RSClasses.instance.ExecuteAfterSeconds(1f, () => GameModeManager.RemoveHook(GameModeHooks.HookGameEnd, GameEnd));
-
-            while (scythes.Count() > 0)
-            {
-                Destroy(scythes[0]);
-                scythes.Remove(scythes[0]);
-            }
+            Destroy(scythe); // Delete the scythe
         }
+    }
+
+    public class Scythe_Mono : MonoBehaviour // Holds all the scythes on a player
+    {
+        private double angle = 0;
+        private float rotation = 0;
+        private bool active = false;
+        private Color color = new Color(1f, 1f, 0.7411765f);
+        private List<Scythe> scythes = new List<Scythe>();
+        private Player player;
+
         private void Start()
         {
-            player = GetComponentInParent<Player>();
+            player = GetComponentInParent<Player>(); // Get player
 
-            GameModeManager.AddHook(GameModeHooks.HookPickEnd, PickEnd);
-            GameModeManager.AddHook(GameModeHooks.HookBattleStart, BattleStart);
+            GameModeManager.AddHook(GameModeHooks.HookPointStart, PointStart); // Add hooks
             GameModeManager.AddHook(GameModeHooks.HookPointEnd, PointEnd);
-            //GameModeManager.AddHook(GameModeHooks.HookGameEnd, GameEnd);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            angle = (angle + (player.data.GetAdditionalData().scytheSpeed * TimeHandler.deltaTime));
-            if (angle > 360)
+            angle += player.data.GetAdditionalData().scytheSpeed * TimeHandler.deltaTime; // Update rotation
+            if (angle > 360) // After a full rotation, re-enable all scythes
             {
                 foreach (Scythe scythe in scythes)
                 {
@@ -125,12 +117,15 @@ namespace RSClasses.MonoBehaviours
             rotation = (rotation - (1200 * TimeHandler.deltaTime)) % 360;
 
             int index = 0;
-            foreach (Scythe scythe in scythes)
+            foreach (Scythe scythe in scythes) // Tell each scythe where it belongs
             {
-                double thisAngle = angle + ((360f / (float)scythes.Count()) * (float)index);
+                double thisAngle = angle + (360f / scythes.Count() * index);
                 scythe.UpdatePos(thisAngle, rotation, player.data.GetAdditionalData().orbitalRadius * 2.5f);
-                index++;
-                if (scythe.ableToHit)
+                if (active && scythe.ableToHit) // Trigger scythe hits
+                {
+                    scythe.DoHit();
+                }
+                if (scythe.ableToHit) // Update opacity to reflect whether the scythe is active or not
                 {
                     Color setColor = color;
                     setColor.a = 1;
@@ -142,78 +137,60 @@ namespace RSClasses.MonoBehaviours
                     setColor.a = 0.5f;
                     scythe.SetColor(setColor);
                 }
-            }
-        }
-
-        private void FixedUpdate()
-        {
-            if (active)
-            {
-                foreach (Scythe scythe in scythes)
-                {
-                    if (scythe.ableToHit)
-                    {
-                        scythe.DoHit();
-                    }
-                }
+                index++;
             }
         }
 
         public void UpdateStats()
         {
-            while (scythes.Count() < player.data.GetAdditionalData().scytheCount)
+            while (scythes.Count() < player.data.GetAdditionalData().scytheCount) // Create scythes as needed
             {
                 GameObject scythe = new GameObject("Scythe", typeof(Scythe));
                 scythe.transform.SetParent(player.transform);
                 scythes.Add(scythe.GetComponent<Scythe>());
             }
-            while (scythes.Count() > Math.Max(player.data.GetAdditionalData().scytheCount, 0))
+            while (scythes.Count() > Math.Max(player.data.GetAdditionalData().scytheCount, 0)) // Delete scythes as needed
             {
                 Destroy(scythes[0]);
                 scythes.Remove(scythes[0]);
             }
 
-            if (player.data.currentCards.Contains(CardHolder.cards["Harvester"])) color = new Color(178f / 255f, 0f, 1f);
+            if (player.data.currentCards.Contains(CardHolder.cards["Harvester"])) color = new Color(178f / 255f, 0f, 1f); // Update colors based on subclass
+            else if (player.data.currentCards.Contains(CardHolder.cards["Stargazer"])) color = player.GetTeamColors().color * 1.75f;
             else if (player.data.currentCards.Contains(CardHolder.cards["Guardian"])) color = new Color(0.4f, 1f, 1f);
 
             foreach (Scythe scythe in scythes)
             {
-                RSClasses.instance.ExecuteAfterSeconds(1f, () => scythe.GetComponent<Scythe>().SetColor(color));
-                RSClasses.instance.ExecuteAfterSeconds(1f, () => scythe.SetScale(player.data.GetAdditionalData().orbitalRadius * 0.15625f)); // 5 / 32
+                RSClasses.instance.ExecuteAfterSeconds(1f, () => scythe.GetComponent<Scythe>().SetColor(color)); // Tell scythes their new color and scale
+                RSClasses.instance.ExecuteAfterSeconds(1f, () => scythe.SetScale(player.data.GetAdditionalData().orbitalRadius * 0.15625f)); // This number is 5 / 32
             }
         }
 
-        IEnumerator BattleStart(IGameModeHandler gm)
+        private void OnDestroy()
+        {
+            GameModeManager.RemoveHook(GameModeHooks.HookPointStart, PointStart); // Remove hooks
+            GameModeManager.RemoveHook(GameModeHooks.HookPointEnd, PointEnd);
+
+            while (scythes.Count() > 0) // Destroy all the scythes
+            {
+                Destroy(scythes[0]);
+                scythes.Remove(scythes[0]);
+            }
+        }
+
+        IEnumerator PointStart(IGameModeHandler gm) // At the start of battle, reset rotations to help maintain sync and update stats while we're at it
         {
             active = true;
             rotation = 0f;
             angle = 0.0;
-            yield break;
-        }
-
-        IEnumerator PickEnd(IGameModeHandler gm)
-        {
             this.UpdateStats();
             yield break;
         }
 
-        IEnumerator PointEnd(IGameModeHandler gm)
+        IEnumerator PointEnd(IGameModeHandler gm) // Disable the scythes when not in a match
         {
             active = false;
             yield break;
         }
-
-        IEnumerator GameEnd(IGameModeHandler gm)
-        {
-            Destroy(this);
-            yield break;
-        }
-
-        private double angle = 0;
-        private float rotation = 0;
-        private bool active = false;
-        Color color = new Color(1f, 1f, 0.7411765f);
-        List<Scythe> scythes = new List<Scythe>();
-        Player player;
     }
 }

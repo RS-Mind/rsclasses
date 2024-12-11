@@ -6,19 +6,17 @@ using RSClasses.Extensions;
 
 namespace RSClasses.MonoBehaviours
 {
-    public class Mirror_Mono : MonoBehaviour
+    public class Mirror_Mono : MonoBehaviour // All bullet reflection effects (i.e. Mirror Mage, Prism, Kaleido Witch, and the glitter cards)
     {
-        Player player;
-        Gun gun;
+        private Player player;
+        private Gun gun;
+        private SimulatedGun[] savedGuns = new SimulatedGun[4];
+        private static GameObject _stopRecursionObj = null;
+        private static GameObject _PoisonObj = null;
+        private static GameObject _DazzleObj = null;
+        private static GameObject _ColdObj = null;
 
-        public SimulatedGun[] savedGuns = new SimulatedGun[4];
-
-        public static GameObject _stopRecursionObj = null;
-        public static GameObject _PoisonObj = null;
-        public static GameObject _DazzleObj = null;
-        public static GameObject _ColdObj = null;
-
-        public static GameObject StopRecursionObj
+        public static GameObject StopRecursionObj // Added to a projectile to stop bullets spawned by this effect from retriggering the effect
         {
             get
             {
@@ -31,7 +29,7 @@ namespace RSClasses.MonoBehaviours
             }
         }
 
-        public static ObjectsToSpawn[] StopRecursionSpawn
+        public static ObjectsToSpawn[] StopRecursionSpawn // Adds the stop recursion object to a bullet
         {
             get
             {
@@ -39,7 +37,7 @@ namespace RSClasses.MonoBehaviours
             }
         }
 
-        public static GameObject PoisonObj
+        public static GameObject PoisonObj // Poison effect for Emerald Glitter
         {
             get
             {
@@ -52,7 +50,7 @@ namespace RSClasses.MonoBehaviours
             }
         }
 
-        public static ObjectsToSpawn[] PoisonSpawn
+        public static ObjectsToSpawn[] PoisonSpawn // Adds the poison object to a bullet
         {
             get
             {
@@ -60,7 +58,7 @@ namespace RSClasses.MonoBehaviours
             }
         }
 
-        public static GameObject DazzleObj
+        public static GameObject DazzleObj // Dazzle effect for Ruby Dust
         {
             get
             {
@@ -73,7 +71,7 @@ namespace RSClasses.MonoBehaviours
             }
         }
 
-        public static ObjectsToSpawn[] DazzleSpawn
+        public static ObjectsToSpawn[] DazzleSpawn // Adds the dazzle object to a bullet
         {
             get
             {
@@ -81,7 +79,7 @@ namespace RSClasses.MonoBehaviours
             }
         }
 
-        public static GameObject ColdObj
+        public static GameObject ColdObj // Cold effect for Sapphire Shards
         {
             get
             {
@@ -94,7 +92,7 @@ namespace RSClasses.MonoBehaviours
             }
         }
 
-        public static ObjectsToSpawn[] ColdSpawn
+        public static ObjectsToSpawn[] ColdSpawn // Adds the cold object to a bullet
         {
             get
             {
@@ -104,32 +102,23 @@ namespace RSClasses.MonoBehaviours
 
         public void Start()
         {
-            // Get Player
-            player = GetComponentInParent<Player>();
-            // Get Gun
+            player = GetComponentInParent<Player>(); // Get player and gun
             gun = player.data.weaponHandler.gun;
-            // Add action
-            gun.ShootPojectileAction += OnShootProjectileAction;
+            gun.ShootPojectileAction += OnShootProjectileAction; // Add the shoot action to the gun
 
-            // Checks to see if we have a saved gun already, if not, make one.
+            // Checks to see if we have saved guns already, if not, make them.
             if (savedGuns[0] == null)
             {
                 savedGuns[0] = new GameObject("Mirror Gun").AddComponent<SimulatedGun>();
             }
-
-            // Checks to see if we have a second saved gun already, if not, make one.
             if (savedGuns[1] == null)
             {
                 savedGuns[1] = new GameObject("Sapphire Gun").AddComponent<SimulatedGun>();
             }
-
-            // Checks to see if we have a second saved gun already, if not, make one.
             if (savedGuns[2] == null)
             {
                 savedGuns[2] = new GameObject("Ruby Gun").AddComponent<SimulatedGun>();
             }
-
-            // Checks to see if we have a second saved gun already, if not, make one.
             if (savedGuns[3] == null)
             {
                 savedGuns[3] = new GameObject("Emerald Gun").AddComponent<SimulatedGun>();
@@ -138,7 +127,7 @@ namespace RSClasses.MonoBehaviours
 
         public void OnShootProjectileAction(GameObject obj)
         {
-            // If the bullet has the StopRecursion component in it somewhere, we don't want to trigger.
+            // If the bullet has the StopRecursion component in it somewhere, do not trigger
             if (obj.GetComponentsInChildren<StopRecursion>().Length > 0)
             {
                 return;
@@ -266,6 +255,7 @@ namespace RSClasses.MonoBehaviours
             // Remove action when the mono is removed
             gun.ShootPojectileAction -= OnShootProjectileAction;
 
+            // Get rid of our guns
             Destroy(savedGuns[0]);
             Destroy(savedGuns[1]);
             Destroy(savedGuns[2]);

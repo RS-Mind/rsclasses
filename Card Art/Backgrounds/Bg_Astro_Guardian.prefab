@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.804, g: 0.804, b: 0, a: 0}
+  m_Color: {r: 0, g: 0.8039216, b: 0.8039216, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -370,7 +370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4460233975142484095}
-  - component: {fileID: 780588271603587342}
+  - component: {fileID: 95948887242761272}
   m_Layer: 10
   m_Name: Bg_Astro_Guardian
   m_TagString: Untagged
@@ -401,7 +401,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &780588271603587342
+--- !u!95 &95948887242761272
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ Animator:
   m_GameObject: {fileID: 7839892810021233239}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c2a031b63a2e356469a146aab0ebde50, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5868608e3fa1137498f18c65710a550a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

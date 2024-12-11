@@ -3,7 +3,7 @@ using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this code
+namespace RSClasses.Extensions // Adds additional variables to the player's stats
 {
     [Serializable]
     public class PlayerAdditionalData
@@ -12,10 +12,13 @@ namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this cod
         public int posMult;
         public int scytheCount;
         public int barrierCount;
+        public int cometCount;
         public float scytheDamage;
         public float orbitalRadius;
         public float barrierSpeed;
         public float scytheSpeed;
+        public float cometDamage;
+        public float cometSpeed;
         public float fractureDuration;
         public float fractureSize;
         public float reflectionCooldown;
@@ -29,6 +32,9 @@ namespace RSClasses.Extensions // This is Pykess's. I take 0 credit for this cod
             scytheDamage = 20f;
             orbitalRadius = 1f;
             scytheSpeed = 250f;
+            cometSpeed = 2f;
+            cometDamage = 80f;
+            cometCount = 0;
             barrierSpeed = 100f;
             fractureDuration = 1f;
             fractureSize = 0.0225f;
