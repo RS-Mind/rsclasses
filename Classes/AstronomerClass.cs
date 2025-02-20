@@ -23,7 +23,7 @@ namespace RSClasses.Cards.Astronomer
             ClassesRegistry.Register(CardHolder.cards["Stardust"],          CardType.Card, CardHolder.cards["Stargazer"]);
             ClassesRegistry.Register(CardHolder.cards["Stellar Impact"],    CardType.Card, CardHolder.cards["Stargazer"]);
             ClassesRegistry.Register(CardHolder.cards["Guardian"],          CardType.SubClass,  new CardInfo[] { CardHolder.cards["Bigger Barriers"], CardHolder.cards["Twin Scythes"] });
-            ClassesRegistry.Register(CardHolder.cards["Perfect Guard"],     CardType.Card, CardHolder.cards["Guardian"]);
+            ClassesRegistry.Register(CardHolder.cards["Perfect Guard"],     CardType.Card, CardHolder.cards["Shield Spikes"]);
             ClassesRegistry.Register(CardHolder.cards["Shield Spikes"],     CardType.Card, CardHolder.cards["Guardian"]);
             ClassesRegistry.Register(CardHolder.cards["Harvester"],         CardType.SubClass,  new CardInfo[] { CardHolder.cards["Bigger Barriers"], CardHolder.cards["Twin Scythes"] });
             ClassesRegistry.Register(CardHolder.cards["Harvest Sickle"],    CardType.Gate, CardHolder.cards["Harvester"]);

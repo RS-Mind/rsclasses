@@ -32,7 +32,7 @@ namespace RSClasses.MonoBehaviours
             player = GetComponentInParent<Player>(); // Get player
             comet = Instantiate(RSClasses.assets.LoadAsset<GameObject>("Comet"), null); // Make a comet
             stardust = Instantiate(RSClasses.assets.LoadAsset<GameObject>("Stardust"), null); // Make a stardust for copying later
-            stardust.SetPosition(new Vector3(100000, 100000, 0), IncludedAxes.XY); // Get it way offscreen
+            stardust.gameObject.SetActive(false); // Disable it
         }
 
         private void Start()
@@ -56,6 +56,7 @@ namespace RSClasses.MonoBehaviours
                 while (dustTimer > 0.15f)
                 {
                     var newDust = Instantiate(stardust, comet.transform.position, new Quaternion(0, 0, rand.Next() % 360, rand.Next() % 360)); // They have random angles
+                    newDust.SetActive(true); // Make them active
                     newDust.GetComponent<Stardust_Mono>().rotationDirection = rand.Next(-120, 120); // And random rotation directions
                     RSClasses.instance.ExecuteAfterSeconds(2f, () => Destroy(newDust)); // They only last 2 seconds
                     dustTimer -= 0.15f;

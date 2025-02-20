@@ -1,6 +1,19 @@
 ### Patch Notes:
 
-##### 2.3.0
+#### 2.3.2
+- Added TabInfo integration for Astronomer and some Mirror Mage statistics.
+- Added text to Bigger Barriers and Twin Scythes indicating that they're required for subclasses (Mirror Mage subclasses don't have this text becaust they're a bit more nuanced)
+- Increased the rarity of Gravity Well (Uncommon -> Exotic)
+- Perfect Guard now has Shield Spikes as a prerequisite to ensure players with Perfect Guard have a reliable damage source.
+
+#### 2.3.1
+- Increased base scythe damage (20 -> 25). Twin Scythes now reduces scythe damage back to previous amount (No change to damage values with Twin Scythes)
+- Fixed max bonus damage from Stellar Impact being higher than intended
+- Fixed comets not disabling on player death
+- Added a visualization for the mirrored location of opponents with Mirror Mage
+- Increased base comet damage (80 -> 180)
+
+#### 2.3.0
 - Added Stargazer subclass to Astronomer. Includes 4 additional cards
 - Double Barriers renamed to Bigger Barriers
 - Gravity Well now increases comet speed as well

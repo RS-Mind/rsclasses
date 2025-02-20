@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 114193385136356738}
   - component: {fileID: 114236998380372502}
   m_Layer: 0
-  m_Name: DoubleBarriers
+  m_Name: BiggerBarriers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
   cardName: Bigger Barriers
-  cardDestription: 
+  cardDestription: Required to unlock subclasses
   cardStats:
   - positive: 1
     amount: +2
@@ -308,6 +308,7 @@ MonoBehaviour:
   orbitalRadius: 1
   comets: 0
   cometDamage: 1
+  cometSpeed: 1
   fractureDuration: 0
   fractureSize: 1
   reflectionCooldown: 1

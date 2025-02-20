@@ -18,7 +18,8 @@
         "PhotonUnityNetworking.dll",
         "InControl.dll",
         "SonigonAudioEngine.Runtime.dll",
-        "SimulationChamber.dll"
+        "SimulationChamber.dll",
+        "TabInfo.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": []
