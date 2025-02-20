@@ -29,11 +29,11 @@ namespace RSClasses.Extensions // Adds additional variables to the player's stat
             posMult = 1;
             scytheCount = 0;
             barrierCount = 0;
-            scytheDamage = 20f;
+            scytheDamage = 25f;
             orbitalRadius = 1f;
             scytheSpeed = 250f;
             cometSpeed = 2f;
-            cometDamage = 80f;
+            cometDamage = 180f;
             cometCount = 0;
             barrierSpeed = 100f;
             fractureDuration = 1f;

@@ -1,9 +1,6 @@
 ﻿using BepInEx;
 using HarmonyLib;
-using InControl;
 using Jotunn.Utils;
-using UnboundLib.Cards;
-using UnboundLib.GameModes;
 using UnityEngine;
 
 namespace RSClasses
@@ -20,7 +17,7 @@ namespace RSClasses
     {
         private const string ModId = "com.rsmind.rounds.RSClasses";
         private const string ModName = "RSClasses";
-        public const string Version = "2.3.0";
+        public const string Version = "2.3.1";
         public const string ModInitials = "RSC";
         public static RSClasses instance { get; private set; }
 
@@ -28,8 +25,8 @@ namespace RSClasses
         {
             var harmony = new Harmony(ModId);
             harmony.PatchAll();
-            RSClasses.assets = AssetUtils.LoadAssetBundleFromResources("rsclassart", typeof(RSClasses).Assembly);
-            if (RSClasses.assets == null)
+            assets = AssetUtils.LoadAssetBundleFromResources("rsclassart", typeof(RSClasses).Assembly);
+            if (assets == null)
             {
                 UnityEngine.Debug.Log("Failed to load RSClasses asset bundle");
             }

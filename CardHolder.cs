@@ -1,13 +1,10 @@
 ﻿using CardChoiceSpawnUniqueCardPatch.CustomCategories;
-using ModdingUtils.Utils;
-using RSClasses.Cards;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
 using UnboundLib.Cards;
-using UnboundLib.Utils;
 using UnityEngine;
 
-namespace RSClasses {
+namespace RSClasses
+{
     public class CardHolder : MonoBehaviour // Loads cards
     {
         public List<GameObject> Cards;

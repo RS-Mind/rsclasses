@@ -65,7 +65,7 @@ namespace RSClasses.MonoBehaviours
             float damageMult = 1;
             if (player.data.currentCards.Contains(CardHolder.cards["Stellar Impact"])) // Calculate damage multiplier from current velocity
             {
-                Mathf.Clamp((velocity.magnitude / 5 - 1) * player.data.GetAdditionalData().cometSpeed, 1, 3 * player.data.GetAdditionalData().cometSpeed);
+                Mathf.Clamp((velocity.magnitude / 5 - 1) * player.data.GetAdditionalData().cometSpeed, 1, 1.5f * player.data.GetAdditionalData().cometSpeed);
             }
             if (player.data.view.IsMine) // Only run on the owner's client
             {
@@ -133,12 +133,15 @@ namespace RSClasses.MonoBehaviours
         {
             Destroy(comet);
         }
+
+        public void Update()
+        {
+            gameObject.SetActive(!player.data.dead); // Disable this object if the player is dead
+        }
     }
 
     public class Comet_Mono : MonoBehaviour
     {
-        private double angle = 0;
-        private float rotation = 0;
         private bool active = false;
         List<Comet> comets = new List<Comet>();
         Player player;
@@ -206,8 +209,6 @@ namespace RSClasses.MonoBehaviours
         }
         IEnumerator PointStart(IGameModeHandler gm)
         {
-            rotation = 0f;
-            angle = 0.0;
             int index = 0;
             foreach (Comet comet in comets)
             {

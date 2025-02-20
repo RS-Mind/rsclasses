@@ -3,6 +3,7 @@ using Photon.Pun;
 using SimulationChamber;
 using System.Linq;
 using RSClasses.Extensions;
+using UnboundLib;
 
 namespace RSClasses.MonoBehaviours
 {
@@ -122,6 +123,11 @@ namespace RSClasses.MonoBehaviours
             if (savedGuns[3] == null)
             {
                 savedGuns[3] = new GameObject("Emerald Gun").AddComponent<SimulatedGun>();
+            }
+
+            foreach (Player other in PlayerManager.instance.players.Where(p => p.playerID != player.playerID)) // For each player besides yourself
+            {
+                other.gameObject.GetOrAddComponent<MirrorMageVisualizer_Mono>();
             }
         }
 
