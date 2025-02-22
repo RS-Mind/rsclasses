@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 114997074887337774}
   - component: {fileID: 114969577739340399}
   - component: {fileID: 114193385136356738}
+  - component: {fileID: 114291070741405186}
   m_Layer: 0
   m_Name: SapphireShards
   m_TagString: Untagged
@@ -279,3 +280,17 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &114291070741405186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6984fbfec9ffb42910fcec93904b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fancyIcon: {fileID: 1790492772407996393, guid: 92617ca14eeb3824abb8a92aeb05f164,
+    type: 3}

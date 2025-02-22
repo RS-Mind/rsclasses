@@ -104,7 +104,7 @@ Gain a powerful comet that roams the map
 - +1 Comet
 
 ### Icemelt
-[Uncommon]
+[Scarce]
 *Requires Stargazer*
 Your comets grow larger the closer they are to you
 

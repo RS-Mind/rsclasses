@@ -16,7 +16,7 @@ namespace RSClasses
         {
             var astronomerCategory = TabInfoManager.RegisterCategory("Astronomer Stats", 2);
             TabInfoManager.RegisterStat(astronomerCategory, "\r\rScythe Count", (p) => p.data.GetAdditionalData().scytheCount > 0, (p) => $"{p.data.GetAdditionalData().scytheCount}");
-            TabInfoManager.RegisterStat(astronomerCategory, "\r\r\rScythe Damage", (p) => p.data.GetAdditionalData().scytheCount > 0, (p) => $"{p.data.GetAdditionalData().scytheDamage}");
+            TabInfoManager.RegisterStat(astronomerCategory, "\r\r\rScythe Damage", (p) => p.data.GetAdditionalData().scytheCount > 0, (p) => $"{p.data.GetAdditionalData().scytheDamage + (p.data.currentCards.Contains(CardHolder.cards["Dark Harvest"]) ? p.data.stats.lifeSteal * 50f : 0f )}");
             TabInfoManager.RegisterStat(astronomerCategory, "\r\rScythe Speed", (p) => p.data.GetAdditionalData().scytheCount > 0, (p) => $"{p.data.GetAdditionalData().scytheSpeed / 250f}");
             TabInfoManager.RegisterStat(astronomerCategory, "Barrier Count", (p) => p.data.GetAdditionalData().barrierCount > 0, (p) => $"{p.data.GetAdditionalData().barrierCount}");
             TabInfoManager.RegisterStat(astronomerCategory, "Barrier Speed", (p) => p.data.GetAdditionalData().barrierCount > 0, (p) => $"{p.data.GetAdditionalData().barrierSpeed / 100f}");

@@ -1,5 +1,9 @@
 ### Patch Notes:
 
+#### 2.4.0
+- Added support for FancyCardBar
+- Icemelt rarity reduced (Uncommon -> Scarce)
+
 #### 2.3.2
 - Added TabInfo integration for Astronomer and some Mirror Mage statistics.
 - Added text to Bigger Barriers and Twin Scythes indicating that they're required for subclasses (Mirror Mage subclasses don't have this text becaust they're a bit more nuanced)

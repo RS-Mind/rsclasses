@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 114969577739340399}
   - component: {fileID: 114193385136356738}
   - component: {fileID: 114801010958095474}
+  - component: {fileID: 114751245961895188}
   m_Layer: 0
   m_Name: Harvester
   m_TagString: Untagged
@@ -316,3 +317,17 @@ MonoBehaviour:
   fractureDuration: 0
   fractureSize: 1
   reflectionCooldown: 1
+--- !u!114 &114751245961895188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6984fbfec9ffb42910fcec93904b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fancyIcon: {fileID: 1790492772407996393, guid: 3503882b4200b8149845b7a2b7224552,
+    type: 3}

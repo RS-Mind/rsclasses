@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 114969577739340399}
   - component: {fileID: 114193385136356738}
   - component: {fileID: 8263036249238849333}
+  - component: {fileID: 114721795754498726}
   m_Layer: 0
   m_Name: FasterBarriers
   m_TagString: Untagged
@@ -302,6 +303,23 @@ MonoBehaviour:
   barriers: 0
   barrierSpeed: 1.5
   orbitalRadius: 1
+  comets: 0
+  cometDamage: 1
+  cometSpeed: 1
   fractureDuration: 0
   fractureSize: 1
   reflectionCooldown: 1
+--- !u!114 &114721795754498726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6984fbfec9ffb42910fcec93904b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fancyIcon: {fileID: 1790492772407996393, guid: 38203adf9e6228a4db2c273eda803cb5,
+    type: 3}
