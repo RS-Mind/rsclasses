@@ -1,5 +1,8 @@
 ### Patch Notes:
 
+#### 2.4.1
+- Various art tweaks
+
 #### 2.4.0
 - Added support for FancyCardBar
 - Icemelt rarity reduced (Uncommon -> Scarce)
