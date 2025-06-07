@@ -1,15 +1,15 @@
 {
     "name": "RSClasses",
-    "version_number": "2.4.1",
+    "version_number": "2.4.2",
     "website_url": "https://github.com/RS-Mind/rsclasses",
     "description": "Classes for ROUNDS that leverage unique mechanics.",
     "dependencies": [
-        "Pykess-ModdingUtils-0.4.8",
-		"willis81808-UnboundLib-3.2.14",
 		"Pykess-CardChoiceSpawnUniqueCardPatch-0.1.10",
 		"Root-Classes_Manager_Reborn-1.5.5",
-		"willuwontu-SimulationChamber-0.0.3",
+		"RS_Mind-FancyCardBar-1.3.3",
+        "Pykess-ModdingUtils-0.4.8",
 		"CrazyCoders-RarityBundle-0.2.1",
-		"RS_Mind-FancyCardBar-1.2.0"
+		"willuwontu-SimulationChamber-0.0.3",
+		"willis81808-UnboundLib-3.2.14"
     ]
 }

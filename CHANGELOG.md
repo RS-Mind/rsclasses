@@ -1,5 +1,11 @@
 ### Patch Notes:
 
+#### 2.4.2
+- Fixed an issue with the visualizer other players receive when a player takes Mirror Mage.
+- Mirror Mage now reduces damage by 50% instead of affecting reload time.
+- Prism now reduces damage more (25% -> 50%)
+- Kaleido Witch now requires mirror mage and reduces damage more (25% -> 50%)
+
 #### 2.4.1
 - Various art tweaks
 

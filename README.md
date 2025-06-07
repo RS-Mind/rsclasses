@@ -126,7 +126,7 @@ Your comets get bonus damage when moving quickly
 ### Mirror Mage
 [Uncommon Class]
 Reflect your bullets across the mirror (Your bullets are reflected horizontally across the screen)
-- +0.25s Reload time
+- -50% Damage
 
 ### Polished Mirror
 [Uncommon]
@@ -137,7 +137,7 @@ See others' reflections (A preview of each other player is shown in each reflect
 [Uncommon]
 *Requires Mirror Mage*
 Additionally refract your bullets across the prism (Your bullets are reflected vertically across the screen, for a total of 4 bullets)
-- -25% Damage
+- -50% Damage
 
 ### Reflection Replacement
 [Uncommon]
@@ -191,10 +191,10 @@ Be careful because they get a block after (This block does not trigger additiona
 
 ### Kaleido Witch
 [Rare Subclass]
-*Requires Prism*
+*Requires Prism and Mirror Mind*
 Refract your bullets further within the kaleidoscope (Your bullets are additionally reflected across the 2 diagonals, for a total of 8 bullets)
 - No Bullet gravity
-- -25% Damage
+- -50% Damage
 
 ### Emerald Glitter
 [Uncommon]
