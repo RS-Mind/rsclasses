@@ -4,6 +4,7 @@ using Jotunn.Utils;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using RSClasses.Utilities;
 
 namespace RSClasses
 {

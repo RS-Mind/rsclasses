@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using RSClasses.Extensions;
+﻿using UnityEngine;
 using HarmonyLib;
 
-namespace RSClasses
+namespace RSClasses.Utilities
 {
     public class RSPlayerStats : MonoBehaviour // Used to apply custom stats to unity cards
     {

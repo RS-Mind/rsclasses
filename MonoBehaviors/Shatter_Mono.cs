@@ -1,4 +1,4 @@
-﻿using RSClasses.Extensions;
+﻿using RSClasses.Utilities;
 using Sonigon;
 using Sonigon.Internal;
 using System;

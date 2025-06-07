@@ -2,7 +2,7 @@
 using Photon.Pun;
 using SimulationChamber;
 using System.Linq;
-using RSClasses.Extensions;
+using RSClasses.Utilities;
 
 namespace RSClasses.MonoBehaviours
 {

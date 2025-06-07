@@ -1,9 +1,7 @@
-﻿using HarmonyLib;
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
-using UnityEngine;
 
-namespace RSClasses.Extensions // Adds additional variables to the player's stats
+namespace RSClasses.Utilities // Adds additional variables to the player's stats
 {
     [Serializable]
     public class PlayerAdditionalData

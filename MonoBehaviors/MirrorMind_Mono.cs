@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 using UnboundLib;
-using RSClasses.Extensions;
+using RSClasses.Utilities;
 using Photon.Pun;
 
 namespace RSClasses.MonoBehaviours

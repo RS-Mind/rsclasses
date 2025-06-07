@@ -1,14 +1,6 @@
-﻿using System;
-using HarmonyLib;
-using TabInfo.Utils;
-using UnboundLib;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using System.Linq;
-using RSClasses.Extensions;
+﻿using TabInfo.Utils;
 
-namespace RSClasses
+namespace RSClasses.Utilities
 {
     public class TabinfoInterface
     {

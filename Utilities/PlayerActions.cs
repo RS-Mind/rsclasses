@@ -4,9 +4,8 @@ using RSClasses.MonoBehaviours;
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using UnityEngine;
 
-namespace RSClasses.Extensions // Adds actions to players
+namespace RSClasses.Utilities // Adds actions to players
 {
     [Serializable]
     public class PlayerActionsAdditionalData
