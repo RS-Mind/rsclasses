@@ -22,7 +22,7 @@ namespace RSClasses
     {
         private const string ModId = "com.rsmind.rounds.RSClasses";
         private const string ModName = "RSClasses";
-        public const string Version = "2.4.1";
+        public const string Version = "2.4.2";
         public const string ModInitials = "RSC";
         internal static Harmony harmony;
         public static RSClasses instance { get; private set; }

@@ -34,6 +34,8 @@ namespace RSClasses.MonoBehaviours
                                 reflectionList.Add(Instantiate(reflection, other.transform));
                             reflections[other.playerID] = reflectionList;
                         }
+                        for (int i = 0; i < 7; i++)
+                            reflections[other.playerID][i].SetActive(other.data.dead);
                         // Set reflection's position to be opposite opponent's
                         reflections[other.playerID][0].transform.SetPositionAndRotation(new Vector3(-other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation);
 

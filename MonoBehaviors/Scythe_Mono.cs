@@ -13,7 +13,6 @@ namespace RSClasses.MonoBehaviours
     class Scythe : MonoBehaviour // An individual scythe
     {
         public bool active = true;
-        public bool hitBullets = true;
         public bool ableToHit = true;
         private Player player;
         private GameObject scythe;
@@ -183,7 +182,7 @@ namespace RSClasses.MonoBehaviours
             active = true;
             rotation = 0f;
             angle = 0.0;
-            this.UpdateStats();
+            UpdateStats();
             yield break;
         }
 
