@@ -67,7 +67,7 @@ MonoBehaviour:
   cardName: Forced Reflection
   cardDestription: 'Players you shoot are sometimes reflected.
 
-    Be careful because they get a block after'
+    Be careful, because they get a block afterwards'
   cardStats: []
   rarity: 0
   cardArt: {fileID: 8758621503428415881, guid: 7765e386eed283c43aa2fed3dcaea318, type: 3}
@@ -149,14 +149,13 @@ MonoBehaviour:
   bodyRecoil: 0
   shake: 0
   forceSpecificShake: 0
-  projectiles:
-  - objectToSpawn: {fileID: 0}
-    numberOfSpawns: 0
+  projectiles: []
   shootPosition: {fileID: 0}
   player: {fileID: 0}
   isReloading: 0
   damage: 1
   reloadTime: 1
+  reloadTimeAdd: 0
   recoilMuiltiplier: 1
   knockback: 1
   attackSpeed: 1
@@ -169,7 +168,6 @@ MonoBehaviour:
   shakeM: 1
   ammo: 0
   ammoReg: 0
-  reloadTimeAdd: 0
   size: 0
   overheatMultiplier: 0
   timeToReachFullMovementMultiplier: 0
@@ -225,7 +223,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1043437007509817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 786953031, guid: fbb25f4d567ecbd439bfbdcfed7eb232, type: 3}
+  m_Script: {fileID: 11500000, guid: ead7330fb99780241a0321f47a2eab68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   soundBlockStart: {fileID: 0}

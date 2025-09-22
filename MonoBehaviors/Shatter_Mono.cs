@@ -27,19 +27,8 @@ namespace RSClasses.MonoBehaviours
 
         private void Start()
         {
-            AudioClip shatterAudioClip = RSClasses.assets.LoadAsset<AudioClip>("shatter.ogg"); // Load sound effects
-            SoundContainer shatterSoundContainer = ScriptableObject.CreateInstance<SoundContainer>();
-            shatterSoundContainer.setting.volumeIntensityEnable = true;
-            shatterSoundContainer.audioClip[0] = shatterAudioClip;
-            shatterSound = ScriptableObject.CreateInstance<SoundEvent>();
-            shatterSound.soundContainerArray[0] = shatterSoundContainer;
-
-            AudioClip reflectAudioClip = RSClasses.assets.LoadAsset<AudioClip>("reflect.ogg");
-            SoundContainer reflectSoundContainer = ScriptableObject.CreateInstance<SoundContainer>();
-            reflectSoundContainer.setting.volumeIntensityEnable = true;
-            reflectSoundContainer.audioClip[0] = reflectAudioClip;
-            reflectSound = ScriptableObject.CreateInstance<SoundEvent>();
-            reflectSound.soundContainerArray[0] = reflectSoundContainer;
+            shatterSound = RSClasses.shatterSound;
+            reflectSound = RSClasses.reflectSound;
 
             if (player.data.view.IsMine) // If your view, create your reflection
             {

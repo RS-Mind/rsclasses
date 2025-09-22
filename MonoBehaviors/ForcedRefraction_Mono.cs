@@ -32,12 +32,7 @@ namespace RSClasses.MonoBehaviours
 
         private void Start()
         {
-            AudioClip reflectAudioClip = RSClasses.assets.LoadAsset<AudioClip>("reflect.ogg"); // Load reflection sound effect
-            SoundContainer reflectSoundContainer = ScriptableObject.CreateInstance<SoundContainer>();
-            reflectSoundContainer.setting.volumeIntensityEnable = true;
-            reflectSoundContainer.audioClip[0] = reflectAudioClip;
-            reflectSound = ScriptableObject.CreateInstance<SoundEvent>();
-            reflectSound.soundContainerArray[0] = reflectSoundContainer; ;
+            reflectSound = RSClasses.reflectSound;
         }
         public override HasToReturn DoHitEffect(HitInfo hit)
         {

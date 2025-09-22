@@ -77,6 +77,7 @@ Reapers of souls. Defense is not their concern
 - +2 Scythes
 - +60% Scythe speed (Scythes can hit once per rotation, so this is effectively an attack speed buff)
 - -4 Barriers
+- +0.5s Block CD
 
 ### Harvest Sickle
 [Uncommon]
@@ -149,8 +150,9 @@ Reflect across the mirror and block when you take damage (3 second cooldown. Thi
 [Common]
 *Requires Reflection Replacement*
 Swap minds with your reflection when you would cross the mirror
-- +15% Movement speed
+- +30% Movement speed
 - +15% Jump height
+- +1 Jump
 
 ### Fracture
 [Uncommon]

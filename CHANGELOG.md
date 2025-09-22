@@ -1,10 +1,16 @@
 ### Patch Notes:
 
+#### 2.4.4
+- Added text to cards indicating what they are prerequisites for.
+- Harvester now has +0.5s Block CD.
+- Mirror Mind movement speed increased (15% -> 30%) and now provides +1 jump.
+- Fixed an issue where Forced Reflection would disable your gun for some reason.
+
 #### 2.4.2
 - Fixed an issue with the visualizer other players receive when a player takes Mirror Mage.
 - Mirror Mage now reduces damage by 50% instead of affecting reload time.
 - Prism now reduces damage more (25% -> 50%)
-- Kaleido Witch now requires mirror mage and reduces damage more (25% -> 50%)
+- Kaleido Witch now requires mirror mind and reduces damage more (25% -> 50%)
 
 #### 2.4.1
 - Various art tweaks

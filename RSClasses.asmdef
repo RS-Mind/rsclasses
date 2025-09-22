@@ -3,8 +3,10 @@
     "references": [
         "ModdingUtils",
         "CardChoiceSpawnUniqueCardPatch",
+        "ClassesManagerReborn",
         "UnboundLib",
-        "ClassesManagerReborn"
+        "SimulationChamber",
+        "TabInfo"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
@@ -14,12 +16,12 @@
     "precompiledReferences": [
         "0Harmony.dll",
         "BepInEx.dll",
-        "Assembly-CSharp.dll",
         "PhotonUnityNetworking.dll",
-        "InControl.dll",
         "SonigonAudioEngine.Runtime.dll",
-        "SimulationChamber.dll",
-        "TabInfo.dll"
+        "InControl.dll",
+        "UnityEngine.UI.dll",
+        "UnityEngine.UIModule.dll",
+        "Assembly-CSharp.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": []
