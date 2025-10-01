@@ -5,6 +5,7 @@ using RSClasses.Utilities;
 using Sonigon;
 using System.Collections.Generic;
 using System.Reflection;
+using ToggleCardsCategories;
 using UnityEngine;
 
 namespace RSClasses
@@ -17,6 +18,7 @@ namespace RSClasses
     [BepInDependency("com.CrazyCoders.Rounds.RarityBundle", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("com.willuwontu.rounds.tabinfo", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.rsmind.rounds.fancycardbar", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.aalund13.rounds.toggle_cards_categories", BepInDependency.DependencyFlags.HardDependency)]
     [BepInPlugin(ModId, ModName, Version)]
     [BepInProcess("Rounds.exe")]
     public class RSClasses : BaseUnityPlugin
@@ -37,6 +39,7 @@ namespace RSClasses
             {
                 UnityEngine.Debug.Log("Failed to load RSClasses asset bundle");
             }
+            ToggleCardsCategoriesManager.instance.RegisterCategories(ModInitials);
             assets.LoadAsset<GameObject>("CardHolder").GetComponent<CardHolder>().RegisterCards();
         }
 

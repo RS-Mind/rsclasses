@@ -15,6 +15,7 @@ namespace RSClasses.MonoBehaviours
 {
     class Barrier : MonoBehaviour // The individual barriers
     {
+        public bool initialized = false;
         private Transform origin;
         private Animator anim;
         private Player player;
@@ -29,6 +30,9 @@ namespace RSClasses.MonoBehaviours
             barrierCollider = barrier.transform.GetChild(0).gameObject.GetOrAddComponent<BarrierCollider>(); // Make sure the barrier has a collider and store it
             anim = barrier.GetComponent<Animator>(); // Get animator
             origin = barrier.GetComponentsInChildren<Transform>().Last(); //Store center position
+            SetColor(player.GetComponent<Barrier_Mono>().color);
+            SetScale(player.data.GetAdditionalData().orbitalRadius * 0.11875f);
+            initialized = true;
         }
 
         private void Update()
@@ -118,7 +122,7 @@ namespace RSClasses.MonoBehaviours
     {
         private Block block;
         private double angle = 0;
-        private Color color = new Color(1f, 1f, 0.7411765f);
+        public Color color = new Color(1f, 1f, 0.7411765f);
         private List<Barrier> barriers = new List<Barrier>();
         private Player player;
         private void Start()
@@ -175,8 +179,14 @@ namespace RSClasses.MonoBehaviours
 
             foreach (Barrier barrier in barriers)
             {
-                RSClasses.instance.ExecuteAfterSeconds(1f, () => barrier.GetComponent<Barrier>().SetColor(color)); // Update the color and scale
-                RSClasses.instance.ExecuteAfterSeconds(1f, () => barrier.SetScale(player.data.GetAdditionalData().orbitalRadius * 0.11875f)); // I guess and checked this value
+                RSClasses.instance.ExecuteAfterSeconds(1f, () =>
+                { // Update the color and scale
+                    if (barrier.initialized)
+                    {
+                        barrier.GetComponent<Barrier>().SetColor(color);
+                        barrier.SetScale(player.data.GetAdditionalData().orbitalRadius * 0.11875f); // I guess and checked this value
+                    }
+                });
             }
         }
 

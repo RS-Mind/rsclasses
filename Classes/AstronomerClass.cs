@@ -25,8 +25,11 @@ namespace RSClasses.Cards.Astronomer
             ClassesRegistry.Register(CardHolder.cards["Guardian"],          CardType.SubClass,  new CardInfo[] { CardHolder.cards["Bigger Barriers"], CardHolder.cards["Twin Scythes"] });
             ClassesRegistry.Register(CardHolder.cards["Perfect Guard"],     CardType.Gate, CardHolder.cards["Shield Spikes"]);
             ClassesRegistry.Register(CardHolder.cards["Shield Spikes"],     CardType.Card, CardHolder.cards["Guardian"]);
+            ClassesRegistry.Register(CardHolder.cards["Healing Shield"],    CardType.Card, CardHolder.cards["Guardian"]);
             ClassesRegistry.Register(CardHolder.cards["Harvester"],         CardType.SubClass,  new CardInfo[] { CardHolder.cards["Bigger Barriers"], CardHolder.cards["Twin Scythes"] });
             ClassesRegistry.Register(CardHolder.cards["Harvest Sickle"],    CardType.Gate, CardHolder.cards["Harvester"]);
+            ClassesRegistry.Register(CardHolder.cards["Soul Scythe"],       CardType.Card, CardHolder.cards["Harvester"]);
+            ClassesRegistry.Register(CardHolder.cards["Death's Blade"],     CardType.Card, CardHolder.cards["Harvester"]);
             ClassesRegistry.Register(CardHolder.cards["Dark Harvest"],      CardType.Card, CardHolder.cards["Harvest Sickle"]);
             yield return null;
         }

@@ -12,6 +12,7 @@ namespace RSClasses.MonoBehaviours
 {
     class Scythe : MonoBehaviour // An individual scythe
     {
+        public bool initialized = false;
         public bool active = true;
         public bool ableToHit = true;
         private Player player;
@@ -23,6 +24,10 @@ namespace RSClasses.MonoBehaviours
 
             scythe = Instantiate(RSClasses.assets.LoadAsset<GameObject>("Scythe"), player.transform); // Load the scythe prefab
             scythe.SetActive(true);
+
+            SetColor(player.GetComponent<Scythe_Mono>().color);
+            SetScale(player.data.GetAdditionalData().orbitalRadius * 0.15625f);
+            initialized = true;
         }
 
         public void DoHit() // Hit players
@@ -36,6 +41,14 @@ namespace RSClasses.MonoBehaviours
                 {
                     var damageable = hit.gameObject.GetComponent<Damagable>(); // Grab the damageable object, if any
                     var healthHandler = hit.gameObject.GetComponent<HealthHandler>(); // Grab the opponent's health handler, if any
+                    float bonusDamage = 0f;
+                    if (player.data.currentCards.Contains(CardHolder.cards["Dark Harvest"])) // If the player has Dark Harvest, add the bonus damage from life steal
+                    {
+                        bonusDamage = (player.data.stats.lifeSteal * 50f);
+                    }
+
+                    float damage = player.data.GetAdditionalData().scytheDamage + bonusDamage;
+
                     if (healthHandler) // If the target is a player basically
                     {
                         Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
@@ -43,15 +56,15 @@ namespace RSClasses.MonoBehaviours
                         healthHandler.CallTakeForce(((Vector2)hitPlayer.transform.position - (Vector2)scythe.transform.position).normalized * 2500, ForceMode2D.Impulse, true); // Apply knockback
                         this.ableToHit = false; // Disable the scythe for the rest of the rotation
                         if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame) { continue; } // Skip everything else if they blocked
+
+                        if (player.data.currentCards.Contains(CardHolder.cards["Death's Blade"])) // If the player has Death's Blade, set minimum damge.
+                        {
+                            damage = Math.Max(hitPlayer.data.maxHealth * 0.15f, damage);
+                        }
                     }
                     if (damageable) // If the target can take damage
                     {
-                        float bonusDamage = 0f;
-                        if (player.data.currentCards.Contains(CardHolder.cards["Dark Harvest"])) // If the player has Dark Harvest, add the bonus damage from life steal
-                        {
-                            bonusDamage = (player.data.stats.lifeSteal * 50f);
-                        }
-                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * (player.data.GetAdditionalData().scytheDamage + bonusDamage),
+                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * damage,
                             (Vector2)this.transform.position, this.gameObject, player); // Apply damage
                     }
                 }
@@ -90,8 +103,8 @@ namespace RSClasses.MonoBehaviours
         private double angle = 0;
         private float rotation = 0;
         private bool active = false;
-        private Color color = new Color(1f, 1f, 0.7411765f);
-        private List<Scythe> scythes = new List<Scythe>();
+        public Color color = new Color(1f, 1f, 0.7411765f);
+        internal List<Scythe> scythes = new List<Scythe>();
         private Player player;
 
         private void Start()
@@ -99,6 +112,7 @@ namespace RSClasses.MonoBehaviours
             player = GetComponentInParent<Player>(); // Get player
 
             GameModeManager.AddHook(GameModeHooks.HookPointStart, PointStart); // Add hooks
+            GameModeManager.AddHook(GameModeHooks.HookRoundStart, RoundStart);
             GameModeManager.AddHook(GameModeHooks.HookPointEnd, PointEnd);
         }
 
@@ -160,8 +174,13 @@ namespace RSClasses.MonoBehaviours
 
             foreach (Scythe scythe in scythes)
             {
-                RSClasses.instance.ExecuteAfterSeconds(1f, () => scythe.GetComponent<Scythe>().SetColor(color)); // Tell scythes their new color and scale
-                RSClasses.instance.ExecuteAfterSeconds(1f, () => scythe.SetScale(player.data.GetAdditionalData().orbitalRadius * 0.15625f)); // This number is 5 / 32
+                RSClasses.instance.ExecuteAfterSeconds(1f, () => { // Tell scythes their new color and scale
+                    if (scythe.initialized)
+                    {
+                        scythe.GetComponent<Scythe>().SetColor(color);
+                        scythe.SetScale(player.data.GetAdditionalData().orbitalRadius * 0.15625f); // This number is 5 / 32
+                    }
+                });
             }
         }
 
@@ -177,12 +196,16 @@ namespace RSClasses.MonoBehaviours
             }
         }
 
-        IEnumerator PointStart(IGameModeHandler gm) // At the start of battle, reset rotations to help maintain sync and update stats while we're at it
+        IEnumerator RoundStart(IGameModeHandler gm) // At the start of battle, reset rotations to help maintain sync
+        {
+            UpdateStats();
+            yield break;
+        }
+        IEnumerator PointStart(IGameModeHandler gm) // At the start of battle, reset rotations to help maintain sync
         {
             active = true;
             rotation = 0f;
             angle = 0.0;
-            UpdateStats();
             yield break;
         }
 

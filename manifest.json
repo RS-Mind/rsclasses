@@ -1,6 +1,6 @@
 {
     "name": "RSClasses",
-    "version_number": "2.4.4",
+    "version_number": "2.5.0",
     "website_url": "https://github.com/RS-Mind/rsclasses",
     "description": "Classes for ROUNDS that leverage unique mechanics.",
     "dependencies": [
@@ -10,6 +10,7 @@
         "Pykess-ModdingUtils-0.4.8",
 		"CrazyCoders-RarityBundle-0.2.1",
 		"willuwontu-SimulationChamber-0.0.3",
+		"AALUND13-ToggleCardsCategories-1.2.1",
 		"willis81808-UnboundLib-3.2.14"
     ]
 }

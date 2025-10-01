@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 114193385136356738}
   - component: {fileID: 114445513380129476}
   - component: {fileID: 114436291963131122}
+  - component: {fileID: 114075360729064692}
   m_Layer: 0
   m_Name: TwinScythes
   m_TagString: Untagged
@@ -48,10 +49,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1043437007509817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7afa8541a86b0f849a40ef30f33df2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Scarce
+  rarity: 2
 --- !u!114 &114421384111938668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,3 +333,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fancyIcon: {fileID: 1790492772407996393, guid: e7e7acbe98f8aa948b964e62ac674435,
     type: 3}
+--- !u!114 &114075360729064692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CategoryPath: Astronomer
+  UsePriority: 0
+  Priority: 0

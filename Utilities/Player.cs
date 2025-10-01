@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HarmonyLib;
+using System;
 using System.Runtime.CompilerServices;
 
 namespace RSClasses.Utilities // Adds additional variables to the player's stats
@@ -27,9 +28,26 @@ namespace RSClasses.Utilities // Adds additional variables to the player's stats
             posMult = 1;
             scytheCount = 0;
             barrierCount = 0;
-            scytheDamage = 25f;
+            scytheDamage = 30f;
             orbitalRadius = 1f;
-            scytheSpeed = 250f;
+            scytheSpeed = 270f;
+            cometSpeed = 2f;
+            cometDamage = 180f;
+            cometCount = 0;
+            barrierSpeed = 100f;
+            fractureDuration = 1f;
+            fractureSize = 0.0225f;
+            reflectionCooldown = 3f;
+        }
+        public void Reset()
+        {
+            invert = false;
+            posMult = 1;
+            scytheCount = 0;
+            barrierCount = 0;
+            scytheDamage = 30f;
+            orbitalRadius = 1f;
+            scytheSpeed = 270f;
             cometSpeed = 2f;
             cometDamage = 180f;
             cometCount = 0;
@@ -56,6 +74,15 @@ namespace RSClasses.Utilities // Adds additional variables to the player's stats
                 data.Add(chara, value);
             }
             catch (Exception) { }
+        }
+    }
+
+    [HarmonyPatch(typeof(Player), "FullReset")]
+    public class FullResetPatch
+    {
+        static void Prefix(Player __instance)
+        {
+            __instance.data.GetAdditionalData().Reset();
         }
     }
 }

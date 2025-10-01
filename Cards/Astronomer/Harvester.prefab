@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 114193385136356738}
   - component: {fileID: 114801010958095474}
   - component: {fileID: 114751245961895188}
+  - component: {fileID: 114880940781750872}
   m_Layer: 0
   m_Name: Harvester
   m_TagString: Untagged
@@ -48,10 +49,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1043437007509817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7afa8541a86b0f849a40ef30f33df2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Exotic
+  rarity: 3
 --- !u!114 &114421384111938668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +74,7 @@ MonoBehaviour:
     simepleAmount: 0
     stat: Scythes
   - positive: 1
-    amount: +60%
+    amount: +80%
     simepleAmount: 0
     stat: Scythe speed
   - positive: 0
@@ -311,7 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scythes: 2
   scytheDamage: 1
-  scytheSpeed: 1.6
+  scytheSpeed: 1.8
   barriers: -4
   barrierSpeed: 1
   orbitalRadius: 1
@@ -335,3 +336,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fancyIcon: {fileID: 1790492772407996393, guid: 3503882b4200b8149845b7a2b7224552,
     type: 3}
+--- !u!114 &114880940781750872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CategoryPath: Astronomer/Harvester
+  UsePriority: 0
+  Priority: 0

@@ -16,17 +16,17 @@ Uses orbiting objects to fend off foes
 - -25% Damage
 
 ### Domain Extension
-[Trinket]
+[Common]
 Increases the size of orbitals and their orbits
-- +50% Orbital size (Comets grow half as quickly)
-- -25% Scythe damage
+- +35% Orbital size (Comets grow half as quickly)
+- -10% Scythe damage
 
 ### Faster Barriers
 [Common]
 - +50% Barrier speed
 
 ### Gravity Well
-[Uncommon]
+[Exotic]
 - +25% Speed
 - +50% Orbital speed
 - -25% Health
@@ -56,6 +56,12 @@ Stalwart Defenders. Their barriers defend them from all bullets
 - +100% Barrier size
 - -4 Scythes
 
+### Healing Shield
+[Uncommon]
+*Requires Guardian*
+Allies within your barriers are healed
+- +10/s Healing
+
 ### Shield Spikes
 [Rare]
 *Requires Guardian*
@@ -63,8 +69,8 @@ When you block, your shields deal damage based on your maximum health
 - +0.25s Block cooldown
 
 ### Perfect Guard
-[Rare]
-*Requires Guardian*
+[Epic]
+*Requires Shield Spikes*
 An impenetrable ring of light
 - +2 Barriers
 - +1 Block
@@ -75,9 +81,18 @@ An impenetrable ring of light
 *Requires Bigger Barriers and Twin Scythes*
 Reapers of souls. Defense is not their concern
 - +2 Scythes
-- +60% Scythe speed (Scythes can hit once per rotation, so this is effectively an attack speed buff)
+- +80% Scythe speed (Scythes can hit once per rotation, so this is effectively an attack speed buff)
 - -4 Barriers
 - +0.5s Block CD
+
+### Soul Scythe
+[Rare]
+Temporarily gain a scythe each time you get a kill
+
+### Death's Blade
+[Rare]
+*Requires Harvester*
+Your scythes deal at least 15% of the target's max health
 
 ### Harvest Sickle
 [Uncommon]
@@ -86,14 +101,13 @@ Reapers of souls. Defense is not their concern
 - +10% Lifesteal
 
 ### Dark Harvest
-[Rare]
+[Uncommon]
 *Requires Harvest Sickle*
 Lifesteal adds bonus damage to your scythes
-- +50% Scythe damage
-- +15% Lifesteal
+- +25% Lifesteal
 
 ### Stargazer
-[Exotic Subclass]
+[Uncommon Subclass]
 *Requires Bigger Barriers and Twin Scythes*
 Gain a powerful comet that roams the map
 - +1 Comet

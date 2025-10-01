@@ -1,5 +1,21 @@
 ### Patch Notes:
 
+#### 2.5.0
+- Added Death's Blade, a Harvester card which causes your scythes to deal a minimum % of a player's max health on hit.
+- Added Soul Scythe, a Harvester card which grants you an additional scythe per kill during a round.
+- Added Healing Shield, a Guardian card which heals players within your barriers.
+- Harvester's scythe speed increased (+60% -> +80%). Rarity reduced to Uncommon.
+- Dark Harvest's damage removed, lifesteal increased (+15% -> +25%). Rarity reduced to Uncommon.
+- Domain Extension's orbital size change reduced (+50% -> +35%). Scythe damage penalty reduced (-25% -> -10%). Rarity increased to Common.
+- Perfect Guard's rarity increased to Epic.
+- Stargazer's rarity reduced to Uncommon.
+- Increased base scythe damage (25 -> 30)
+- Increased base scythe speed (250 -> 270)
+- Added support for Aalund's ToggleCardsCategories.
+- Fixed broken title font on cards.
+- Fixed various issues with Astronomer's orbitals.
+- Fixed the visualizer other players receive when playing against a Mirror Mage.
+
 #### 2.4.4
 - Added text to cards indicating what they are prerequisites for.
 - Harvester now has +0.5s Block CD.

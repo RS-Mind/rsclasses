@@ -6,7 +6,8 @@
         "ClassesManagerReborn",
         "UnboundLib",
         "SimulationChamber",
-        "TabInfo"
+        "TabInfo",
+        "RarityLib"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
@@ -19,9 +20,10 @@
         "PhotonUnityNetworking.dll",
         "SonigonAudioEngine.Runtime.dll",
         "InControl.dll",
-        "UnityEngine.UI.dll",
-        "UnityEngine.UIModule.dll",
-        "Assembly-CSharp.dll"
+        "Assembly-CSharp.dll",
+        "ToggleCardsCategories.dll",
+        "Photon3Unity3D.dll",
+        "PhotonRealtime.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": []

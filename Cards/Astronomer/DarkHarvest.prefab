@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 114193385136356738}
   - component: {fileID: 325313921997561373}
   - component: {fileID: 114229190192861004}
+  - component: {fileID: 114630748422962868}
   m_Layer: 0
   m_Name: DarkHarvest
   m_TagString: Untagged
@@ -48,10 +49,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1043437007509817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7afa8541a86b0f849a40ef30f33df2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Rare
+  rarity: 3
 --- !u!114 &114421384111938668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,11 +70,7 @@ MonoBehaviour:
   cardDestription: Lifesteal adds bonus damage to your scythes
   cardStats:
   - positive: 1
-    amount: +50%
-    simepleAmount: 0
-    stat: Scythe Damage
-  - positive: 1
-    amount: +15%
+    amount: +25%
     simepleAmount: 0
     stat: Lifesteal
   rarity: 2
@@ -112,7 +109,7 @@ MonoBehaviour:
   secondsToTakeDamageOver: 0
   numberOfJumps: 0
   regen: 0
-  lifeSteal: 0.15
+  lifeSteal: 0.25
   refreshOnDamage: 0
   automaticReload: 1
   respawns: 0
@@ -302,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scythes: 0
-  scytheDamage: 1.5
+  scytheDamage: 1
   scytheSpeed: 1
   barriers: 0
   barrierSpeed: 1
@@ -327,3 +324,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fancyIcon: {fileID: 1790492772407996393, guid: e8458cd827771ca45b8b162c8cf93b62,
     type: 3}
+--- !u!114 &114630748422962868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CategoryPath: Astronomer/Harvester
+  UsePriority: 0
+  Priority: 0

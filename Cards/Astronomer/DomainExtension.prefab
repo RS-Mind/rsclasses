@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 114193385136356738}
   - component: {fileID: 114733055368146224}
   - component: {fileID: 114234441131743380}
+  - component: {fileID: 114263478438741686}
   m_Layer: 0
   m_Name: DomainExtension
   m_TagString: Untagged
@@ -48,10 +49,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1043437007509817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7afa8541a86b0f849a40ef30f33df2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Trinket
+  rarity: 1
 --- !u!114 &114421384111938668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,11 +70,11 @@ MonoBehaviour:
   cardDestription: Increases the size of orbitals and their orbits
   cardStats:
   - positive: 1
-    amount: +50%
+    amount: +35%
     simepleAmount: 0
     stat: Orbital Size
   - positive: 0
-    amount: -25%
+    amount: -10%
     simepleAmount: 0
     stat: Scythe damage
   rarity: 0
@@ -302,11 +303,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scythes: 0
-  scytheDamage: 0.75
+  scytheDamage: 0.9
   scytheSpeed: 1
   barriers: 0
   barrierSpeed: 1
-  orbitalRadius: 1.5
+  orbitalRadius: 1.35
   comets: 0
   cometDamage: 1
   cometSpeed: 1
@@ -327,3 +328,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fancyIcon: {fileID: 1790492772407996393, guid: a1a4b1aee409a8d45824a1bc9bb4a416,
     type: 3}
+--- !u!114 &114263478438741686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CategoryPath: Astronomer
+  UsePriority: 0
+  Priority: 0

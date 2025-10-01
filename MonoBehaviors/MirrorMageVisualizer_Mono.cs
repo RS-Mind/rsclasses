@@ -35,7 +35,7 @@ namespace RSClasses.MonoBehaviours
                             reflections[other.playerID] = reflectionList;
                         }
                         for (int i = 0; i < 7; i++)
-                            reflections[other.playerID][i].SetActive(other.data.dead);
+                            reflections[other.playerID][i].SetActive(!other.data.dead); // I don't know why this needs to be inverted, but it works this way
                         // Set reflection's position to be opposite opponent's
                         reflections[other.playerID][0].transform.SetPositionAndRotation(new Vector3(-other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation);
 
