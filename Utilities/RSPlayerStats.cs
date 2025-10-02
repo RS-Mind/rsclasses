@@ -5,18 +5,21 @@ namespace RSClasses.Utilities
 {
     public class RSPlayerStats : MonoBehaviour // Used to apply custom stats to unity cards
     {
-        public int scythes = 0;
-        public float scytheDamage = 1;
-        public float scytheSpeed = 1;
-        public int barriers = 0;
+        [Header("Multiply")]
         public float barrierSpeed = 1;
-        public float orbitalRadius = 1;
-        public int comets = 0;
         public float cometDamage = 1;
         public float cometSpeed = 1;
-        public float fractureDuration = 0;
         public float fractureSize = 1;
+        public float orbitalRadius = 1;
         public float reflectionCooldown = 1;
+        public float scytheDamage = 1;
+        public float scytheSpeed = 1;
+
+        [Header("Add")]
+        public int barriers = 0;
+        public int comets = 0;
+        public float fractureDuration = 0;
+        public int scythes = 0;
 
         public void Apply(Player player)
         {
