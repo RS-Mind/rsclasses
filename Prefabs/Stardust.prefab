@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7076594589652818065}
   - component: {fileID: 2320242863299669722}
   - component: {fileID: 1397761128878766409}
+  - component: {fileID: 114805417320798338}
+  - component: {fileID: 4724513207776081067}
   m_Layer: 10
   m_Name: Stardust
   m_TagString: Untagged
@@ -92,8 +94,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65fe46bf31b70f45b08652976080e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
-  hitBullets: 1
-  ableToHit: 1
   player: {fileID: 0}
-  comet: {fileID: 0}
+  rotationDirection: 90
+--- !u!114 &114805417320798338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6711427572570197882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1283557461, guid: cc8a520cdc1a71048ac77742d0ea6366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Group: 0
+  prefixField: 0
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 7076594589652818065}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &4724513207776081067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6711427572570197882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 849654536, guid: cc8a520cdc1a71048ac77742d0ea6366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 0

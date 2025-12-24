@@ -26,7 +26,7 @@ namespace RSClasses.MonoBehaviours
         private void FixedUpdate()
         {
             transform.localScale = new Vector3(player.data.GetAdditionalData().orbitalRadius * scaleFactor, player.data.GetAdditionalData().orbitalRadius * scaleFactor);
-            timer += Time.deltaTime;
+            timer += Time.fixedDeltaTime;
             float scale = (float)Math.Sqrt(-Math.Pow(timer,2) + 2 * timer);
             timerVisualizer.localScale = new Vector3(scale, scale);
             if (timer >= 1f)

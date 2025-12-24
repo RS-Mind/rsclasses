@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using HarmonyLib;
 using Jotunn.Utils;
+using Photon.Pun;
 using RSClasses.Utilities;
 using Sonigon;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace RSClasses
     {
         private const string ModId = "com.rsmind.rounds.RSClasses";
         private const string ModName = "RSClasses";
-        public const string Version = "2.4.4";
+        public const string Version = "2.5.1";
         public const string ModInitials = "RSC";
         internal static Harmony harmony;
         public static RSClasses instance { get; private set; }
@@ -45,6 +46,7 @@ namespace RSClasses
 
         internal static SoundEvent reflectSound;
         internal static SoundEvent shatterSound;
+        internal static SoundEvent stardustSound;
 
         void Start()
         {
@@ -68,6 +70,20 @@ namespace RSClasses
             shatterSoundContainer.audioClip[0] = reflectAudioClip;
             shatterSound = ScriptableObject.CreateInstance<SoundEvent>();
             shatterSound.soundContainerArray[0] = shatterSoundContainer;
+
+            AudioClip stardustAudioClip = RSClasses.assets.LoadAsset<AudioClip>("stardustHit.ogg"); // Load sound effects
+            SoundContainer stardustSoundContainer = ScriptableObject.CreateInstance<SoundContainer>();
+            stardustSoundContainer.setting.volumeIntensityEnable = true;
+            stardustSoundContainer.audioClip[0] = stardustAudioClip;
+            stardustSound = ScriptableObject.CreateInstance<SoundEvent>();
+            stardustSound.soundContainerArray[0] = stardustSoundContainer;
+
+            DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
+            if (pool != null)
+            {
+                pool.ResourceCache.Add("Comet", assets.LoadAsset<GameObject>("Comet"));
+                pool.ResourceCache.Add("Stardust", assets.LoadAsset<GameObject>("Stardust"));
+            }
 
             // TODO
             // Card that causes your gravity to face the prism line? -- Probably a bad idea

@@ -64,7 +64,7 @@ namespace RSClasses.MonoBehaviours
                         if (healthHandler)
                         {
                             Player hitPlayer = (Player)healthHandler.GetFieldValue("player");
-                            if (hitPlayer.playerID != player.playerID) healthHandler.CallTakeDamage(((Vector2)hitPlayer.transform.position - (Vector2)shatter.transform.position).normalized * Time.deltaTime * player.data.weaponHandler.gun.damage,
+                            if (hitPlayer.playerID != player.playerID) healthHandler.CallTakeDamage(((Vector2)hitPlayer.transform.position - (Vector2)shatter.transform.position).normalized * Time.fixedDeltaTime * player.data.weaponHandler.gun.damage,
                            (Vector2)this.transform.position, gameObject, player);
                         }
                     }

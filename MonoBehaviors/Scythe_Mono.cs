@@ -64,6 +64,7 @@ namespace RSClasses.MonoBehaviours
                     }
                     if (damageable) // If the target can take damage
                     {
+                        this.ableToHit = false; // Disable the scythe for the rest of the rotation
                         damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * damage,
                             (Vector2)this.transform.position, this.gameObject, player); // Apply damage
                     }

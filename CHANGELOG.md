@@ -1,5 +1,10 @@
 ### Patch Notes:
 
+#### 2.5.1
+- Improved Comet and Stardust synchronization
+- Scythes no longer shred destructible map objects
+- Fixed a minor issue with Healing Shield and Shatter
+
 #### 2.5.0
 - Added Death's Blade, a Harvester card which causes your scythes to deal a minimum % of a player's max health on hit.
 - Added Soul Scythe, a Harvester card which grants you an additional scythe per kill during a round.
