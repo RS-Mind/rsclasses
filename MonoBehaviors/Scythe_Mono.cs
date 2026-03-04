@@ -59,7 +59,7 @@ namespace RSClasses.MonoBehaviours
 
                         if (player.data.currentCards.Contains(CardHolder.cards["Death's Blade"])) // If the player has Death's Blade, set minimum damge.
                         {
-                            damage = Math.Max(hitPlayer.data.maxHealth * 0.15f, damage);
+                            damage = Math.Max(hitPlayer.data.health * 0.15f, damage);
                         }
                     }
                     if (damageable) // If the target can take damage

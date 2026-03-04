@@ -92,7 +92,7 @@ Temporarily gain a scythe each time you get a kill
 ### Death's Blade
 [Rare]
 *Requires Harvester*
-Your scythes deal at least 15% of the target's max health
+Your scythes deal at least 15% of the target's current health
 
 ### Harvest Sickle
 [Uncommon]

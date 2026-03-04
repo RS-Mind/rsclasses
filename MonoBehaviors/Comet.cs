@@ -25,11 +25,6 @@ namespace RSClasses.MonoBehaviors
         private Dictionary<int, float> hitPlayers = new Dictionary<int, float>();
         private System.Random rand = new System.Random(DateTime.Now.Millisecond); // Only used cosmetically, no syncing necessary
 
-        private void Start()
-        {
-            player = GetComponentInParent<Player>(); // Get player
-        }
-
         public void DoHit()
         {
             if (stardust) // Spawn stardust

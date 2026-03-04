@@ -1,5 +1,11 @@
 ### Patch Notes:
 
+#### 2.5.3
+- Changed Death's Blade to calculate off the target's current HP instead of their max HP
+
+#### 2.5.2
+- Fixed an issue with Comets and Stardust
+
 #### 2.5.1
 - Improved Comet and Stardust synchronization
 - Scythes no longer shred destructible map objects

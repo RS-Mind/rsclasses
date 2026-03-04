@@ -67,7 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
   cardName: Death's Blade
-  cardDestription: Your scythes deal at least 15% of the target's max health
+  cardDestription: Your scythes deal at least 15% of the target's current health
   cardStats: []
   rarity: 2
   cardArt: {fileID: 9218871215003029107, guid: f9c41a8adbdbc2d459fe63c45e8bdc78, type: 3}
@@ -294,18 +294,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b717b60ed33fa4abaed6e5da1f2900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scythes: 0
+  barrierSpeed: 1
+  cometDamage: 1
+  cometSpeed: 1
+  fractureSize: 1
+  orbitalRadius: 1
+  reflectionCooldown: 1
   scytheDamage: 1
   scytheSpeed: 1
   barriers: 0
-  barrierSpeed: 1
-  orbitalRadius: 1
   comets: 0
-  cometDamage: 1
-  cometSpeed: 1
   fractureDuration: 0
-  fractureSize: 1
-  reflectionCooldown: 1
+  scythes: 0
 --- !u!114 &114229190192861004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceType: 0
+  categoryPath: Astronomer/Harvester
   CategoryPath: Astronomer/Harvester
-  UsePriority: 0
+  categoryAsset: {fileID: 0}
   Priority: 0
