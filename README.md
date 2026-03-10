@@ -13,7 +13,6 @@ Note that this mod does not work in sandbox, and is best played online rather th
 Uses orbiting objects to fend off foes
 - +2 Scythes
 - +2 Barriers
-- -25% Damage
 
 ### Domain Extension
 [Common]
@@ -39,12 +38,11 @@ Increases the size of orbitals and their orbits
 ### Bigger Barriers
 [Scarce]
 - +2 Barriers
-- +0.25s Block cooldown
+- +15% Health
 
 ### Twin Scythes
 [Scarce]
 - +2 Scythes
-- -25% Damage
 
 ### Guardian
 [Exotic Subclass]
@@ -60,7 +58,7 @@ Stalwart Defenders. Their barriers defend them from all bullets
 [Uncommon]
 *Requires Guardian*
 Allies within your barriers are healed
-- +10/s Healing
+- +20/s Healing
 
 ### Shield Spikes
 [Rare]
@@ -141,7 +139,7 @@ Your comets get bonus damage when moving quickly
 ### Mirror Mage
 [Uncommon Class]
 Reflect your bullets across the mirror (Your bullets are reflected horizontally across the screen)
-- -50% Damage
+- -35% Damage
 
 ### Polished Mirror
 [Uncommon]

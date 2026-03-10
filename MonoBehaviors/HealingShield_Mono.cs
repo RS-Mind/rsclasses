@@ -12,9 +12,9 @@ namespace RSClasses.MonoBehaviours
         private Player player;
         private AttackLevel attackLevel;
         private Transform timerVisualizer;
-        private float healAmount = 10f;
+        private float healAmount = 20f;
         private float timer = 0f;
-        private float scaleFactor = 3f;
+        private const float scaleFactor = 3f;
         
         private void Awake()
         {

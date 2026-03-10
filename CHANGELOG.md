@@ -1,5 +1,12 @@
 ### Patch Notes:
 
+#### 2.5.4
+- Removed Astronomer's damage penalty
+- Bigger Barriers no longer increases block cooldown. Now gives +15% health
+- Removed Twin Scythes' damage penalty
+- Reduced Mirror Mage's damage penalty (-50% -> -35%)
+- Increased the healing granted by Healing Shield (10 -> 20)
+
 #### 2.5.3
 - Changed Death's Blade to calculate off the target's current HP instead of their max HP
 

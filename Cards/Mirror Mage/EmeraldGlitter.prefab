@@ -68,7 +68,7 @@ MonoBehaviour:
   cardName: Emerald Glitter
   cardDestription: Some reflections poison enemies
   cardStats:
-  - positive: 0
+  - positive: 1
     amount: +25%
     simepleAmount: 0
     stat: Poison damage
@@ -311,6 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceType: 0
+  categoryPath: Mirror Mage/Kaleido Witch
   CategoryPath: Mirror Mage/Kaleido Witch
-  UsePriority: 0
+  categoryAsset: {fileID: 0}
   Priority: 0
