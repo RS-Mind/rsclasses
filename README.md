@@ -17,39 +17,42 @@ Uses orbiting objects to fend off foes
 ### Domain Extension
 [Common]
 Increases the size of orbitals and their orbits
-- +35% Orbital size (Comets grow half as quickly)
+- +35% Orbital size
+- +15% Movement speed
 - -10% Scythe damage
 
 ### Faster Barriers
 [Common]
 - +50% Barrier speed
+- +25% Health
 
 ### Gravity Well
 [Exotic]
-- +25% Speed
+- +35% Speed
 - +50% Orbital speed
-- -25% Health
+- -15% Health
 
 ### Sharper Scythes
 [Uncommon]
-- +50% Scythe damage
-- -25% Damage
+- +65% Scythe damage
+- -15% Damage
 
 ### Bigger Barriers
 [Scarce]
 - +2 Barriers
-- +15% Health
+- +35% Health
 
 ### Twin Scythes
 [Scarce]
 - +2 Scythes
+- -20% Scythe damage
 
 ### Guardian
 [Exotic Subclass]
 *Requires Bigger Barriers and Twin Scythes*
 Stalwart Defenders. Their barriers defend them from all bullets
 - +2 Barriers
-- +25% Health
+- +75% Health
 - -0.25s Block cooldown
 - +100% Barrier size
 - -4 Scythes
@@ -59,11 +62,12 @@ Stalwart Defenders. Their barriers defend them from all bullets
 *Requires Guardian*
 Allies within your barriers are healed
 - +20/s Healing
+- +35% Health
 
 ### Shield Spikes
 [Rare]
 *Requires Guardian*
-When you block, your shields deal damage based on your maximum health
+When you block, your barriers deal damage based on your maximum health
 - +0.25s Block cooldown
 
 ### Perfect Guard
@@ -79,13 +83,14 @@ An impenetrable ring of light
 *Requires Bigger Barriers and Twin Scythes*
 Reapers of souls. Defense is not their concern
 - +2 Scythes
-- +80% Scythe speed (Scythes can hit once per rotation, so this is effectively an attack speed buff)
+- +80% Scythe speed (Scythes can hit once per rotation, so this is an attack speed buff)
 - -4 Barriers
 - +0.5s Block CD
 
 ### Soul Scythe
 [Rare]
-Temporarily gain a scythe each time you get a kill
+*Requires Harvester*
+Temporarily gain a scythe each time you get a kill (extra scythes last until the end of the round)
 
 ### Death's Blade
 [Rare]
@@ -101,7 +106,7 @@ Your scythes deal at least 15% of the target's current health
 ### Dark Harvest
 [Uncommon]
 *Requires Harvest Sickle*
-Lifesteal adds bonus damage to your scythes
+Lifesteal adds bonus damage to your scythes (100% lifesteal = +100% extra damage)
 - +25% Lifesteal
 
 ### Stargazer
@@ -120,16 +125,18 @@ Gain a powerful comet that roams the map
 [Scarce]
 *Requires Stargazer*
 Your comets grow larger the closer they are to you
+- +50% Comet damage
 
 ### Stardust
 [Scarce]
 *Requires Stargazer*
 Your comets leave damaging trails of stardust
+- +25% Comet speed
 
 ### Stellar Impact
 [Exotic]
 *Requires Stargazer*
-Your comets get bonus damage when moving quickly
+Your comets get bonus damage when moving quickly (Up to 50% damage multiplied by your comet speed stat)
 </details>
 
 <details open>
@@ -139,29 +146,33 @@ Your comets get bonus damage when moving quickly
 ### Mirror Mage
 [Uncommon Class]
 Reflect your bullets across the mirror (Your bullets are reflected horizontally across the screen)
-- -35% Damage
+- -25% Damage
 
 ### Polished Mirror
 [Uncommon]
 *Requires Mirror Mage*
 See others' reflections (A preview of each other player is shown in each reflection segment based on your current cards)
+- +35% Projectile speed
+- +30% Movement speed
+- +1 Ammo
 
 ### Prism
 [Uncommon]
 *Requires Mirror Mage*
 Additionally refract your bullets across the prism (Your bullets are reflected vertically across the screen, for a total of 4 bullets)
-- -50% Damage
+- -15% Damage
 
 ### Reflection Replacement
 [Uncommon]
 *Requires Mirror Mage*
 Reflect across the mirror and block when you take damage (3 second cooldown. This block triggers additional blocks)
-- -35% HP
+- +15% HP
 
 ### Mirror Mind
 [Common]
 *Requires Reflection Replacement*
 Swap minds with your reflection when you would cross the mirror
+- +35% Health
 - +30% Movement speed
 - +15% Jump height
 - +1 Jump
@@ -170,6 +181,7 @@ Swap minds with your reflection when you would cross the mirror
 [Uncommon]
 *Requires Reflection Replacement*
 Fracture the mirror when you take damage (Fracture deals damage based on your gun's damage and has 1 second duration)
+- +50% Health
 - +100% Gravity
 
 ### Voidseer
@@ -196,19 +208,21 @@ Slip through the cracks more frequently
 *Requires Voidseer*
 Players you shoot are sometimes reflected (50% chance)
 Be careful because they get a block after (This block does not trigger additional blocks)
+- +35% Health
 
 ### Forced Refraction
 [Uncommon]
 *Requires Forced Reflection*
 Players you shoot are sometimes refracted (50% chance. Independent of Forced Reflection)
 Be careful because they get a block after (This block does not trigger additional blocks, will stack with the Forced Reflection block)
+- +35% Health
 
 ### Kaleido Witch
 [Rare Subclass]
 *Requires Prism and Mirror Mind*
 Refract your bullets further within the kaleidoscope (Your bullets are additionally reflected across the 2 diagonals, for a total of 8 bullets)
 - No Bullet gravity
-- -50% Damage
+- -25% Damage
 
 ### Emerald Glitter
 [Uncommon]
@@ -231,4 +245,107 @@ Some reflections chill enemies (2 of the 8 kaleidoscope sections)
 *Requires Kaleido Witch*
 Your bullets get an extra bounce for each remaining ammo you have (in addition to the bounce from this card)
 - +1 Bullet bounce
+</details>
+
+<details open>
+<summary>Knight</summary>
+<br>
+
+### Knight
+[Common Class]
+Replaces your gun with a sword. Projectile speed affects sword length
+- +25% Health
+- +15% Movement speed
+
+### Longsword
+[Common]
+*Requires Knight*
+- +50% Projectile speed
+- -15% ATKSPD
+
+### Lunge
+[Uncommon]
+*Requires Knight*
+Attacking with your sword launches you forwards.
+- +30% ATKSPD
+- +15% Movement speed
+- -15% Damage
+
+### Parry
+[Scarce]
+*Requires Knight*
+You can block bullets with your sword
+- -15% Block CD
+- +15% Movement speed
+
+### Crusader
+[Uncommon Subclass]
+*Requires Parry*
+Bear a shield as a holy warrior (Your shield is held in front of you as a physical barrier. It follows your aim direction at a moderate pace)
+- +50% Health
+- +15% Damage
+
+### Heavily Armored
+[Common]
+*Requires Crusader*
+- +50% Health
+- -15% Movement speed
+
+### Shield Bash
+[Uncommon]
+*Requires Crusader*
+Launch enemies with your shield when you block
+- +30% Damage
+- +0.25s Block CD
+
+### Divine Smite
+[Uncommon]
+*Requires Crusader*
+Smite enemies through their block
+- +50% Damage
+- -15% ATKSPD
+
+### Absolute Kill
+[Legendary]
+*Requires Divine Smite*
+Your sword kills unconditionally, bypassing even revivals
+- -30% ATKSPD
+
+### Spectre
+[Rare Subclass]
+*Requires Lunge*
+Command a ghostly sword which strikes when you block
+- +30% Health
+- +25% Lifesteal
+- -15% ATKSPD
+
+### Ghostly Form
+[Uncommon]
+*Requires Spectre*
+*Step further into the other side*
+- +30% Lifesteal
+- +15% Movement speed
+- +15% Bullet speed
+- +1 Jump
+- -15% Damage
+
+### Refine Blade
+[Scarce]
+*Requires Spectre*
+- +50% Ghost blade size (additive)
+- +0.25s Block CD
+
+### Spectral Saber
+[Uncommon]
+*Requires Spectre*
+Your sword can pierce through walls and hit multiple targets
+- +50% Bullet speed
+- -15% Damage
+
+### Phantom Lunge
+[Rare]
+*Requires Spectral Saber*
+Lunging allows you to temporarily phase through walls. You will rapidly take damage if you stay inside a wall (25% max health/second)
+- +50% Lifesteal
+- +15% Health
 </details>

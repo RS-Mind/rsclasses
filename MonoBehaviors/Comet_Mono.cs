@@ -62,7 +62,7 @@ namespace RSClasses.MonoBehaviours
 
                 foreach (Comet comet in comets)
                 {
-                    comet.photonView.RPC("SetAttributes", RpcTarget.All, new object[] { player.playerID, (player.data.GetAdditionalData().orbitalRadius * 0.5f) + 0.5f });
+                    comet.photonView.RPC("SetAttributes", RpcTarget.All, new object[] { player.playerID, (player.data.GetAdditionalData().orbitalRadius) + 0.5f });
                 }
             }
             // Regenerate Comet List

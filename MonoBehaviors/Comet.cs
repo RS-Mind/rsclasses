@@ -25,17 +25,20 @@ namespace RSClasses.MonoBehaviors
         private Dictionary<int, float> hitPlayers = new Dictionary<int, float>();
         private System.Random rand = new System.Random(DateTime.Now.Millisecond); // Only used cosmetically, no syncing necessary
 
+        private const float dustInterval = 0.1f;
+        private const float dustDuration = 2.5f;
+
         public void DoHit()
         {
             if (stardust) // Spawn stardust
             {
                 dustTimer += Time.fixedDeltaTime;
-                while (dustTimer > 0.15f)
+                while (dustTimer > dustInterval)
                 {
                     var newDust = PhotonNetwork.Instantiate("Stardust", gameObject.transform.position, new Quaternion(0, 0, rand.Next() % 360, rand.Next() % 360)); // They have random angles
                     newDust.GetComponent<PhotonView>().RPC("SetValues", RpcTarget.All, new object[] { player.playerID, rand.Next(-120, 120) }); // Set starting values
-                    RSClasses.instance.ExecuteAfterSeconds(2f, () => PhotonNetwork.Destroy(newDust)); // They only last 2 seconds
-                    dustTimer -= 0.15f;
+                    RSClasses.instance.ExecuteAfterSeconds(dustDuration, () => PhotonNetwork.Destroy(newDust)); // They only last 2 seconds
+                    dustTimer -= dustInterval;
                 }
             }
 

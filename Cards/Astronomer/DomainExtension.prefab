@@ -73,6 +73,10 @@ MonoBehaviour:
     amount: +35%
     simepleAmount: 0
     stat: Orbital Size
+  - positive: 1
+    amount: +15%
+    simepleAmount: 0
+    stat: Movement speed
   - positive: 0
     amount: -10%
     simepleAmount: 0
@@ -104,7 +108,7 @@ MonoBehaviour:
   objectsAddedToPlayer: []
   sizeMultiplier: 1
   health: 1
-  movementSpeed: 1
+  movementSpeed: 1.15
   jump: 1
   gravity: 1
   slow: 0
@@ -302,18 +306,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b717b60ed33fa4abaed6e5da1f2900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scythes: 0
+  barrierSpeed: 1
+  cometDamage: 1
+  cometSpeed: 1
+  fractureSize: 1
+  orbitalRadius: 1.35
+  reflectionCooldown: 1
   scytheDamage: 0.9
   scytheSpeed: 1
   barriers: 0
-  barrierSpeed: 1
-  orbitalRadius: 1.35
   comets: 0
-  cometDamage: 1
-  cometSpeed: 1
   fractureDuration: 0
-  fractureSize: 1
-  reflectionCooldown: 1
+  scythes: 0
 --- !u!114 &114234441131743380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceType: 0
+  categoryPath: Astronomer
   CategoryPath: Astronomer
-  UsePriority: 0
+  categoryAsset: {fileID: 0}
   Priority: 0

@@ -67,7 +67,19 @@ MonoBehaviour:
   soundDisableBlockBasic: 0
   cardName: Polished Mirror
   cardDestription: See others' reflections
-  cardStats: []
+  cardStats:
+  - positive: 1
+    amount: +35%
+    simepleAmount: 0
+    stat: Projectile speed
+  - positive: 1
+    amount: +30%
+    simepleAmount: 0
+    stat: Movement speed
+  - positive: 1
+    amount: +1
+    simepleAmount: 0
+    stat: Ammo
   rarity: 1
   cardArt: {fileID: 1725955071777358353, guid: 23b878c1b0f4f5444960e438f0bf5964, type: 3}
   sprite: {fileID: 21300000, guid: 5b742d082ddefaa489468fac5e1e3bff, type: 2}
@@ -76,7 +88,7 @@ MonoBehaviour:
   categories: []
   allowMultiple: 0
   blacklistedCategories: []
-  cardBase: {fileID: 1720757555582362, guid: e6eab60b3c00f114c862472c49606aab, type: 3}
+  cardBase: {fileID: 1720757555582362, guid: 6f030bca68b83094f96d30bf90e902ec, type: 3}
   colorTheme: 5
 --- !u!114 &114081461618018503
 MonoBehaviour:
@@ -96,7 +108,7 @@ MonoBehaviour:
   objectsAddedToPlayer: []
   sizeMultiplier: 1
   health: 1
-  movementSpeed: 1
+  movementSpeed: 1.3
   jump: 1
   gravity: 1
   slow: 0
@@ -158,14 +170,14 @@ MonoBehaviour:
   recoilMuiltiplier: 1
   knockback: 1
   attackSpeed: 1
-  projectileSpeed: 1
+  projectileSpeed: 1.35
   projectielSimulatonSpeed: 1
   gravity: 1
   damageAfterDistanceMultiplier: 1
   bulletDamageMultiplier: 1
   multiplySpread: 1
   shakeM: 1
-  ammo: 0
+  ammo: 1
   ammoReg: 0
   size: 0
   overheatMultiplier: 0
@@ -308,6 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceType: 0
+  categoryPath: Mirror Mage
   CategoryPath: Mirror Mage
-  UsePriority: 0
+  categoryAsset: {fileID: 0}
   Priority: 0

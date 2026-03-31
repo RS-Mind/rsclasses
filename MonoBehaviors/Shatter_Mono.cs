@@ -14,8 +14,6 @@ namespace RSClasses.MonoBehaviours
         GameObject reflection;
         System.Random rand = new System.Random(DateTime.Now.Millisecond);
         List<GameObject> shatters = new List<GameObject>();
-        SoundEvent reflectSound;
-        SoundEvent shatterSound;
         private float cooldownTimer = 0f;
         private Player player;
         private SoundParameterIntensity soundParameterIntensity = new SoundParameterIntensity(0f, UpdateMode.Continuous);
@@ -27,8 +25,6 @@ namespace RSClasses.MonoBehaviours
 
         private void Start()
         {
-            shatterSound = RSClasses.shatterSound;
-            reflectSound = RSClasses.reflectSound;
 
             if (player.data.view.IsMine) // If your view, create your reflection
             {
@@ -64,8 +60,9 @@ namespace RSClasses.MonoBehaviours
                         if (healthHandler)
                         {
                             Player hitPlayer = (Player)healthHandler.GetFieldValue("player");
-                            if (hitPlayer.playerID != player.playerID) healthHandler.CallTakeDamage(((Vector2)hitPlayer.transform.position - (Vector2)shatter.transform.position).normalized * Time.fixedDeltaTime * player.data.weaponHandler.gun.damage,
-                           (Vector2)this.transform.position, gameObject, player);
+                            if (hitPlayer.playerID != player.playerID) healthHandler.CallTakeDamage(
+                                ((Vector2)hitPlayer.transform.position - (Vector2)shatter.transform.position).normalized * Time.fixedDeltaTime * player.data.weaponHandler.gun.damage * 2f,
+                                (Vector2)this.transform.position, gameObject, player);
                         }
                     }
                 }
@@ -77,7 +74,7 @@ namespace RSClasses.MonoBehaviours
             if (cooldownTimer == 0) // Only if cooldown is up
             {
                 soundParameterIntensity.intensity = (Optionshandler.vol_Sfx / 1.15f) * Optionshandler.vol_Master; // Play sfx
-                SoundManager.Instance.PlayAtPosition(reflectSound, player.transform, player.transform, new SoundParameterBase[]
+                SoundManager.Instance.PlayAtPosition(RSClasses.reflectSound, player.transform, player.transform, new SoundParameterBase[]
                 {
                     soundParameterIntensity
                 });
@@ -96,7 +93,7 @@ namespace RSClasses.MonoBehaviours
             if (cooldownTimer == 0) // Only if cooldown is up
             {
                 soundParameterIntensity.intensity = (Optionshandler.vol_Sfx / 1f) * Optionshandler.vol_Master; // Play sfx
-                SoundManager.Instance.PlayAtPosition(shatterSound, player.transform, player.transform, new SoundParameterBase[]
+                SoundManager.Instance.PlayAtPosition(RSClasses.shatterSound, player.transform, player.transform, new SoundParameterBase[]
                 {
                     soundParameterIntensity
                 });

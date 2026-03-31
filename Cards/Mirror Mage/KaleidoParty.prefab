@@ -80,7 +80,7 @@ MonoBehaviour:
   categories: []
   allowMultiple: 0
   blacklistedCategories: []
-  cardBase: {fileID: 1720757555582362, guid: e6eab60b3c00f114c862472c49606aab, type: 3}
+  cardBase: {fileID: 1720757555582362, guid: 6f030bca68b83094f96d30bf90e902ec, type: 3}
   colorTheme: 8
 --- !u!114 &114081461618018503
 MonoBehaviour:
@@ -205,7 +205,23 @@ MonoBehaviour:
   currentCharge: 0
   useCharge: 0
   dontAllowAutoFire: 0
-  objectsToSpawn: []
+  objectsToSpawn:
+  - effect: {fileID: 0}
+    direction: 0
+    spawnOn: 0
+    spawnAsChild: 0
+    numberOfSpawns: 1
+    normalOffset: 0
+    stickToBigTargets: 0
+    stickToAllTargets: 0
+    zeroZ: 0
+    AddToProjectile: {fileID: 1266546747473671, guid: 73d05b344e4748140a3179e4447d77fa,
+      type: 3}
+    removeScriptsFromProjectileObject: 0
+    scaleStacks: 0
+    scaleStackM: 0.5
+    scaleFromDamage: 0
+    stacks: 0
   projectileColor: {r: 0, g: 0, b: 0, a: 1}
   waveMovement: 0
   teleport: 0
@@ -312,6 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceType: 0
+  categoryPath: Mirror Mage/Kaleido Witch
   CategoryPath: Mirror Mage/Kaleido Witch
-  UsePriority: 0
+  categoryAsset: {fileID: 0}
   Priority: 0

@@ -75,7 +75,7 @@ MonoBehaviour:
     simepleAmount: 0
     stat: Barriers
   - positive: 1
-    amount: +15%
+    amount: +35%
     simepleAmount: 0
     stat: Health
   rarity: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   AddObjectToPlayer: {fileID: 0}
   objectsAddedToPlayer: []
   sizeMultiplier: 1
-  health: 1.15
+  health: 1.35
   movementSpeed: 1
   jump: 1
   gravity: 1
@@ -315,6 +315,7 @@ MonoBehaviour:
   comets: 0
   fractureDuration: 0
   scythes: 0
+  bladeSize: 0
 --- !u!114 &114542593379680224
 MonoBehaviour:
   m_ObjectHideFlags: 0

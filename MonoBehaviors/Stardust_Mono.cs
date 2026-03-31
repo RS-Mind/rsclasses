@@ -51,7 +51,7 @@ namespace RSClasses.MonoBehaviours
                     }
                     if (damageable)
                     {
-                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * (player.data.GetAdditionalData().cometDamage / 10),
+                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * (player.data.GetAdditionalData().cometDamage / 5),
                             (Vector2)this.transform.position, this.gameObject, player);
                         PhotonNetwork.Destroy(this.gameObject);
                     }

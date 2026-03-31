@@ -3,7 +3,7 @@ using System.Collections;
 
 // Handles class setup for Astronomer
 
-namespace RSClasses.Cards.Astronomer
+namespace RSClasses
 {
     class AstronomerClass : ClassHandler
     {

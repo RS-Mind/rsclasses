@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 114193385136356738}
   - component: {fileID: 114327723700026574}
   - component: {fileID: 114450784647809482}
+  - component: {fileID: 114949040268193810}
   m_Layer: 0
   m_Name: Stardust
   m_TagString: Untagged
@@ -67,7 +68,11 @@ MonoBehaviour:
   soundDisableBlockBasic: 0
   cardName: Stardust
   cardDestription: Your comets leave damaging trails of stardust
-  cardStats: []
+  cardStats:
+  - positive: 1
+    amount: +25%
+    simepleAmount: 0
+    stat: Comet speed
   rarity: 0
   cardArt: {fileID: 7322369389673769490, guid: ac3194785bac8f6489ab6bf7eafd7d4a, type: 3}
   sprite: {fileID: 21300000, guid: 5b742d082ddefaa489468fac5e1e3bff, type: 2}
@@ -307,6 +312,33 @@ MonoBehaviour:
   m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceType: 0
+  categoryPath: Astronomer/Stargazer
   CategoryPath: Astronomer/Stargazer
-  UsePriority: 0
+  categoryAsset: {fileID: 0}
   Priority: 0
+--- !u!114 &114949040268193810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b717b60ed33fa4abaed6e5da1f2900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrierSpeed: 1
+  cometDamage: 1
+  cometSpeed: 1.25
+  fractureSize: 1
+  orbitalRadius: 1
+  reflectionCooldown: 1
+  scytheDamage: 1
+  scytheSpeed: 1
+  barriers: 0
+  comets: 0
+  fractureDuration: 0
+  scythes: 0
+  bladeSize: 0

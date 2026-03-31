@@ -80,7 +80,7 @@ MonoBehaviour:
   categories: []
   allowMultiple: 0
   blacklistedCategories: []
-  cardBase: {fileID: 1720757555582362, guid: e6eab60b3c00f114c862472c49606aab, type: 3}
+  cardBase: {fileID: 1720757555582362, guid: 6f030bca68b83094f96d30bf90e902ec, type: 3}
   colorTheme: 8
 --- !u!114 &114081461618018503
 MonoBehaviour:

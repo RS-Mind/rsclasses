@@ -1,5 +1,28 @@
 ### Patch Notes:
 
+#### 3.0.0
+- Added Knight, a melee class with 2 subclasses: Crusader and Spectre. 14 total class cards.
+- Bigger Barriers gives more health (+15% -> +35%)
+- Domain Extension now gives +15% movement speed
+- Faster Barriers now gives +25% health
+- Gravity Well gives more movement speed (+25% -> +35%) and reduces health by less (-25% -> -15%)
+- Guardian gives more health (+25% -> +75%)
+- Healing Shield now gives health (+35%)
+- Sharper Scythes increases scythe damage by more (+50% -> +65%) and decreases damage by less (-25% -> -15%)
+- Adjusted Dark Harvest damage calculation
+- Comets are twice as big
+- Icemelt now increases comet damage (+50%)
+- Stardust now spawns dust more frequently (0.15s -> 0.1s), spawned dust lasts longer (2s -> 2.5s), and deals more damage (1/10 -> 1/5 comet damage). Now gives +25% Comet speed
+- Mirror mage bullets now bounce off of and are destroyed from hitting mirrors.
+- Fracture now gives health (+50%)
+- Reduced Mirror Mage's damage penalty (-35% -> -25%)
+- Mirror Mind now increases health (+35%)
+- Polished Mirror now gives projectile speed (+35%), movement speed (+30%), and ammo (+1)
+- Reduced Prism's damage penalty (-50% -> -15%)
+- Reflection Replacement now increases health instead of decreasing (-35% -> +15%)
+- Forced Reflection and Forced Refraction both increase health (+35%)
+- Reduced Kaleido Witch's damage penalty (-50% -> -25%)
+
 #### 2.5.4
 - Removed Astronomer's damage penalty
 - Bigger Barriers no longer increases block cooldown. Now gives +15% health

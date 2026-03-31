@@ -21,6 +21,7 @@ namespace RSClasses.Utilities // Adds additional variables to the player's stats
         public float fractureDuration;
         public float fractureSize;
         public float reflectionCooldown;
+        public float bladeSize;
 
         public PlayerAdditionalData()
         {
@@ -38,6 +39,7 @@ namespace RSClasses.Utilities // Adds additional variables to the player's stats
             fractureDuration = 1f;
             fractureSize = 0.0225f;
             reflectionCooldown = 3f;
+            bladeSize = 1f;
         }
         public void Reset()
         {
@@ -55,6 +57,7 @@ namespace RSClasses.Utilities // Adds additional variables to the player's stats
             fractureDuration = 1f;
             fractureSize = 0.0225f;
             reflectionCooldown = 3f;
+            bladeSize = 1f;
         }
     }
     public static class PlayerExtension

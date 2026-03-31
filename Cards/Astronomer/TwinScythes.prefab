@@ -77,7 +77,7 @@ MonoBehaviour:
   - positive: 0
     amount: -20%
     simepleAmount: 0
-    stat: Scythe Damage
+    stat: Scythe damage
   rarity: 0
   cardArt: {fileID: 9099243542174299042, guid: 54a23f05f36b80a49b46d711e812209a, type: 3}
   sprite: {fileID: 21300000, guid: 5b742d082ddefaa489468fac5e1e3bff, type: 2}
@@ -315,6 +315,7 @@ MonoBehaviour:
   comets: 0
   fractureDuration: 0
   scythes: 2
+  bladeSize: 0
 --- !u!114 &114436291963131122
 MonoBehaviour:
   m_ObjectHideFlags: 0

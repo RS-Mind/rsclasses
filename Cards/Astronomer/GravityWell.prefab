@@ -70,7 +70,7 @@ MonoBehaviour:
   cardDestription: 
   cardStats:
   - positive: 1
-    amount: +25%
+    amount: +35%
     simepleAmount: 0
     stat: Movement Speed
   - positive: 1
@@ -78,7 +78,7 @@ MonoBehaviour:
     simepleAmount: 0
     stat: Orbital Speed
   - positive: 0
-    amount: -25%
+    amount: -15%
     simepleAmount: 0
     stat: HP
   rarity: 1
@@ -107,8 +107,8 @@ MonoBehaviour:
   AddObjectToPlayer: {fileID: 0}
   objectsAddedToPlayer: []
   sizeMultiplier: 1
-  health: 0.75
-  movementSpeed: 1.25
+  health: 0.85
+  movementSpeed: 1.35
   jump: 1
   gravity: 1
   slow: 0
@@ -306,18 +306,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b717b60ed33fa4abaed6e5da1f2900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scythes: 0
+  barrierSpeed: 1.5
+  cometDamage: 1
+  cometSpeed: 1.5
+  fractureSize: 1
+  orbitalRadius: 1
+  reflectionCooldown: 1
   scytheDamage: 1
   scytheSpeed: 1.5
   barriers: 0
-  barrierSpeed: 1.5
-  orbitalRadius: 1
   comets: 0
-  cometDamage: 1
-  cometSpeed: 1.5
   fractureDuration: 0
-  fractureSize: 1
-  reflectionCooldown: 1
+  scythes: 0
 --- !u!114 &114245302005710834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceType: 0
+  categoryPath: Astronomer
   CategoryPath: Astronomer
-  UsePriority: 0
+  categoryAsset: {fileID: 0}
   Priority: 0

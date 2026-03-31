@@ -70,6 +70,10 @@ MonoBehaviour:
 
     <size=50><i><color=#808080ff>Required for </color><color=#124a98ff>Voidseer</i></color></size>'
   cardStats:
+  - positive: 1
+    amount: +50%
+    simepleAmount: 0
+    stat: Health
   - positive: 0
     amount: +100%
     simepleAmount: 0
@@ -82,7 +86,7 @@ MonoBehaviour:
   categories: []
   allowMultiple: 0
   blacklistedCategories: []
-  cardBase: {fileID: 1720757555582362, guid: e6eab60b3c00f114c862472c49606aab, type: 3}
+  cardBase: {fileID: 1720757555582362, guid: 6f030bca68b83094f96d30bf90e902ec, type: 3}
   colorTheme: 5
 --- !u!114 &114081461618018503
 MonoBehaviour:
@@ -101,7 +105,7 @@ MonoBehaviour:
     type: 3}
   objectsAddedToPlayer: []
   sizeMultiplier: 1
-  health: 1
+  health: 1.5
   movementSpeed: 1
   jump: 1
   gravity: 2
@@ -314,6 +318,8 @@ MonoBehaviour:
   m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceType: 0
+  categoryPath: Mirror Mage
   CategoryPath: Mirror Mage
-  UsePriority: 0
+  categoryAsset: {fileID: 0}
   Priority: 0

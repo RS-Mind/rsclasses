@@ -3,7 +3,7 @@ using System.Collections;
 
 // Handles class setup for Mirror Mage
 
-namespace RSClasses.Cards.MirrorMage
+namespace RSClasses
 {
     class MirrorMageClass : ClassHandler
     {

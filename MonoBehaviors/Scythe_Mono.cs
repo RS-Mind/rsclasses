@@ -41,13 +41,13 @@ namespace RSClasses.MonoBehaviours
                 {
                     var damageable = hit.gameObject.GetComponent<Damagable>(); // Grab the damageable object, if any
                     var healthHandler = hit.gameObject.GetComponent<HealthHandler>(); // Grab the opponent's health handler, if any
-                    float bonusDamage = 0f;
-                    if (player.data.currentCards.Contains(CardHolder.cards["Dark Harvest"])) // If the player has Dark Harvest, add the bonus damage from life steal
+                    float bonusDamage = 1f;
+                    if (player.data.currentCards.Contains(CardHolder.cards["Dark Harvest"])) // If the player has Dark Harvest, give bonus damage from life steal
                     {
-                        bonusDamage = (player.data.stats.lifeSteal * 50f);
+                        bonusDamage += player.data.stats.lifeSteal;
                     }
 
-                    float damage = player.data.GetAdditionalData().scytheDamage + bonusDamage;
+                    float damage = player.data.GetAdditionalData().scytheDamage * bonusDamage;
 
                     if (healthHandler) // If the target is a player basically
                     {

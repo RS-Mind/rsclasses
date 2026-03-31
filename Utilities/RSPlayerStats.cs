@@ -20,6 +20,7 @@ namespace RSClasses.Utilities
         public int comets = 0;
         public float fractureDuration = 0;
         public int scythes = 0;
+        public float bladeSize = 0;
 
         public void Apply(Player player)
         {
@@ -35,6 +36,7 @@ namespace RSClasses.Utilities
             player.data.GetAdditionalData().fractureDuration += fractureDuration;
             player.data.GetAdditionalData().fractureSize *= fractureSize;
             player.data.GetAdditionalData().reflectionCooldown *= reflectionCooldown;
+            player.data.GetAdditionalData().bladeSize += bladeSize;
         }
     }
 
