@@ -15,6 +15,7 @@ namespace RSClasses.MonoBehaviours
         public bool initialized = false;
         public bool active = true;
         public bool ableToHit = true;
+        public bool ableToHitMapObject = true;
         private Player player;
         private GameObject scythe;
 
@@ -49,7 +50,7 @@ namespace RSClasses.MonoBehaviours
 
                     float damage = player.data.GetAdditionalData().scytheDamage * bonusDamage;
 
-                    if (healthHandler) // If the target is a player basically
+                    if (healthHandler && ableToHit) // If the target is a player basically
                     {
                         Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
                         SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, this.transform, damageable.transform); // Play sfx
@@ -62,9 +63,9 @@ namespace RSClasses.MonoBehaviours
                             damage = Math.Max(hitPlayer.data.health * 0.15f, damage);
                         }
                     }
-                    if (damageable) // If the target can take damage
+                    if (damageable && ableToHitMapObject) // If the target can take damage
                     {
-                        this.ableToHit = false; // Disable the scythe for the rest of the rotation
+                        this.ableToHitMapObject = false; // Disable the scythe for the rest of the rotation
                         damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * damage,
                             (Vector2)this.transform.position, this.gameObject, player); // Apply damage
                     }
@@ -125,6 +126,7 @@ namespace RSClasses.MonoBehaviours
                 foreach (Scythe scythe in scythes)
                 {
                     scythe.ableToHit = true;
+                    scythe.ableToHitMapObject = true;
                 }
                 angle -= 360;
             }
@@ -135,7 +137,7 @@ namespace RSClasses.MonoBehaviours
             {
                 double thisAngle = angle + (360f / scythes.Count() * index);
                 scythe.UpdatePos(thisAngle, rotation, player.data.GetAdditionalData().orbitalRadius * 2.5f);
-                if (active && scythe.ableToHit) // Trigger scythe hits
+                if (active) // Trigger scythe hits
                 {
                     scythe.DoHit();
                 }

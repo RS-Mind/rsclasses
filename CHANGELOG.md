@@ -1,5 +1,8 @@
 ### Patch Notes:
 
+#### 3.0.1
+- Separated scythe hit timers for map objects and players
+
 #### 3.0.0
 - Added Knight, a melee class with 2 subclasses: Crusader and Spectre. 14 total class cards.
 - Bigger Barriers gives more health (+15% -> +35%)
