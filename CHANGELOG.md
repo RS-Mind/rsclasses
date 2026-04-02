@@ -1,5 +1,11 @@
 ### Patch Notes:
 
+#### 3.0.3
+- Swords no longer get stuck reloading
+
+#### 3.0.2
+- Fixed an issue where a Crusader's shield wouldn't properly disable when they die.
+
 #### 3.0.1
 - Separated scythe hit timers for map objects and players
 

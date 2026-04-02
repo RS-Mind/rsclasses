@@ -83,8 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
   cardName: Knight
-  cardDestription: Replaces your gun with a sword. Projectile speed affects sword
-    length
+  cardDestription: Replaces your gun with a sword. Bullet speed affects sword length
   cardStats:
   - positive: 1
     amount: +25%

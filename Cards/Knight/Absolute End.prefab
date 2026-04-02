@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 114915464028787420}
   - component: {fileID: 114223192309234810}
   m_Layer: 0
-  m_Name: Absolute Kill
+  m_Name: Absolute End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
-  cardName: Absolute Kill
-  cardDestription: Your sword kills unconditionally, bypassing even revivals
+  cardName: Absolute End
+  cardDestription: Your sword kills unconditionally on hit, bypassing even revivals
   cardStats:
   - positive: 0
     amount: -30%

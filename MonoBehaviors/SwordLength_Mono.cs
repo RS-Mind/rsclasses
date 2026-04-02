@@ -31,6 +31,8 @@ namespace RSClasses
             blade.localPosition = new Vector3(0, length / 2f, 0);
             gun.numberOfProjectiles = 1;
             gun.bursts = 1;
+            gun.reloadTime = 0.25f;
+            gun.reloadTimeAdd = 0f;
         }
 
         internal static float CalculateLength(float projectileSpeed)

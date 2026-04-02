@@ -11,7 +11,10 @@ namespace RSClasses
 
         void Update()
         {
-            ammo.SetFieldValue("currentAmmo", 1);
+            ammo.SetFieldValue("currentAmmo", 2);
+            ammo.maxAmmo = 2;
+            ammo.reloadTime = 0.01f;
+            ammo.reloadTimeAdd = 0;
         }
     }
 }

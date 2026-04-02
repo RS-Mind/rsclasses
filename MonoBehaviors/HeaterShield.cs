@@ -22,6 +22,16 @@ namespace RSClasses
             shieldCollider.transform.SetParent(null);
         }
 
+        void OnDisable()
+        {
+            shieldCollider.SetActive(false);
+        }
+
+        void OnEnable()
+        {
+            shieldCollider.SetActive(true);
+        }
+
         void OnDestroy()
         {
             Destroy(shieldCollider);
@@ -29,8 +39,6 @@ namespace RSClasses
 
         void Update()
         {
-            shieldCollider.SetActive(!player.data.dead);
-
             float targetRot = Vector2.SignedAngle(Vector2.up, player.data.aimDirection);
             if (targetRot - currentRot > 180)
                 currentRot += 360;

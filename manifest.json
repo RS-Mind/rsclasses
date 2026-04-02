@@ -1,6 +1,6 @@
 {
     "name": "RSClasses",
-    "version_number": "3.0.1",
+    "version_number": "3.0.3",
     "website_url": "https://github.com/RS-Mind/rsclasses",
     "description": "51 Cards for classes for ROUNDS that leverage unique mechanics.",
     "dependencies": [
@@ -8,6 +8,7 @@
 		"Root-CardThemeLib-1.1.7",
 		"Root-Classes_Manager_Reborn-1.5.5",
 		"RS_Mind-FancyCardBar-1.3.3",
+		"Pykess-GunUnblockablePatch-0.0.0",
         "Pykess-ModdingUtils-0.4.8",
 		"Pykess-PlayerJumpPatch-0.0.2",
 		"CrazyCoders-RarityBundle-0.2.1",

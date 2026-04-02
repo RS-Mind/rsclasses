@@ -530,7 +530,7 @@ MonoBehaviour:
     type: 2}
   maxAmmo: 3
   reloadTime: 2
-  reloadTimeMultiplier: 0
+  reloadTimeMultiplier: 1
   reloadTimeAdd: 0
   reloadAnim: {fileID: 1473072744593492759}
   cooldownRing: {fileID: 4993498981472355792}
