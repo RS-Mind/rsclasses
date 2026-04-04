@@ -260,14 +260,12 @@ namespace RSClasses.MonoBehaviours
             // Remove action when the mono is removed
             gun.ShootPojectileAction -= OnShootProjectileAction;
 
-            // Get rid of our guns
-            Destroy(savedGuns[0]);
-            Destroy(savedGuns[1]);
-            Destroy(savedGuns[2]);
-            Destroy(savedGuns[3]);
-            Destroy(savedGuns[4]);
-            Destroy(savedGuns[5]);
-            Destroy(savedGuns[6]);
+
+            foreach (var gun in savedGuns)
+            {
+                // Get rid of our guns
+                Destroy(gun);
+            }
         }
     }
 }

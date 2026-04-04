@@ -1,4 +1,6 @@
 ### Patch Notes:
+#### 3.0.4:
+- Fixed Knight class definition
 
 #### 3.0.3
 - Swords no longer get stuck reloading

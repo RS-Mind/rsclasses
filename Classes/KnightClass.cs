@@ -18,7 +18,7 @@ namespace RSClasses
             ClassesRegistry.Register(CardHolder.cards["Heavily Armored"], CardType.Card, CardHolder.cards["Crusader"]);
             ClassesRegistry.Register(CardHolder.cards["Divine Smite"], CardType.Gate, CardHolder.cards["Crusader"]);
             ClassesRegistry.Register(CardHolder.cards["Shield Bash"], CardType.Card, CardHolder.cards["Crusader"]);
-            ClassesRegistry.Register(CardHolder.cards["Absolute Kill"], CardType.Card, CardHolder.cards["Divine Smite"]);
+            ClassesRegistry.Register(CardHolder.cards["Absolute End"], CardType.Card, CardHolder.cards["Divine Smite"]);
             ClassesRegistry.Register(CardHolder.cards["Spectre"], CardType.SubClass, CardHolder.cards["Lunge"]);
             ClassesRegistry.Register(CardHolder.cards["Ghostly Form"], CardType.Card, CardHolder.cards["Spectre"]);
             ClassesRegistry.Register(CardHolder.cards["Refine Blade"], CardType.Card, CardHolder.cards["Spectre"]);
