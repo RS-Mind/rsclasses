@@ -73,9 +73,19 @@ namespace RSClasses
                 }
             }
             blade = transform.GetChild(0).gameObject;
-            blade.transform.GetChild(0).GetComponent<Image>().color = player.GetTeamColors().color;
+            blade.transform.GetChild(0).GetComponent<Image>().color = player.GetTeamColors().particleEffect;
             blade.transform.parent = null;
             chargeParticles = blade.GetComponent<ParticleSystem>();
+
+            if (UnboundLib.Extensions.PlayerExtensions.GetAdditionalData(player).colorID == 165)
+            {
+                blade.transform.GetComponent<Image>().color = player.GetTeamColors().color;
+                ParticleSystem.MainModule main = chargeParticles.main;
+                ParticleSystem.MinMaxGradient startColor = main.startColor;
+                startColor.colorMin = player.GetTeamColors().backgroundColor;
+                startColor.colorMax = player.GetTeamColors().color;
+                main.startColor = startColor;
+            }
 
             player.data.block.BlockAction += OnBlock;
         }
@@ -145,11 +155,13 @@ namespace RSClasses
         {
             gameObject.SetActive(!player.data.dead);
             blade.SetActive(!player.data.dead);
+
+            var offset = transform.up * 3;
             switch (status)
             {
                 case (BladeState.Idle):
-                    transform.Rotate(Vector3.forward, -Time.deltaTime * 120);
-                    blade.transform.position = transform.position + transform.up;
+                    transform.Rotate(Vector3.forward, -Time.deltaTime * 60);
+                    blade.transform.position = transform.position + offset;
 
                     bool flag = player.data.aimDirection.x > 0;
                     targetRot = flag ? 0f : 180f;
@@ -166,7 +178,7 @@ namespace RSClasses
                     blade.transform.position += posVel * TimeHandler.deltaTime;
                     break;
                 case (BladeState.Returning):
-                    posVel = FRILerp.Lerp(posVel, (transform.position + transform.up - blade.transform.position) * spring, drag);
+                    posVel = FRILerp.Lerp(posVel, (transform.position + offset - blade.transform.position) * spring, drag);
                     blade.transform.position += posVel * TimeHandler.deltaTime;
 
                     bool flag2 = player.data.aimDirection.x > 0;

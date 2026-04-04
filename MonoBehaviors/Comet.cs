@@ -134,9 +134,9 @@ namespace RSClasses.MonoBehaviors
 
             trailRenderer = gameObject.GetComponentsInChildren<TrailRenderer>().Last(); // Get the trail renderer
 
-            gameObject.GetComponentInChildren<SpriteRenderer>().color = player.GetTeamColors().color * 1.75f; // set the color
-            trailRenderer.material.SetColor(Shader.PropertyToID("_Color"), player.GetTeamColors().color);
-            trailRenderer.material.SetColor(Shader.PropertyToID("_EmissionColor"), player.GetTeamColors().color * 1.75f);
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = player.GetTeamColors().particleEffect * 1.75f; // set the color
+            trailRenderer.material.SetColor(Shader.PropertyToID("_Color"), player.GetTeamColors().particleEffect);
+            trailRenderer.material.SetColor(Shader.PropertyToID("_EmissionColor"), player.GetTeamColors().particleEffect * 1.75f);
         }
 
         public void FixedUpdate()

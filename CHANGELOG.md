@@ -1,4 +1,8 @@
 ### Patch Notes:
+
+#### 3.0.5:
+- Adjusted Ghost Blade position
+
 #### 3.0.4:
 - Fixed Knight class definition
 

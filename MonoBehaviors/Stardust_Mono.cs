@@ -64,7 +64,7 @@ namespace RSClasses.MonoBehaviours
         {
             rotationDirection = rotation; // And random rotation directions
             player = PlayerManager.instance.players.Find(p => p.playerID == ownerID); // Set stardust player and color
-            GetComponent<SpriteRenderer>().color = player.GetTeamColors().color * 1.75f;
+            GetComponent<SpriteRenderer>().color = player.GetTeamColors().particleEffect * 1.75f;
         }
     }
 }

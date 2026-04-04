@@ -174,7 +174,7 @@ namespace RSClasses.MonoBehaviours
 
 
             if (player.data.currentCards.Contains(CardHolder.cards["Guardian"])) color = new Color(0.4f, 1f, 1f); // Change color based on subclass
-            else if (player.data.currentCards.Contains(CardHolder.cards["Stargazer"])) color = player.GetTeamColors().color * 1.75f;
+            else if (player.data.currentCards.Contains(CardHolder.cards["Stargazer"])) color = player.GetTeamColors().particleEffect * 1.75f;
             else if (player.data.currentCards.Contains(CardHolder.cards["Harvester"])) color = new Color(178f / 255f, 0f, 1f);
 
             foreach (Barrier barrier in barriers)
