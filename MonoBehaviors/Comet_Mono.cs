@@ -26,8 +26,23 @@ namespace RSClasses.MonoBehaviours
 
             GameModeManager.AddHook(GameModeHooks.HookPickEnd, PickEnd);
             GameModeManager.AddHook(GameModeHooks.HookBattleStart, BattleStart);
-            GameModeManager.AddHook(GameModeHooks.HookPointStart, PointStart);
             GameModeManager.AddHook(GameModeHooks.HookPointEnd, PointEnd);
+        }
+
+        void OnDisable()
+        {
+            foreach (Comet comet in comets)
+            {
+                comet.gameObject.SetActive(false);
+            }
+        }
+
+        void OnEnable()
+        {
+            foreach (Comet comet in comets)
+            {
+                comet.gameObject.SetActive(true);
+            }
         }
 
         private void FixedUpdate()
@@ -80,7 +95,6 @@ namespace RSClasses.MonoBehaviours
         {
             GameModeManager.RemoveHook(GameModeHooks.HookPickEnd, PickEnd);
             GameModeManager.RemoveHook(GameModeHooks.HookBattleStart, BattleStart);
-            GameModeManager.RemoveHook(GameModeHooks.HookPointStart, PointStart);
             GameModeManager.RemoveHook(GameModeHooks.HookPointEnd, PointEnd);
 
             while (comets.Count() > 0)
@@ -95,18 +109,15 @@ namespace RSClasses.MonoBehaviours
             UpdateStats();
             yield break;
         }
-        IEnumerator PointStart(IGameModeHandler gm)
+        IEnumerator BattleStart(IGameModeHandler gm)
         {
             int index = 0;
             foreach (Comet comet in comets)
             {
-                comet.transform.position = player.transform.position + new Vector3(0, 7.5f - (15*index), 0);
+                comet.transform.position = player.transform.position + new Vector3(0, 7.5f - (15 * index), 0);
                 comet.velocity = new Vector3(0, 0, 0);
                 index++;
             }
-            yield break;
-        }IEnumerator BattleStart(IGameModeHandler gm)
-        {
             active = true;
             yield break;
         }

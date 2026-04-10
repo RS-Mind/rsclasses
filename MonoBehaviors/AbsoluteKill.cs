@@ -3,6 +3,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnboundLib;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using WeaponsManager;
@@ -38,7 +39,9 @@ namespace RSClasses
                 }
                 if (hit.transform.GetComponent<Player>() is Player damagedPlayer && damagedPlayer != null)
                 {
-                    damagedPlayer.data.view.RPC("RPCA_Die", RpcTarget.All, new object[] { hit.normal });
+                    damagedPlayer.data.healthHandler.SetFieldValue("remainingRevives", 0);
+                    if (this.gameObject.GetPhotonView().IsMine)
+                        damagedPlayer.data.view.RPC("RPCA_Die", RpcTarget.All, new object[] { hit.normal });
                 }
                 return HasToReturn.canContinue;
             }

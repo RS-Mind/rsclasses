@@ -75,7 +75,7 @@ MonoBehaviour:
     simepleAmount: 0
     stat: Health
   - positive: 0
-    amount: +100%
+    amount: +50%
     simepleAmount: 0
     stat: Gravity
   rarity: 1
@@ -108,7 +108,7 @@ MonoBehaviour:
   health: 1.5
   movementSpeed: 1
   jump: 1
-  gravity: 2
+  gravity: 1.5
   slow: 0
   slowSlow: 0
   fastSlow: 0

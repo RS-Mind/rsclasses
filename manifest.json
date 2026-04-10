@@ -1,6 +1,6 @@
 {
     "name": "RSClasses",
-    "version_number": "3.0.5",
+    "version_number": "3.1.0",
     "website_url": "https://github.com/RS-Mind/rsclasses",
     "description": "51 Cards for classes for ROUNDS that leverage unique mechanics.",
     "dependencies": [

@@ -67,7 +67,7 @@ namespace RSClasses.Utilities // Adds actions to players
     {
         private static void Postfix(ref PlayerActions __result)
         {
-            __result.GetAdditionalData().selfHarm.AddDefaultBinding(Key.E);
+            __result.GetAdditionalData().selfHarm.AddDefaultBinding(Key.R);
         }
     }
 

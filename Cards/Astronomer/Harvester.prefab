@@ -74,7 +74,7 @@ MonoBehaviour:
     simepleAmount: 0
     stat: Scythes
   - positive: 1
-    amount: +80%
+    amount: +20%
     simepleAmount: 0
     stat: Scythe speed
   - positive: 0
@@ -310,18 +310,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b717b60ed33fa4abaed6e5da1f2900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scythes: 2
-  scytheDamage: 1
-  scytheSpeed: 1.8
-  barriers: -4
   barrierSpeed: 1
-  orbitalRadius: 1
-  comets: 0
   cometDamage: 1
   cometSpeed: 1
-  fractureDuration: 0
   fractureSize: 1
+  orbitalRadius: 1
   reflectionCooldown: 1
+  scytheDamage: 1
+  scytheSpeed: 1.2
+  barriers: -4
+  comets: 0
+  fractureDuration: 0
+  scythes: 2
+  bladeSize: 0
 --- !u!114 &114751245961895188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +349,8 @@ MonoBehaviour:
   m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceType: 0
+  categoryPath: Astronomer/Harvester
   CategoryPath: Astronomer/Harvester
-  UsePriority: 0
+  categoryAsset: {fileID: 0}
   Priority: 0

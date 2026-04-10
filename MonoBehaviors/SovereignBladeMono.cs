@@ -151,11 +151,18 @@ namespace RSClasses
             }
         }
 
+        void OnEnable()
+        {
+            blade.SetActive(true);
+        }
+
+        void OnDisable()
+        {
+            blade.SetActive(false);
+        }
+
         void Update()
         {
-            gameObject.SetActive(!player.data.dead);
-            blade.SetActive(!player.data.dead);
-
             var offset = transform.up * 3;
             switch (status)
             {
@@ -202,13 +209,13 @@ namespace RSClasses
             chargeParticles.Play();
             soundParameterIntensity.intensity = (Optionshandler.vol_Sfx / 1f) * Optionshandler.vol_Master; // Play sfx
             SoundManager.Instance.PlayAtPosition(RSClasses.sovereignBladeChargeSound, transform, transform, new SoundParameterBase[] { soundParameterIntensity });
-            RSClasses.instance.ExecuteAfterSeconds(0.25f, () => status = BladeState.Attacking);
-            RSClasses.instance.ExecuteAfterSeconds(0.35f, () => {
+            RSClasses.instance.ExecuteAfterSeconds(0.5f, () => status = BladeState.Attacking);
+            RSClasses.instance.ExecuteAfterSeconds(0.6f, () => {
                 GamefeelManager.GameFeel(blade.transform.right * 10f);
                 SoundManager.Instance.PlayAtPosition(RSClasses.sovereignBladeStrikeSound, transform, transform, new SoundParameterBase[] { soundParameterIntensity });
                 });
-            RSClasses.instance.ExecuteAfterSeconds(1.25f, () => status = BladeState.Returning);
-            RSClasses.instance.ExecuteAfterSeconds(1.5f, () => status = BladeState.Idle);
+            RSClasses.instance.ExecuteAfterSeconds(1.5f, () => status = BladeState.Returning);
+            RSClasses.instance.ExecuteAfterSeconds(1.75f, () => status = BladeState.Idle);
         }
 
         void OnBlock(BlockTrigger.BlockTriggerType trigger)

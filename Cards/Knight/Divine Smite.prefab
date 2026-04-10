@@ -84,7 +84,7 @@ MonoBehaviour:
   cardName: Divine Smite
   cardDestription: 'Smite enemies through their block
 
-    <size=50><i><color=#808080ff>Required for </color><color=#cd7b29ff>Absolute Kill</color>'
+    <size=50><i><color=#808080ff>Required for </color><color=#cd7b29ff>Absolute End</color>'
   cardStats:
   - positive: 1
     amount: +50%

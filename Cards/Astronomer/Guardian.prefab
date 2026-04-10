@@ -78,9 +78,9 @@ MonoBehaviour:
     simepleAmount: 0
     stat: HP
   - positive: 1
-    amount: -0.25s
+    amount: +1
     simepleAmount: 0
-    stat: Block CD
+    stat: Block
   - positive: 1
     amount: +100%
     simepleAmount: 0
@@ -257,12 +257,12 @@ MonoBehaviour:
   cooldown: 0
   counter: 1000
   cdMultiplier: 1
-  cdAdd: -0.25
+  cdAdd: 0
   forceToAdd: 0
   forceToAddUp: 0
   autoBlock: 0
   blockedThisFrame: 0
-  additionalBlocks: 0
+  additionalBlocks: 1
   healing: 0
   blockedAtPos: {x: 0, y: 0, z: 0}
   delayOtherActions: 0
@@ -326,6 +326,7 @@ MonoBehaviour:
   comets: 0
   fractureDuration: 0
   scythes: -4
+  bladeSize: 0
 --- !u!114 &114660406320847416
 MonoBehaviour:
   m_ObjectHideFlags: 0

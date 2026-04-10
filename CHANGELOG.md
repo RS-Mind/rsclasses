@@ -1,5 +1,18 @@
 ### Patch Notes:
 
+#### 3.1.0:
+- Buffed longsword's bullet speed and fixed incorrect stat name (+50% -> +100%)
+- Reduced Fracture's gravity increase (+100% -> +50%)
+- Changed the default hotkey for Voidseer to avoid overlap with WeaponsManager (E -> R)
+- Swapped Guardian's block CD reduction for an additional block
+- Nerfed Gravity Well's movement speed and orbital speed (+35%/+50% -> +25%/+25%)
+- Nerfed Harvester's scythe speed increase (+80% -> + 20%)
+- Increased the startup delay for Spectre's Ghost Sword (0.25s -> 0.5s).
+- Removed scythe knockback to improve the matchup between Astronomer and Knight
+- Fixed issues with Absolute End not properly killing players with revives
+- Fixed miscellaneous comet issues
+- Fixed Mirror Mage visualizers (from being a mirror mage's opponent or having Polished Mirror) not disabling on your death
+
 #### 3.0.5:
 - Adjusted Ghost Blade position
 

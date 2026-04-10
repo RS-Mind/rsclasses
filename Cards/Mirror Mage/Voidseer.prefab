@@ -68,7 +68,7 @@ MonoBehaviour:
   cardName: Voidseer
   cardDestription: 'Peer through the cracks in the mirror and into the beyond.
 
-    Press ''E'' or DPad-Up to deal damage to yourself'
+    Press ''R'' or DPad-Up to deal damage to yourself'
   cardStats:
   - positive: 1
     amount: +25%

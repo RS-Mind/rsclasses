@@ -85,9 +85,9 @@ MonoBehaviour:
   cardDestription: 
   cardStats:
   - positive: 1
-    amount: +50%
+    amount: +100%
     simepleAmount: 0
-    stat: Projectile speed
+    stat: Bullet speed
   - positive: 0
     amount: -15%
     simepleAmount: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   recoilMuiltiplier: 1
   knockback: 1
   attackSpeed: 1.15
-  projectileSpeed: 1.5
+  projectileSpeed: 2
   projectielSimulatonSpeed: 1
   gravity: 1
   damageAfterDistanceMultiplier: 1

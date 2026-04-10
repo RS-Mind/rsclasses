@@ -28,8 +28,8 @@ Increases the size of orbitals and their orbits
 
 ### Gravity Well
 [Exotic]
-- +35% Speed
-- +50% Orbital speed
+- +25% Speed
+- +25% Orbital speed
 - -15% Health
 
 ### Sharper Scythes
@@ -53,7 +53,7 @@ Increases the size of orbitals and their orbits
 Stalwart Defenders. Their barriers defend them from all bullets
 - +2 Barriers
 - +75% Health
-- -0.25s Block cooldown
+- +1 Block
 - +100% Barrier size
 - -4 Scythes
 
@@ -83,7 +83,7 @@ An impenetrable ring of light
 *Requires Bigger Barriers and Twin Scythes*
 Reapers of souls. Defense is not their concern
 - +2 Scythes
-- +80% Scythe speed (Scythes can hit once per rotation, so this is an attack speed buff)
+- +20% Scythe speed (Scythes can hit once per rotation, so this is an attack speed buff)
 - -4 Barriers
 - +0.5s Block CD
 
@@ -182,13 +182,13 @@ Swap minds with your reflection when you would cross the mirror
 *Requires Reflection Replacement*
 Fracture the mirror when you take damage (Fracture deals damage based on your gun's damage and has 1 second duration)
 - +50% Health
-- +100% Gravity
+- +50% Gravity
 
 ### Voidseer
 [Uncommon Subclass]
 *Requires Fracture*
 Peer through the cracks in the mirror and into the beyond
-Press 'E' or DPad-Up to deal damage to yourself (1 damage)
+Press 'R' or DPad-Up to deal damage to yourself (1 damage)
 - +25% Life steal
 
 ### Shatter
@@ -260,7 +260,7 @@ Replaces your gun with a sword. Projectile speed affects sword length
 ### Longsword
 [Common]
 *Requires Knight*
-- +50% Projectile speed
+- +100% Projectile speed
 - -15% ATKSPD
 
 ### Lunge
@@ -305,7 +305,7 @@ Smite enemies through their block
 - +50% Damage
 - -15% ATKSPD
 
-### Absolute Kill
+### Absolute End
 [Legendary]
 *Requires Divine Smite*
 Your sword kills unconditionally, bypassing even revivals

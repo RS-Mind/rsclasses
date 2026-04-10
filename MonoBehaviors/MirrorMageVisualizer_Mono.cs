@@ -14,6 +14,17 @@ namespace RSClasses.MonoBehaviours
             player = GetComponentInParent<Player>(); // Get player
         }
 
+        public void OnDisable()
+        {
+            foreach (List<GameObject> reflectionList in reflections.Values)
+            {
+                foreach (GameObject reflection in reflectionList)
+                {
+                    reflection.SetActive(false);
+                }
+            }
+        }
+
         public void Update()
         {
             if (player.data.view.IsMine) // Only run on card owner's client

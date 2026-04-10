@@ -54,7 +54,6 @@ namespace RSClasses.MonoBehaviours
                     {
                         Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
                         SoundManager.Instance.PlayAtPosition(healthHandler.soundBounce, this.transform, damageable.transform); // Play sfx
-                        healthHandler.CallTakeForce(((Vector2)hitPlayer.transform.position - (Vector2)scythe.transform.position).normalized * 2500, ForceMode2D.Impulse, true); // Apply knockback
                         this.ableToHit = false; // Disable the scythe for the rest of the rotation
                         if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame) { continue; } // Skip everything else if they blocked
 

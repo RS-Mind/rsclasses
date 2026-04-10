@@ -70,11 +70,11 @@ MonoBehaviour:
   cardDestription: 
   cardStats:
   - positive: 1
-    amount: +35%
+    amount: +25%
     simepleAmount: 0
     stat: Movement Speed
   - positive: 1
-    amount: +50%
+    amount: +25%
     simepleAmount: 0
     stat: Orbital Speed
   - positive: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   objectsAddedToPlayer: []
   sizeMultiplier: 1
   health: 0.85
-  movementSpeed: 1.35
+  movementSpeed: 1.25
   jump: 1
   gravity: 1
   slow: 0
@@ -306,18 +306,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b717b60ed33fa4abaed6e5da1f2900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrierSpeed: 1.5
+  barrierSpeed: 1.25
   cometDamage: 1
-  cometSpeed: 1.5
+  cometSpeed: 1.25
   fractureSize: 1
   orbitalRadius: 1
   reflectionCooldown: 1
   scytheDamage: 1
-  scytheSpeed: 1.5
+  scytheSpeed: 1.25
   barriers: 0
   comets: 0
   fractureDuration: 0
   scythes: 0
+  bladeSize: 0
 --- !u!114 &114245302005710834
 MonoBehaviour:
   m_ObjectHideFlags: 0
