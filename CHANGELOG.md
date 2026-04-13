@@ -1,5 +1,12 @@
 ### Patch Notes:
 
+#### 3.1.2:
+- Refactored sword hit detection. Should feel better now
+
+#### 3.1.1:
+- Improved sword hit detection on nearby players
+- Shortened delay before sword hits (0.1s -> 0.075s)
+
 #### 3.1.0:
 - Buffed longsword's bullet speed and fixed incorrect stat name (+50% -> +100%)
 - Reduced Fracture's gravity increase (+100% -> +50%)

@@ -2,64 +2,91 @@
 using Photon.Pun;
 using Photon.Realtime;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnboundLib;
 using UnityEngine;
+using UnityEngine.Events;
+using static UnityEngine.ParticleSystem;
 
 namespace RSClasses
 {
     public class SwordSlash : MonoBehaviour
     {
         static GameObject particles;
+
+        private ProjectileHit bullet;
+        private List<HitInfo> hits = new List<HitInfo>();
+        private float range;
+        private bool hitDone = false;
+
+        void FixedUpdate()
+        {
+            if (hitDone) return;
+            Vector3 shootPosition = bullet.ownWeapon.transform.position;
+            Vector3 shootDirection = (bullet.ownWeapon.GetComponent<Gun>().shootPosition.position - bullet.ownWeapon.transform.position).normalized;
+            if (bullet.view.IsMine)
+            {
+                List<RaycastHit2D> potentialHits = Physics2D.RaycastAll(bullet.ownWeapon.transform.position, -shootDirection, 1f, PlayerManager.instance.canSeePlayerMask).ToList();
+                potentialHits = potentialHits.Concat(Physics2D.RaycastAll(bullet.ownWeapon.transform.position, shootDirection, range + 0.5f, PlayerManager.instance.canSeePlayerMask)).ToList();
+                
+                foreach (RaycastHit2D potentialHit in potentialHits)
+                {
+                    if (potentialHit.collider != null)
+                    {
+                        HitInfo hitInfo = GetHitInfo(potentialHit);
+                        HealthHandler healthHandler = hitInfo.transform.GetComponent<HealthHandler>();
+                        if (healthHandler != null && healthHandler.GetComponent<Player>() == bullet.ownPlayer)
+                            continue; // Don't kill yourself
+                        foreach (HitInfo hit in hits)
+                        {
+                            if (hitInfo.transform == hit.transform)
+                                continue; // element already in list
+                        }
+                        bullet.Hit(hitInfo);
+
+                        if (!bullet.ownPlayer.data.currentCards.Contains(CardHolder.cards["Spectral Saber"]))
+                        {
+                            hitDone = true;
+                            return;
+                        }
+
+                        hits.Append(hitInfo);
+                    }
+                }
+
+            }
+        }
+
         void Start()
         {
             if (particles == null)
             {
                 particles = RSClasses.assets.LoadAsset<GameObject>("Sword_Slash_Particles");
             }
-            ProjectileHit bullet = this.GetComponent<ProjectileHit>();
-            float range = SwordLength_Mono.CalculateLength(bullet.ownWeapon.GetComponent<Gun>().projectileSpeed);
+            bullet = this.GetComponent<ProjectileHit>();
+            range = SwordLength_Mono.CalculateLength(bullet.ownWeapon.GetComponent<Gun>().projectileSpeed);
             Vector3 preShootPosition = bullet.ownWeapon.transform.position;
             Vector3 preShootDirection = (bullet.ownWeapon.GetComponent<Gun>().shootPosition.position - bullet.ownWeapon.transform.position).normalized;
             GameObject particle = Instantiate(particles, preShootPosition + (preShootDirection * (range + 0.5f)), bullet.ownWeapon.transform.rotation);
+            particle.transform.localScale = new Vector3(range, range, range);
+            GetComponentInChildren<CircleCollider2D>().enabled = false;
             RSClasses.instance.ExecuteAfterSeconds(0.1f, () =>
             {
-                this.GetComponentInChildren<CircleCollider2D>().enabled = false;
-                Vector3 shootPosition = bullet.ownWeapon.transform.position;
-                Vector3 shootDirection = (bullet.ownWeapon.GetComponent<Gun>().shootPosition.position - bullet.ownWeapon.transform.position).normalized;
-                particle.transform.localScale = new Vector3(range, range, range);
-                if (bullet.view.IsMine)
-                {
-                    RaycastHit2D[] hits;
-                    if (bullet.ownPlayer.data.currentCards.Contains(CardHolder.cards["Spectral Saber"])) // If the player has Spectral Saber, hit all valid targets, not just the first
-                    {
-                        hits = Physics2D.RaycastAll(bullet.ownWeapon.transform.position, shootDirection, range + 0.5f, PlayerManager.instance.canSeePlayerMask);
-                        //Second backwards hit so you can hit players right next to you
-                        hits = hits.Concat(Physics2D.RaycastAll(bullet.ownWeapon.transform.position, -shootDirection, 1f, PlayerManager.instance.canSeePlayerMask)).ToArray();
-                    }
-                    else
-                    {
-                        hits = new RaycastHit2D[2];
-                        hits[0] = (Physics2D.Raycast(bullet.ownWeapon.transform.position, shootDirection, range + 0.5f, PlayerManager.instance.canSeePlayerMask));
-                        //Second backwards hit so you can hit players right next to you
-                        hits[1] = (Physics2D.Raycast(bullet.ownWeapon.transform.position, -shootDirection, 1f, PlayerManager.instance.canSeePlayerMask));
-                    }
-                    
-                    foreach (RaycastHit2D hit in hits)
-                    {
-                        if (hit.collider != null)
-                        {
-                            HitInfo hitInfo = GetHitInfo(hit);
-                            HealthHandler healthHandler = hitInfo.transform.GetComponent<HealthHandler>();
-                            if (healthHandler != null && healthHandler.GetComponent<Player>() == bullet.ownPlayer)
-                                continue; // Don't kill yourself
-                            bullet.Hit(hitInfo);
-                        }
-                    }
-
-                    this.GetComponent<ProjectileHit>().InvokeMethod("DestroyMe");
-                }
+                bullet.InvokeMethod("DestroyMe");
             });
+
+            RayHitEffect effect = new NoDestroyRayHitEffect();
+            bullet.effects = bullet.effects.Append(effect).ToList();
+            bullet.destroyOnBlock = false;
+        }
+
+        private class NoDestroyRayHitEffect : RayHitEffect
+        {
+            public override HasToReturn DoHitEffect(HitInfo hit)
+            {
+                return HasToReturn.hasToReturn;
+            }
         }
 
         internal static HitInfo GetHitInfo(RaycastHit2D raycastHit2D)
