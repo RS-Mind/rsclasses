@@ -1,5 +1,8 @@
 ### Patch Notes:
 
+#### 3.1.3:
+- Fixed Absolute End
+
 #### 3.1.2:
 - Refactored sword hit detection. Should feel better now
 

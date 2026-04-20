@@ -39,8 +39,8 @@ namespace RSClasses
                 }
                 if (hit.transform.GetComponent<Player>() is Player damagedPlayer && damagedPlayer != null)
                 {
-                    damagedPlayer.data.healthHandler.SetFieldValue("remainingRevives", 0);
-                    if (this.gameObject.GetPhotonView().IsMine)
+                    damagedPlayer.data.stats.remainingRespawns = 0;
+                    if (damagedPlayer.data.view.IsMine)
                         damagedPlayer.data.view.RPC("RPCA_Die", RpcTarget.All, new object[] { hit.normal });
                 }
                 return HasToReturn.canContinue;
