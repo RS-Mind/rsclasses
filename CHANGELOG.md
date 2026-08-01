@@ -1,5 +1,12 @@
 ### Patch Notes:
 
+#### 3.1.4:
+- Increased Crusader's damage bonus (+15% -> +35%)
+- Increased Knight's health bonus (+25% -> +50%)
+- Longsword now gives +50% damage
+- Increased Lunge's movement speed bonus (+15% -> +30%)
+- Increased Parry's block cooldown reduction (-15% -> -30%)
+
 #### 3.1.3:
 - Fixed Absolute End
 

@@ -91,7 +91,7 @@ MonoBehaviour:
     simepleAmount: 0
     stat: ATKSPD
   - positive: 1
-    amount: +15%
+    amount: +30%
     simepleAmount: 0
     stat: Movement speed
   - positive: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   objectsAddedToPlayer: []
   sizeMultiplier: 1
   health: 1
-  movementSpeed: 1.15
+  movementSpeed: 1.3
   jump: 1
   gravity: 1
   slow: 0

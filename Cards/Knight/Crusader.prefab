@@ -89,7 +89,7 @@ MonoBehaviour:
     simepleAmount: 0
     stat: Health
   - positive: 1
-    amount: +15%
+    amount: +35%
     simepleAmount: 0
     stat: Damage
   rarity: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   shootPosition: {fileID: 0}
   player: {fileID: 0}
   isReloading: 0
-  damage: 1.15
+  damage: 1.35
   reloadTime: 1
   reloadTimeAdd: 0
   recoilMuiltiplier: 1

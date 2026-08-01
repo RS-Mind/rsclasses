@@ -87,7 +87,7 @@ MonoBehaviour:
     <size=50><i><color=#808080ff>Required for </color><color=#cd7b29ff>Crusader</color>'
   cardStats:
   - positive: 1
-    amount: -15%
+    amount: -30%
     simepleAmount: 0
     stat: Block CD
   - positive: 1
@@ -262,7 +262,7 @@ MonoBehaviour:
   blockedPart: {fileID: 0}
   cooldown: 0
   counter: 1000
-  cdMultiplier: 0.85
+  cdMultiplier: 0.7
   cdAdd: 0
   forceToAdd: 0
   forceToAddUp: 0

@@ -88,6 +88,10 @@ MonoBehaviour:
     amount: +100%
     simepleAmount: 0
     stat: Bullet speed
+  - positive: 1
+    amount: +50%
+    simepleAmount: 0
+    stat: Damage
   - positive: 0
     amount: -15%
     simepleAmount: 0
@@ -175,7 +179,7 @@ MonoBehaviour:
   shootPosition: {fileID: 0}
   player: {fileID: 0}
   isReloading: 0
-  damage: 1
+  damage: 1.5
   reloadTime: 1
   reloadTimeAdd: 0
   recoilMuiltiplier: 1

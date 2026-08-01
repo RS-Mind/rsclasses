@@ -86,7 +86,7 @@ MonoBehaviour:
   cardDestription: Replaces your gun with a sword. Bullet speed affects sword length
   cardStats:
   - positive: 1
-    amount: +25%
+    amount: +50%
     simepleAmount: 0
     stat: Health
   - positive: 1
@@ -119,7 +119,7 @@ MonoBehaviour:
   AddObjectToPlayer: {fileID: 0}
   objectsAddedToPlayer: []
   sizeMultiplier: 1
-  health: 1.25
+  health: 1.5
   movementSpeed: 1.15
   jump: 1
   gravity: 1

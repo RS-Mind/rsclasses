@@ -254,13 +254,14 @@ Your bullets get an extra bounce for each remaining ammo you have (in addition t
 ### Knight
 [Common Class]
 Replaces your gun with a sword. Projectile speed affects sword length
-- +25% Health
+- +50% Health
 - +15% Movement speed
 
 ### Longsword
 [Common]
 *Requires Knight*
-- +100% Projectile speed
+- +100% Bullet speed
+- +50% Damage
 - -15% ATKSPD
 
 ### Lunge
@@ -268,14 +269,14 @@ Replaces your gun with a sword. Projectile speed affects sword length
 *Requires Knight*
 Attacking with your sword launches you forwards.
 - +30% ATKSPD
-- +15% Movement speed
+- +30% Movement speed
 - -15% Damage
 
 ### Parry
 [Scarce]
 *Requires Knight*
 You can block bullets with your sword
-- -15% Block CD
+- -30% Block CD
 - +15% Movement speed
 
 ### Crusader
@@ -283,7 +284,7 @@ You can block bullets with your sword
 *Requires Parry*
 Bear a shield as a holy warrior (Your shield is held in front of you as a physical barrier. It follows your aim direction at a moderate pace)
 - +50% Health
-- +15% Damage
+- +35% Damage
 
 ### Heavily Armored
 [Common]
