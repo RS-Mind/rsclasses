@@ -1,6 +1,6 @@
 # RSClasses
-Classes for ROUNDS that leverage unique mechanics.
-Note that this mod does not work in sandbox, and is best played online rather than locally.
+Several classes that leverage unique mechanics.
+Note that this mod is best played online rather than locally.
 
 ## Card List:
 

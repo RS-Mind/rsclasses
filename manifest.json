@@ -1,8 +1,8 @@
 {
     "name": "RSClasses",
-    "version_number": "3.1.4",
+    "version_number": "3.1.5",
     "website_url": "https://github.com/RS-Mind/rsclasses",
-    "description": "51 Cards for classes for ROUNDS that leverage unique mechanics.",
+    "description": "Several classes that leverage unique mechanics.",
     "dependencies": [
 		"Pykess-CardChoiceSpawnUniqueCardPatch-0.1.10",
 		"Root-CardThemeLib-1.1.7",

@@ -25,6 +25,17 @@ namespace RSClasses.MonoBehaviours
             }
         }
 
+        public void OnEnable()
+        {
+            foreach (List<GameObject> reflectionList in reflections.Values)
+            {
+                foreach (GameObject reflection in reflectionList)
+                {
+                    reflection.SetActive(true);
+                }
+            }
+        }
+
         public void Update()
         {
             if (player.data.view.IsMine) // Only run on card owner's client

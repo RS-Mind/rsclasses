@@ -1,5 +1,9 @@
 ### Patch Notes:
 
+#### 3.1.5:
+- Slightly reworked Lunge. Now works on a fixed 0.5 second cooldown with fixed velocity.
+- Fixed an issue where Polished Mirror would only work for 1 life
+
 #### 3.1.4:
 - Increased Crusader's damage bonus (+15% -> +35%)
 - Increased Knight's health bonus (+25% -> +50%)
