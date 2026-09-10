@@ -13,6 +13,7 @@ namespace RSClasses
         private int framesCollisionDisabled;
         private PlayerCollision collision;
         private ParticleSystem particle;
+        private Lunge lunge;
         void Start()
         {
             player = GetComponentInParent<Player>();
@@ -21,6 +22,7 @@ namespace RSClasses
             sword.ShootPojectileAction += OnShootProjectileAction;
             collision = player.GetComponent<PlayerCollision>();
             particle = this.GetComponent<ParticleSystem>();
+            lunge = player.GetComponentInChildren<Lunge>();
         }
 
         private void FixedUpdate()
@@ -40,6 +42,8 @@ namespace RSClasses
 
         private void OnShootProjectileAction(GameObject bullet)
         {
+            if (!lunge.CanLunge()) // skip if the cooldown hasn't passed
+                return;
             framesCollisionDisabled = 35;
             particle.Play();
         }

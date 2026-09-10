@@ -31,6 +31,7 @@ namespace RSClasses
         private Vector2 targetPos;
         private Vector3 posVel = Vector3.zero;
         internal static byte InitEventCode = 65;
+        private bool initialized = false;
 
         private SoundParameterIntensity soundParameterIntensity = new SoundParameterIntensity(0f, UpdateMode.Continuous);
 
@@ -88,6 +89,7 @@ namespace RSClasses
             }
 
             player.data.block.BlockAction += OnBlock;
+            initialized = true;
         }
 
         void OnDestroy()
@@ -153,7 +155,8 @@ namespace RSClasses
 
         void OnEnable()
         {
-            blade.SetActive(true);
+            if (initialized)
+                blade.SetActive(true);
         }
 
         void OnDisable()

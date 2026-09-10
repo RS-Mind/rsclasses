@@ -11,6 +11,10 @@ namespace RSClasses
         private Player player;
         private float lastLungeTime = 0f;
         private static float lungeCooldown = 0.5f;
+        public bool CanLunge()
+        {
+            return (Time.fixedTime - lastLungeTime >= lungeCooldown || Time.fixedTime == lastLungeTime);
+        }
         void Start()
         {
             player = GetComponentInParent<Player>();
@@ -26,11 +30,9 @@ namespace RSClasses
 
         private void OnShootProjectileAction(GameObject bullet)
         {
-            if (Time.time - lastLungeTime < lungeCooldown)
-            {
+            if (!CanLunge())
                 return; // Exit if the cooldown hasn't passed
-            }
-            lastLungeTime = Time.time;
+            lastLungeTime = Time.fixedTime;
             Vector2 direction = player.data.aimDirection;
             player.data.healthHandler.TakeForce(direction * 7500f, ForceMode2D.Impulse, true, true);
         }

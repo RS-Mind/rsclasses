@@ -1,5 +1,10 @@
 ### Patch Notes:
 
+#### 3.1.6
+- Phantom Lunge now respects Lunge's cooldown.
+- Divine Smite no longer erroneously gives you a second heater shield.
+- Removed some minor log errors from Crusader's heater shield and Spectre's ghostly blade.
+
 #### 3.1.5:
 - Slightly reworked Lunge. Now works on a fixed 0.5 second cooldown with fixed velocity.
 - Fixed an issue where Polished Mirror would only work for 1 life

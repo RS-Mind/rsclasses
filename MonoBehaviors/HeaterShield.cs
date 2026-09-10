@@ -7,6 +7,7 @@ namespace RSClasses
 {
     public class HeaterShield : MonoBehaviour
     {
+        private bool initialized = false;
         private Player player;
         private float rotVel;
         private float currentRot;
@@ -20,6 +21,7 @@ namespace RSClasses
             position = transform.GetChild(0);
             shieldCollider = position.GetChild(0).gameObject;
             shieldCollider.transform.SetParent(null);
+            initialized = true;
         }
 
         void OnDisable()
@@ -29,7 +31,8 @@ namespace RSClasses
 
         void OnEnable()
         {
-            shieldCollider.SetActive(true);
+            if (initialized)
+                shieldCollider.SetActive(true);
         }
 
         void OnDestroy()
