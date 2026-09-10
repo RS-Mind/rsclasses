@@ -1,5 +1,8 @@
 ### Patch Notes:
 
+#### 3.1.7
+- Tagged applicable cards as ClassDetachable for Card Data Editor
+
 #### 3.1.6
 - Phantom Lunge now respects Lunge's cooldown.
 - Divine Smite no longer erroneously gives you a second heater shield.
