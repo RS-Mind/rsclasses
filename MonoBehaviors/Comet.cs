@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using RSClasses.MonoBehaviours;
 using RSClasses.Utilities;
 using Sonigon;
 using System;
@@ -24,9 +25,22 @@ namespace RSClasses.MonoBehaviors
         private TrailRenderer trailRenderer;
         private Dictionary<int, float> hitPlayers = new Dictionary<int, float>();
         private System.Random rand = new System.Random(DateTime.Now.Millisecond); // Only used cosmetically, no syncing necessary
+        private PhotonView photonView;
+        private GameObject stardustPrefab;
 
         private const float dustInterval = 0.1f;
         private const float dustDuration = 2.5f;
+
+        [PunRPC]
+        public void SpawnStardust(Vector3 position)
+        {
+            var newDust = Instantiate(stardustPrefab, position, new Quaternion(0, 0, rand.Next() % 360, rand.Next() % 360)); // Instantiate with random rotation
+
+            newDust.GetComponent<Stardust_Mono>().player = player; // Set the owner
+            newDust.GetComponent<Stardust_Mono>().rotationDirection = rand.Next(-120, 120); // Set random rotation speed
+
+            RSClasses.instance.ExecuteAfterSeconds(dustDuration, () => Destroy(newDust)); // Destroy after duration
+        }
 
         public void DoHit()
         {
@@ -35,9 +49,10 @@ namespace RSClasses.MonoBehaviors
                 dustTimer += Time.fixedDeltaTime;
                 while (dustTimer > dustInterval)
                 {
-                    var newDust = PhotonNetwork.Instantiate("Stardust", gameObject.transform.position, new Quaternion(0, 0, rand.Next() % 360, rand.Next() % 360)); // They have random angles
-                    newDust.GetComponent<PhotonView>().RPC("SetValues", RpcTarget.All, new object[] { player.playerID, rand.Next(-120, 120) }); // Set starting values
-                    RSClasses.instance.ExecuteAfterSeconds(dustDuration, () => PhotonNetwork.Destroy(newDust)); // They only last 2 seconds
+                    photonView.RPC("SpawnStardust", RpcTarget.All, new object[] {
+                        gameObject.transform.position
+                    });
+
                     dustTimer -= dustInterval;
                 }
             }
@@ -137,6 +152,11 @@ namespace RSClasses.MonoBehaviors
             gameObject.GetComponentInChildren<SpriteRenderer>().color = player.GetTeamColors().particleEffect * 1.75f; // set the color
             trailRenderer.material.SetColor(Shader.PropertyToID("_Color"), player.GetTeamColors().particleEffect);
             trailRenderer.material.SetColor(Shader.PropertyToID("_EmissionColor"), player.GetTeamColors().particleEffect * 1.75f);
+
+            photonView = GetComponent<PhotonView>();
+            stardustPrefab = RSClasses.assets.LoadAsset<GameObject>("Stardust");
+            stardustPrefab.GetComponent<SpriteRenderer>().color = player.GetTeamColors().particleEffect * 1.75f;
+            stardustPrefab.GetComponent<Stardust_Mono>().player = player;
         }
 
         public void FixedUpdate()

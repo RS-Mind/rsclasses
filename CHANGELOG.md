@@ -1,5 +1,8 @@
 ### Patch Notes:
 
+#### 3.1.8
+- Improved Stardust performance
+
 #### 3.1.7
 - Tagged applicable cards as ClassDetachable for Card Data Editor
 

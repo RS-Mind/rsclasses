@@ -31,40 +31,32 @@ namespace RSClasses.MonoBehaviours
 
         private void FixedUpdate()
         {
-            if (player.data.view.IsMine)
+            var hits = Physics2D.OverlapCircleAll(transform.position, 0.1f);
+            foreach (var hit in hits)
             {
-                var hits = Physics2D.OverlapCircleAll(transform.position, 0.1f);
-                foreach (var hit in hits)
+                var damageable = hit.gameObject.GetComponent<Damagable>();
+                var healthHandler = hit.gameObject.GetComponent<HealthHandler>();
+                if (healthHandler)
                 {
-                    var damageable = hit.gameObject.GetComponent<Damagable>();
-                    var healthHandler = hit.gameObject.GetComponent<HealthHandler>();
-                    if (healthHandler)
+                    Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
+                    if (hitPlayer == player) continue;
+                    SoundManager.Instance.PlayAtPosition(RSClasses.stardustSound, this.transform, damageable.transform);
+                    if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame)
                     {
-                        Player hitPlayer = ((Player)healthHandler.GetFieldValue("player"));
-                        if (hitPlayer == player) continue;
-                        SoundManager.Instance.PlayAtPosition(RSClasses.stardustSound, this.transform, damageable.transform);
-                        if (((Player)healthHandler.GetFieldValue("player")).GetComponent<Block>().blockedThisFrame)
-                        {
-                            PhotonNetwork.Destroy(this.gameObject);
-                            continue;
-                        }
+                        Destroy(this.gameObject);
+                        continue;
                     }
-                    if (damageable)
+                }
+                if (damageable)
+                {
+                    if (player.data.view.IsMine)
                     {
                         damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * (player.data.GetAdditionalData().cometDamage / 5),
                             (Vector2)this.transform.position, this.gameObject, player);
-                        PhotonNetwork.Destroy(this.gameObject);
                     }
+                    Destroy(this.gameObject);
                 }
             }
-        }
-
-        [PunRPC]
-        public void SetValues(int ownerID, int rotation)
-        {
-            rotationDirection = rotation; // And random rotation directions
-            player = PlayerManager.instance.players.Find(p => p.playerID == ownerID); // Set stardust player and color
-            GetComponent<SpriteRenderer>().color = player.GetTeamColors().particleEffect * 1.75f;
         }
     }
 }
