@@ -7,7 +7,6 @@ namespace RSClasses.Utilities
     {
         [Header("Multiply")]
         public float barrierSpeed = 1;
-        public float cometDamage = 1;
         public float cometSpeed = 1;
         public float fractureSize = 1;
         public float orbitalRadius = 1;
@@ -30,7 +29,6 @@ namespace RSClasses.Utilities
             player.data.GetAdditionalData().orbitalRadius *= orbitalRadius;
             player.data.GetAdditionalData().barrierSpeed *= barrierSpeed;
             player.data.GetAdditionalData().cometCount += comets;
-            player.data.GetAdditionalData().cometDamage *= cometDamage;
             player.data.GetAdditionalData().scytheSpeed *= scytheSpeed;
             player.data.GetAdditionalData().cometSpeed *= cometSpeed;
             player.data.GetAdditionalData().fractureDuration += fractureDuration;

@@ -51,7 +51,7 @@ namespace RSClasses.MonoBehaviours
                 {
                     if (player.data.view.IsMine)
                     {
-                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * (player.data.GetAdditionalData().cometDamage / 5),
+                        damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * (player.data.weaponHandler.gun.damage / 5f),
                             (Vector2)this.transform.position, this.gameObject, player);
                     }
                     Destroy(this.gameObject);

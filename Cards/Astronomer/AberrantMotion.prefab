@@ -16,11 +16,10 @@ GameObject:
   - component: {fileID: 114997074887337774}
   - component: {fileID: 114969577739340399}
   - component: {fileID: 114193385136356738}
-  - component: {fileID: 114330446687008224}
-  - component: {fileID: 114981291294740096}
-  - component: {fileID: 114707139466417746}
+  - component: {fileID: 114199619183426778}
+  - component: {fileID: 114686910741137054}
   m_Layer: 0
-  m_Name: Stargazer
+  m_Name: AberrantMotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afa8541a86b0f849a40ef30f33df2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarity: 3
+  rarity: 4
 --- !u!114 &114421384111938668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,19 +65,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
-  cardName: Stargazer
-  cardDestription: Gain a roaming comet that is twice as powerful as a bullet
-  cardStats:
-  - positive: 1
-    amount: '+1 '
-    simepleAmount: 0
-    stat: Comet
-  - positive: 0
-    amount: -1
-    simepleAmount: 0
-    stat: Scythe
-  rarity: 1
-  cardArt: {fileID: 7322369389673769490, guid: d801ce17166966241a83fbcb8251601b, type: 3}
+  cardName: Aberrant Motion
+  cardDestription: When you block, your comets redirect towards your cursor
+  cardStats: []
+  rarity: 2
+  cardArt: {fileID: 7322369389673769490, guid: 7565b0609eb96cb4fb3cd670243b2739, type: 3}
   sprite: {fileID: 21300000, guid: 5b742d082ddefaa489468fac5e1e3bff, type: 2}
   sourceCard: {fileID: 0}
   cardColor: {r: 0.10568709, g: 0.18812303, b: 0.23584908, a: 1}
@@ -100,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundCharacterSlowFreeze: {fileID: 0}
-  AddObjectToPlayer: {fileID: 7691254943657450558, guid: 42ee3d872a74e7e4ab4d7a3006fcb84a,
+  AddObjectToPlayer: {fileID: 7691254943657450558, guid: c44a793f7d5f7c94c80cac6ef2c2c0dc,
     type: 3}
   objectsAddedToPlayer: []
   sizeMultiplier: 1
@@ -291,31 +282,7 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &114330446687008224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043437007509817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7b717b60ed33fa4abaed6e5da1f2900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barrierSpeed: 1
-  cometSpeed: 1
-  fractureSize: 1
-  orbitalRadius: 1
-  reflectionCooldown: 1
-  scytheDamage: 1
-  scytheSpeed: 1
-  barriers: 0
-  comets: 1
-  fractureDuration: 0
-  scythes: -1
-  bladeSize: 0
---- !u!114 &114981291294740096
+--- !u!114 &114199619183426778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,9 +294,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6984fbfec9ffb42910fcec93904b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fancyIcon: {fileID: 1790492772407996393, guid: 90af09eb1cd81c145847a58ec1b2ed1b,
+  fancyIcon: {fileID: 1790492772407996393, guid: 37824743aa230354c9cf8de74ce04e22,
     type: 3}
---- !u!114 &114707139466417746
+--- !u!114 &114686910741137054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

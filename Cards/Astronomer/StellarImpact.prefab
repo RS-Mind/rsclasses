@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
   cardName: Stellar Impact
-  cardDestription: Your comets get bonus damage when moving quickly
+  cardDestription: Your comets' damage is increased when moving quickly
   cardStats: []
   rarity: 1
   cardArt: {fileID: 7322369389673769490, guid: 162b811ac71b0d243be3812cee34893e, type: 3}
@@ -307,6 +307,8 @@ MonoBehaviour:
   m_Script: {fileID: -547354468, guid: 025522ae965d0b148a1d1f14b3af7db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceType: 0
+  categoryPath: Astronomer/Stargazer
   CategoryPath: Astronomer/Stargazer
-  UsePriority: 0
+  categoryAsset: {fileID: 0}
   Priority: 0

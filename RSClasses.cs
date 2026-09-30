@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using ToggleCardsCategories;
+using UnityEditor;
 using UnityEngine;
 
 namespace RSClasses
@@ -30,7 +31,7 @@ namespace RSClasses
     {
         private const string ModId = "com.rsmind.rounds.RSClasses";
         private const string ModName = "RSClasses";
-        public const string Version = "3.1.8";
+        public const string Version = "3.2.0";
         public const string ModInitials = "RSC";
         internal static Harmony harmony;
         public static RSClasses instance { get; private set; }

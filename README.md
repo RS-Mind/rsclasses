@@ -112,7 +112,7 @@ Lifesteal adds bonus damage to your scythes (100% lifesteal = +100% extra damage
 ### Stargazer
 [Uncommon Subclass]
 *Requires Bigger Barriers and Twin Scythes*
-Gain a powerful comet that roams the map
+Gain a roaming comet that is twice as powerful as a bullet
 - +1 Comet
 - -1 Scythe
 
@@ -120,6 +120,17 @@ Gain a powerful comet that roams the map
 [Rare]
 *Requires Stargazer*
 - +1 Comet
+
+### 3-Body Problem
+[Epic]
+*Requires Coupled Comets*
+- +1 Comet
+- +40% Damage
+
+### Aberrant Motion
+[Exotic]
+*Requires Stargazer*
+When you block, your comets redirect towards your cursor
 
 ### Icemelt
 [Scarce]
@@ -136,7 +147,7 @@ Your comets leave damaging trails of stardust
 ### Stellar Impact
 [Exotic]
 *Requires Stargazer*
-Your comets get bonus damage when moving quickly (Up to 50% damage multiplied by your comet speed stat)
+Your comets' damage is increased when moving quickly (Up to +200% damage multiplied by your comet speed stat)
 </details>
 
 <details open>

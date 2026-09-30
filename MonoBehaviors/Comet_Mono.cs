@@ -18,7 +18,7 @@ namespace RSClasses.MonoBehaviours
     public class Comet_Mono : MonoBehaviour
     {
         private bool active = false;
-        private List<Comet> comets = new List<Comet>();
+        internal List<Comet> comets = new List<Comet>();
         private Player player;
         private void Start()
         {
@@ -114,7 +114,8 @@ namespace RSClasses.MonoBehaviours
             int index = 0;
             foreach (Comet comet in comets)
             {
-                comet.transform.position = player.transform.position + new Vector3(0, 7.5f - (15 * index), 0);
+                Quaternion rotation = Quaternion.Euler(0, 0, 360f / comets.Count() * index);
+                comet.transform.position = player.transform.position + (rotation * new Vector3(0, 7.5f, 0));
                 comet.velocity = new Vector3(0, 0, 0);
                 index++;
             }

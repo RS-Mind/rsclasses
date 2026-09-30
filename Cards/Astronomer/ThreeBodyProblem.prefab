@@ -17,10 +17,10 @@ GameObject:
   - component: {fileID: 114969577739340399}
   - component: {fileID: 114193385136356738}
   - component: {fileID: 114330446687008224}
-  - component: {fileID: 114981291294740096}
-  - component: {fileID: 114707139466417746}
+  - component: {fileID: 114199619183426778}
+  - component: {fileID: 114686910741137054}
   m_Layer: 0
-  m_Name: Stargazer
+  m_Name: ThreeBodyProblem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afa8541a86b0f849a40ef30f33df2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarity: 3
+  rarity: 6
 --- !u!114 &114421384111938668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,19 +66,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
-  cardName: Stargazer
-  cardDestription: Gain a roaming comet that is twice as powerful as a bullet
+  cardName: 3-Body Problem
+  cardDestription: 
   cardStats:
   - positive: 1
     amount: '+1 '
     simepleAmount: 0
     stat: Comet
-  - positive: 0
-    amount: -1
+  - positive: 1
+    amount: +40%
     simepleAmount: 0
-    stat: Scythe
-  rarity: 1
-  cardArt: {fileID: 7322369389673769490, guid: d801ce17166966241a83fbcb8251601b, type: 3}
+    stat: Damage
+  rarity: 2
+  cardArt: {fileID: 7322369389673769490, guid: 2933b7f297207cc4b959ee1ec37105de, type: 3}
   sprite: {fileID: 21300000, guid: 5b742d082ddefaa489468fac5e1e3bff, type: 2}
   sourceCard: {fileID: 0}
   cardColor: {r: 0.10568709, g: 0.18812303, b: 0.23584908, a: 1}
@@ -100,8 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundCharacterSlowFreeze: {fileID: 0}
-  AddObjectToPlayer: {fileID: 7691254943657450558, guid: 42ee3d872a74e7e4ab4d7a3006fcb84a,
-    type: 3}
+  AddObjectToPlayer: {fileID: 0}
   objectsAddedToPlayer: []
   sizeMultiplier: 1
   health: 1
@@ -161,7 +160,7 @@ MonoBehaviour:
   shootPosition: {fileID: 0}
   player: {fileID: 0}
   isReloading: 0
-  damage: 1
+  damage: 1.4
   reloadTime: 1
   reloadTimeAdd: 0
   recoilMuiltiplier: 1
@@ -313,9 +312,9 @@ MonoBehaviour:
   barriers: 0
   comets: 1
   fractureDuration: 0
-  scythes: -1
+  scythes: 0
   bladeSize: 0
---- !u!114 &114981291294740096
+--- !u!114 &114199619183426778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,9 +326,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6984fbfec9ffb42910fcec93904b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fancyIcon: {fileID: 1790492772407996393, guid: 90af09eb1cd81c145847a58ec1b2ed1b,
+  fancyIcon: {fileID: 1790492772407996393, guid: 82bc7ed3c57fd6a40bfda2cb1ee11429,
     type: 3}
---- !u!114 &114707139466417746
+--- !u!114 &114686910741137054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -21,6 +21,7 @@ namespace RSClasses.MonoBehaviors
         private float baseScale = 1f;
         private float dustTimer = 0f;
         private float cometSpeed = 2f;
+        private float sinceSetVel = 0f;
         private Player player;
         private TrailRenderer trailRenderer;
         private Dictionary<int, float> hitPlayers = new Dictionary<int, float>();
@@ -57,7 +58,7 @@ namespace RSClasses.MonoBehaviors
                 }
             }
 
-            float damageMult = 1;
+            float damageMult = 1f;
             if (stellarImpact) // Calculate damage multiplier from current velocity
                 Mathf.Clamp((velocity.magnitude / 5 - 1) * player.data.GetAdditionalData().cometSpeed, 1, 1.5f * player.data.GetAdditionalData().cometSpeed);
             var Keys = hitPlayers.Keys.ToArray(); // Update the list of recently hit players
@@ -84,7 +85,7 @@ namespace RSClasses.MonoBehaviors
                 }
                 if (damageable)
                 {
-                    damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * (player.data.GetAdditionalData().cometDamage * damageMult),
+                    damageable.CallTakeDamage(((Vector2)damageable.transform.position - (Vector2)this.transform.position).normalized * (player.data.weaponHandler.gun.damage * 110f * damageMult), // 2 * 55 (bullet damage) = 110
                         (Vector2)this.transform.position, this.gameObject, player); // Apply damage
                 }
             }
@@ -103,9 +104,12 @@ namespace RSClasses.MonoBehaviors
             gameObject.transform.localScale = new Vector3(adjustedScale, adjustedScale, adjustedScale);
 
             float gPull = (float)(100f / distance); // Calculate the gravitational force
-            velocity *= (float)Math.Pow(0.95f, Time.fixedDeltaTime); // Apply drag (helps keep the comet on-screen)
-            velocity += new Vector3(directionToPlayer.x * gPull, directionToPlayer.y * gPull) * Time.fixedDeltaTime; // Add the force from this frame to the velocity
-            if (velocity.magnitude > 15) velocity *= 15f / velocity.magnitude; // Limit the velocity to 15
+            if (sinceSetVel + 0.5f < Time.time) // If the velocity hasn't been set in the last 0.5 seconds, apply gravity
+            {
+                velocity *= (float)Math.Pow(0.95f, Time.fixedDeltaTime); // Apply drag (helps keep the comet on-screen)
+                velocity += new Vector3(directionToPlayer.x * gPull, directionToPlayer.y * gPull) * Time.fixedDeltaTime; // Add the force from this frame to the velocity
+                if (velocity.magnitude > 15) velocity *= 15f / velocity.magnitude; // Limit the velocity to 15
+            }
 
             Vector3 calculatedMotion = velocity * Time.fixedDeltaTime * cometSpeed;
 
@@ -134,6 +138,13 @@ namespace RSClasses.MonoBehaviors
         }
 
         [PunRPC]
+        public void SetVelocity(Vector3 syncVel)
+        {
+            sinceSetVel = Time.time;
+            velocity = syncVel;
+        }
+
+        [PunRPC]
         public void SetAttributes(int ownerID, float scale)
         {
             player = PlayerManager.instance.players.Find(p => p.playerID == ownerID);
@@ -152,6 +163,10 @@ namespace RSClasses.MonoBehaviors
             gameObject.GetComponentInChildren<SpriteRenderer>().color = player.GetTeamColors().particleEffect * 1.75f; // set the color
             trailRenderer.material.SetColor(Shader.PropertyToID("_Color"), player.GetTeamColors().particleEffect);
             trailRenderer.material.SetColor(Shader.PropertyToID("_EmissionColor"), player.GetTeamColors().particleEffect * 1.75f);
+
+            gameObject.GetComponentInChildren<SpriteRenderer>().sortingLayerName = "MostFront";
+            trailRenderer.sortingLayerName = "MostFront";
+
 
             photonView = GetComponent<PhotonView>();
             stardustPrefab = RSClasses.assets.LoadAsset<GameObject>("Stardust");

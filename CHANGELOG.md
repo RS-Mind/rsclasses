@@ -1,12 +1,18 @@
 ### Patch Notes:
 
-#### 3.1.8
-- Improved Stardust performance
+#### 3.2.0:
+- Added Aberrant Motion, a Stargazer card that directs their comets on block.
+- Added 3-Body Problem, a Stargazer card that adds a third comet and gives a damage bonus.
+- Comets now use the double the damage stat of the player's current weapon.
+- Comets now render above map geometry.
 
-#### 3.1.7
-- Tagged applicable cards as ClassDetachable for Card Data Editor
+#### 3.1.8:
+- Improved Stardust performance.
 
-#### 3.1.6
+#### 3.1.7:
+- Tagged applicable cards as ClassDetachable for Card Data Editor.
+
+#### 3.1.6:
 - Phantom Lunge now respects Lunge's cooldown.
 - Divine Smite no longer erroneously gives you a second heater shield.
 - Removed some minor log errors from Crusader's heater shield and Spectre's ghostly blade.

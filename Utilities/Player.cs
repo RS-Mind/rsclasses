@@ -16,7 +16,6 @@ namespace RSClasses.Utilities // Adds additional variables to the player's stats
         public float orbitalRadius;
         public float barrierSpeed;
         public float scytheSpeed;
-        public float cometDamage;
         public float cometSpeed;
         public float fractureDuration;
         public float fractureSize;
@@ -33,7 +32,6 @@ namespace RSClasses.Utilities // Adds additional variables to the player's stats
             orbitalRadius = 1f;
             scytheSpeed = 270f;
             cometSpeed = 2f;
-            cometDamage = 180f;
             cometCount = 0;
             barrierSpeed = 100f;
             fractureDuration = 1f;
@@ -51,7 +49,6 @@ namespace RSClasses.Utilities // Adds additional variables to the player's stats
             orbitalRadius = 1f;
             scytheSpeed = 270f;
             cometSpeed = 2f;
-            cometDamage = 180f;
             cometCount = 0;
             barrierSpeed = 100f;
             fractureDuration = 1f;
