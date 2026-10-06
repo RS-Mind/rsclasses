@@ -116,7 +116,7 @@ namespace RSClasses.MonoBehaviours
             {
                 Quaternion rotation = Quaternion.Euler(0, 0, 360f / comets.Count() * index);
                 comet.transform.position = player.transform.position + (rotation * new Vector3(0, 7.5f, 0));
-                comet.velocity = new Vector3(0, 0, 0);
+                comet.velocity = rotation * Vector3.right * 3;
                 index++;
             }
             active = true;

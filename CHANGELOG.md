@@ -1,5 +1,9 @@
 ### Patch Notes:
 
+#### 3.2.1:
+- Comets now start the round with some initial motion.
+- Fixed an issue with card rarity not being properly applied.
+
 #### 3.2.0:
 - Added Aberrant Motion, a Stargazer card that directs their comets on block.
 - Added 3-Body Problem, a Stargazer card that adds a third comet and gives a damage bonus.

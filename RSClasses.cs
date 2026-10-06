@@ -31,7 +31,7 @@ namespace RSClasses
     {
         private const string ModId = "com.rsmind.rounds.RSClasses";
         private const string ModName = "RSClasses";
-        public const string Version = "3.2.0";
+        public const string Version = "3.2.1";
         public const string ModInitials = "RSC";
         internal static Harmony harmony;
         public static RSClasses instance { get; private set; }
@@ -60,6 +60,14 @@ namespace RSClasses
         void Start()
         {
             instance = this;
+
+            RarityAdder[] rarityAdders = Resources.FindObjectsOfTypeAll<RarityAdder>();
+            foreach (var rarityAdder in rarityAdders)
+            {
+                if (rarityAdder.enabled)
+                    rarityAdder.SetRarity();
+            }
+
             var plugins = (List<BaseUnityPlugin>)typeof(BepInEx.Bootstrap.Chainloader).GetField("_plugins", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
             if (plugins.Exists(plugin => plugin.Info.Metadata.GUID == "com.willuwontu.rounds.tabinfo"))
             {

@@ -1,4 +1,5 @@
 ﻿using CardChoiceSpawnUniqueCardPatch.CustomCategories;
+using RSClasses.Utilities;
 using System.Collections.Generic;
 using UnboundLib.Cards;
 using UnityEngine;

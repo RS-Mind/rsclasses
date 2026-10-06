@@ -40,7 +40,7 @@ namespace RSClasses.Utilities
 
         public Rarity rarity = Rarity.Common;
 
-        public void Start()
+        public void SetRarity()
         {
             GetComponent<CardInfo>().rarity = RarityUtils.GetRarity(rarityNames[(int)rarity]);
         }
