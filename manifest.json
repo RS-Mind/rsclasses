@@ -1,6 +1,6 @@
 {
     "name": "RSClasses",
-    "version_number": "3.2.1",
+    "version_number": "3.2.2",
     "website_url": "https://github.com/RS-Mind/rsclasses",
     "description": "Several classes that leverage unique mechanics.",
     "dependencies": [
@@ -12,7 +12,6 @@
         "Pykess-ModdingUtils-0.4.8",
 		"Pykess-PlayerJumpPatch-0.0.2",
 		"CrazyCoders-RarityBundle-0.2.1",
-		"willuwontu-SimulationChamber-0.0.3",
 		"AALUND13-ToggleCardsCategories-1.4.0",
 		"willis81808-UnboundLib-3.2.14",
 		"RS_Mind-WeaponsManager-1.4.0"

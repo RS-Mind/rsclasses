@@ -5,7 +5,6 @@
         "CardChoiceSpawnUniqueCardPatch",
         "ClassesManagerReborn",
         "UnboundLib",
-        "SimulationChamber",
         "TabInfo",
         "RarityLib",
         "WeaponsManager"
@@ -13,11 +12,11 @@
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
+    "allowUnsafeCode": true,
     "overrideReferences": true,
     "precompiledReferences": [
         "0Harmony.dll",
-        "BepInEx.dll",
+        "System.EnterpriseServices.dll",
         "PhotonUnityNetworking.dll",
         "SonigonAudioEngine.Runtime.dll",
         "InControl.dll",
@@ -25,7 +24,8 @@
         "ToggleCardsCategories.dll",
         "Photon3Unity3D.dll",
         "PhotonRealtime.dll",
-        "CardThemeLib.dll"
+        "CardThemeLib.dll",
+        "BepInEx.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": []

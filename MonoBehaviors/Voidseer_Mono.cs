@@ -1,8 +1,4 @@
 ﻿using UnityEngine;
-using Photon.Pun;
-using SimulationChamber;
-using System.Linq;
-using RSClasses.Utilities;
 
 namespace RSClasses.MonoBehaviours
 {

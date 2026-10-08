@@ -1,16 +1,18 @@
-﻿using UnityEngine;
+﻿using HarmonyLib;
 using Photon.Pun;
-using SimulationChamber;
+using System;
 using System.Linq;
 using UnboundLib;
+using UnityEngine;
+using WeaponsManager;
 
 namespace RSClasses.MonoBehaviours
 {
     public class Mirror_Mono : MonoBehaviour // All bullet reflection effects (i.e. Mirror Mage, Prism, Kaleido Witch, and the glitter cards)
     {
         private Player player;
-        private Gun gun;
-        private SimulatedGun[] savedGuns = new SimulatedGun[4];
+        public Gun[] mirrorGuns;
+        public GameObject[] gameObjects;
         private static GameObject _stopRecursionObj = null;
         private static GameObject _PoisonObj = null;
         private static GameObject _DazzleObj = null;
@@ -103,31 +105,48 @@ namespace RSClasses.MonoBehaviours
         public void Start()
         {
             player = GetComponentInParent<Player>(); // Get player and gun
-            gun = player.data.weaponHandler.gun;
-            gun.ShootPojectileAction += OnShootProjectileAction; // Add the shoot action to the gun
-
-            // Checks to see if we have saved guns already, if not, make them.
-            if (savedGuns[0] == null)
+            var manager = player.GetComponent<WeaponManager>();
+            foreach (Gun gun in manager.weapons)
             {
-                savedGuns[0] = new GameObject("Mirror Gun").AddComponent<SimulatedGun>();
-            }
-            if (savedGuns[1] == null)
-            {
-                savedGuns[1] = new GameObject("Sapphire Gun").AddComponent<SimulatedGun>();
-            }
-            if (savedGuns[2] == null)
-            {
-                savedGuns[2] = new GameObject("Ruby Gun").AddComponent<SimulatedGun>();
-            }
-            if (savedGuns[3] == null)
-            {
-                savedGuns[3] = new GameObject("Emerald Gun").AddComponent<SimulatedGun>();
+                if (gun != null && gun.gameObject.activeSelf)
+                {
+                    gun.ShootPojectileAction += OnShootProjectileAction; // Add the shoot action to each of a player's guns
+                }
             }
 
             foreach (Player other in PlayerManager.instance.players.Where(p => p.playerID != player.playerID)) // For each player besides yourself
             {
                 other.gameObject.GetOrAddComponent<MirrorMageVisualizer_Mono>();
             }
+        }
+
+        public void Update()
+        {
+            var gun = player.data.weaponHandler.gun;
+
+            // Opposite on X
+            gameObjects[0].transform.position = Vector3.Scale(player.transform.position, new Vector3(-1, 1, 1));
+            gameObjects[0].transform.rotation = new Quaternion(-gun.shootPosition.rotation.x, gun.shootPosition.rotation.y, gun.shootPosition.rotation.z, -gun.shootPosition.rotation.w);
+            // Opposite on Y
+            gameObjects[1].transform.position = Vector3.Scale(player.transform.position, new Vector3(1, -1, 1));
+            gameObjects[1].transform.rotation = new Quaternion(gun.shootPosition.rotation.x, -gun.shootPosition.rotation.y, gun.shootPosition.rotation.z, -gun.shootPosition.rotation.w);
+            //Opposite on X & Y
+            gameObjects[2].transform.position = Vector3.Scale(player.transform.position, new Vector3(-1, -1, 1));
+            gameObjects[2].transform.rotation = new Quaternion(-gun.shootPosition.rotation.x, -gun.shootPosition.rotation.y, gun.shootPosition.rotation.z, gun.shootPosition.rotation.w);
+
+            Vector3 normalDir = Quaternion.AngleAxis(45, Vector3.forward) * Vector3.up;
+            gameObjects[3].transform.position = new Vector3(player.transform.position.y, player.transform.position.x, 0);
+            gameObjects[3].transform.rotation = Quaternion.LookRotation(Vector3.Reflect(gun.shootPosition.forward, normalDir), gun.shootPosition.up);
+
+            gameObjects[5].transform.position = new Vector3(player.transform.position.y * -1f, player.transform.position.x, 0);
+            gameObjects[5].transform.rotation = Quaternion.LookRotation(Vector3.Reflect(gameObjects[3].transform.forward, Vector3.right), gameObjects[3].transform.up);
+
+            normalDir = Quaternion.AngleAxis(-45, Vector3.forward) * Vector3.up;
+            gameObjects[4].transform.position = new Vector3(player.transform.position.y * -1f, player.transform.position.x * -1f, 0);
+            gameObjects[4].transform.rotation = Quaternion.LookRotation(Vector3.Reflect(gun.shootPosition.forward, normalDir), gun.shootPosition.up);
+
+            gameObjects[6].transform.position = new Vector3(player.transform.position.y, player.transform.position.x * -1f, 0);
+            gameObjects[6].transform.rotation = Quaternion.LookRotation(Vector3.Reflect(gameObjects[4].transform.forward, Vector3.right), gameObjects[3].transform.up);
         }
 
         public void OnShootProjectileAction(GameObject obj)
@@ -137,89 +156,53 @@ namespace RSClasses.MonoBehaviours
             {
                 return;
             }
-            
-            // Mirrored X/Kaleidoscope sapphire
-            SimulatedGun sapphireGun = savedGuns[0];
 
-            // Copy gun stats, including actions
-            sapphireGun.CopyGunStatsExceptActions(gun);
-            sapphireGun.CopyAttackAction(gun);
-            sapphireGun.CopyShootProjectileAction(gun);
-            sapphireGun.ShootPojectileAction -= OnShootProjectileAction;
+            var gun = player.data.weaponHandler.gun;
 
-            // Only fire 1 bullet per bullet
-            sapphireGun.numberOfProjectiles = 1;
-            sapphireGun.bursts = 0;
-            sapphireGun.spread = 0f;
-            sapphireGun.evenSpread = 0f;
-            sapphireGun.objectsToSpawn = sapphireGun.objectsToSpawn.Concat(StopRecursionSpawn).ToArray();
+            foreach (var mirrorGun in mirrorGuns)
+            {
+                CopyGunStatsExceptActions(gun, mirrorGun);
+                CopyAttackAction(gun, mirrorGun);
+                CopyShootProjectileAction(gun, mirrorGun);
+                mirrorGun.ShootPojectileAction -= OnShootProjectileAction;
+
+                mirrorGun.numberOfProjectiles = 1;
+                mirrorGun.bursts = 0;
+                mirrorGun.spread = 0f;
+                mirrorGun.evenSpread = 0f;
+                mirrorGun.objectsToSpawn = mirrorGun.objectsToSpawn.Concat(StopRecursionSpawn).ToArray();
+            }
+
+            mirrorGuns[1].gravity *= -1f;
+            mirrorGuns[2].gravity *= -1f;
 
             if (player.data.currentCards.Contains(CardHolder.cards["Sapphire Shards"]))
             {
-                sapphireGun.slow = 0.7f;
-                sapphireGun.projectileColor = new Color(0, 172, 191);
+                mirrorGuns[0].slow = 0.7f;
+                mirrorGuns[0].projectileColor = new Color(0, 172, 191);
+
+                mirrorGuns[1].slow = 0.7f;
+                mirrorGuns[1].projectileColor = new Color(0, 172, 191);
             }
-
-            // Mirrored Y/Kaledoscope no effect
-            SimulatedGun mirrorGun = savedGuns[1];
-
-            // Copy gun stats, including actions
-            mirrorGun.CopyGunStatsExceptActions(gun);
-            mirrorGun.CopyAttackAction(gun);
-            mirrorGun.CopyShootProjectileAction(gun);
-            mirrorGun.ShootPojectileAction -= OnShootProjectileAction;
-
-            // Invert gravity, only fire 1 bullet per bullet
-            mirrorGun.numberOfProjectiles = 1;
-            mirrorGun.bursts = 0;
-            mirrorGun.spread = 0f;
-            mirrorGun.evenSpread = 0f;
-            mirrorGun.gravity *= -1f;
-            mirrorGun.objectsToSpawn = mirrorGun.objectsToSpawn.Concat(StopRecursionSpawn).ToArray();
-
-            // Kaleidoscope emerald
-            SimulatedGun emeraldGun = savedGuns[2];
-
-            // Copy gun stats, including actions
-            emeraldGun.CopyGunStatsExceptActions(gun);
-            emeraldGun.CopyAttackAction(gun);
-            emeraldGun.CopyShootProjectileAction(gun);
-            emeraldGun.ShootPojectileAction -= OnShootProjectileAction;
-
-            // Only fire 1 bullet per bullet
-            emeraldGun.numberOfProjectiles = 1;
-            emeraldGun.bursts = 0;
-            emeraldGun.spread = 0f;
-            emeraldGun.evenSpread = 0f;
-            emeraldGun.objectsToSpawn = emeraldGun.objectsToSpawn.Concat(StopRecursionSpawn).ToArray();
 
             if (player.data.currentCards.Contains(CardHolder.cards["Emerald Glitter"]))
             {
-                emeraldGun.damage *= 1.25f;
-                emeraldGun.objectsToSpawn = emeraldGun.objectsToSpawn.Concat(PoisonSpawn).ToArray();
-                emeraldGun.projectileColor = Color.green;
+                mirrorGuns[3].damage *= 1.25f;
+                mirrorGuns[3].objectsToSpawn = mirrorGuns[3].objectsToSpawn.Concat(PoisonSpawn).ToArray();
+                mirrorGuns[3].projectileColor = Color.green;
+
+                mirrorGuns[4].damage *= 1.25f;
+                mirrorGuns[4].objectsToSpawn = mirrorGuns[4].objectsToSpawn.Concat(PoisonSpawn).ToArray();
+                mirrorGuns[4].projectileColor = Color.green;
             }
-
-            // Kaleidoscope ruby
-            SimulatedGun rubyGun = savedGuns[3];
-
-            // Copy gun stats, including actions
-            rubyGun.CopyGunStatsExceptActions(gun);
-            rubyGun.CopyAttackAction(gun);
-            rubyGun.CopyShootProjectileAction(gun);
-            rubyGun.ShootPojectileAction -= OnShootProjectileAction;
-
-            // Only fire 1 bullet per bullet
-            rubyGun.numberOfProjectiles = 1;
-            rubyGun.bursts = 0;
-            rubyGun.spread = 0f;
-            rubyGun.evenSpread = 0f;
-            rubyGun.objectsToSpawn = rubyGun.objectsToSpawn.Concat(StopRecursionSpawn).ToArray();
 
             if (player.data.currentCards.Contains(CardHolder.cards["Ruby Dust"]))
             {
-                rubyGun.objectsToSpawn = rubyGun.objectsToSpawn.Concat(DazzleSpawn).ToArray();
-                rubyGun.projectileColor = Color.magenta;
+                mirrorGuns[5].objectsToSpawn = mirrorGuns[5].objectsToSpawn.Concat(DazzleSpawn).ToArray();
+                mirrorGuns[5].projectileColor = Color.magenta;
+
+                mirrorGuns[6].objectsToSpawn = mirrorGuns[6].objectsToSpawn.Concat(DazzleSpawn).ToArray();
+                mirrorGuns[6].projectileColor = Color.magenta;
             }
 
             // Make sure to not fire for each player in the lobby
@@ -228,44 +211,129 @@ namespace RSClasses.MonoBehaviours
                 return;
             }
 
-            // Opposite on X
-            sapphireGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x * -1f, obj.transform.position.y, 0), obj.transform.forward - (2 * Vector3.Dot(obj.transform.forward, Vector3.left) * Vector3.left), 1f, 1);
+            mirrorGuns[0].Attack(gun.currentCharge, true, 1f, 1f, true); // Sapphire
+
             // Only do these if the player has Prism
             if (player.data.currentCards.Contains(CardHolder.cards["Prism"]))
             {
-                // Opposite on Y
-                if (!player.data.currentCards.Contains(CardHolder.cards["Kaleido Witch"]))
-                {
-                    mirrorGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x, obj.transform.position.y * -1f, 0), obj.transform.forward - (2 * Vector3.Dot(obj.transform.forward, Vector3.up) * Vector3.up), 1f, 1);
-                }
-                // Opposite X & Y
-                mirrorGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x * -1f, obj.transform.position.y * -1f, 0), new Vector3(obj.transform.forward.x * -1, obj.transform.forward.y * -1f, 0f), 1f, 1);
+                mirrorGuns[1].Attack(gun.currentCharge, true, 1f, 1f, true); // Sapphire
+                mirrorGuns[2].Attack(gun.currentCharge, true, 1f, 1f, true); // Mirror
             }
             if (player.data.currentCards.Contains(CardHolder.cards["Kaleido Witch"]))
             {
-                // Opposite on Y (prepped to be cold)
-                sapphireGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.x, obj.transform.position.y * -1f, 0), obj.transform.forward - (2 * Vector3.Dot(obj.transform.forward, Vector3.up) * Vector3.up), 1f, 1);
-                // idk how to talk about these
-                Vector3 normalDir = Quaternion.AngleAxis(45, Vector3.forward) * Vector3.up;
-                emeraldGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y, obj.transform.position.x, 0), obj.transform.forward - (2 * Vector3.Dot(obj.transform.forward, normalDir) * normalDir), 1f, 1);
-                normalDir = Quaternion.AngleAxis(45, Vector3.forward) * Vector3.left;
-                emeraldGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y * -1f, obj.transform.position.x * -1f, 0), obj.transform.forward - (2 * Vector3.Dot(obj.transform.forward, normalDir) * normalDir), 1f, 1);
-                rubyGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y * -1f, obj.transform.position.x, 0), Quaternion.AngleAxis(90, Vector3.forward) * obj.transform.forward, 1f, 1);
-                rubyGun.SimulatedAttack(player.playerID, new Vector3(obj.transform.position.y, obj.transform.position.x * -1f, 0), Quaternion.AngleAxis(270, Vector3.forward) * obj.transform.forward, 1f, 1);
+                mirrorGuns[3].Attack(gun.currentCharge, true, 1f, 1f, true); // Emerald
+                mirrorGuns[4].Attack(gun.currentCharge, true, 1f, 1f, true); // Emerald
+                mirrorGuns[5].Attack(gun.currentCharge, true, 1f, 1f, true); // Ruby
+                mirrorGuns[6].Attack(gun.currentCharge, true, 1f, 1f, true); // Ruby
             }
         }
 
         public void OnDestroy()
         {
             // Remove action when the mono is removed
-            gun.ShootPojectileAction -= OnShootProjectileAction;
-
-
-            foreach (var gun in savedGuns)
+            var manager = player.GetComponent<WeaponManager>();
+            foreach (Gun gun in manager.weapons)
             {
-                // Get rid of our guns
-                Destroy(gun);
+                if (gun != null && gun.gameObject.activeSelf)
+                {
+                    gun.ShootPojectileAction -= OnShootProjectileAction; // Add the shoot action to each of a player's guns
+                }
             }
+        }
+
+        public void CopyGunStatsExceptActions(Gun copyFromGun, Gun copyToGun)
+        {
+            copyToGun.ammo = copyFromGun.ammo;
+            copyToGun.ammoReg = copyFromGun.ammoReg;
+            copyToGun.attackID = copyFromGun.attackID;
+            copyToGun.attackSpeed = copyFromGun.attackSpeed;
+            copyToGun.attackSpeedMultiplier = copyFromGun.attackSpeedMultiplier;
+            copyToGun.bodyRecoil = copyFromGun.bodyRecoil;
+            copyToGun.bulletDamageMultiplier = copyFromGun.bulletDamageMultiplier;
+            copyToGun.bulletPortal = copyFromGun.bulletPortal;
+            copyToGun.bursts = copyFromGun.bursts;
+            copyToGun.chargeDamageMultiplier = copyFromGun.chargeDamageMultiplier;
+            copyToGun.chargeEvenSpreadTo = copyFromGun.chargeEvenSpreadTo;
+            copyToGun.chargeNumberOfProjectilesTo = copyFromGun.chargeNumberOfProjectilesTo;
+            copyToGun.chargeRecoilTo = copyFromGun.chargeRecoilTo;
+            copyToGun.chargeSpeedTo = copyFromGun.chargeSpeedTo;
+            copyToGun.chargeSpreadTo = copyFromGun.chargeSpreadTo;
+            copyToGun.cos = copyFromGun.cos;
+            copyToGun.currentCharge = copyFromGun.currentCharge;
+            copyToGun.damage = copyFromGun.damage;
+            copyToGun.damageAfterDistanceMultiplier = copyFromGun.damageAfterDistanceMultiplier;
+            copyToGun.defaultCooldown = copyFromGun.defaultCooldown;
+            copyToGun.destroyBulletAfter = copyFromGun.destroyBulletAfter;
+            copyToGun.dmgMOnBounce = copyFromGun.dmgMOnBounce;
+            copyToGun.dontAllowAutoFire = copyFromGun.dontAllowAutoFire;
+            copyToGun.drag = copyFromGun.drag;
+            copyToGun.dragMinSpeed = copyFromGun.dragMinSpeed;
+            copyToGun.evenSpread = copyFromGun.evenSpread;
+            copyToGun.explodeNearEnemyDamage = copyFromGun.explodeNearEnemyDamage;
+            copyToGun.forceSpecificAttackSpeed = copyFromGun.forceSpecificAttackSpeed;
+            copyToGun.forceSpecificShake = copyFromGun.forceSpecificShake;
+            copyToGun.gravity = copyFromGun.gravity;
+            copyToGun.hitMovementMultiplier = copyFromGun.hitMovementMultiplier;
+            copyToGun.ignoreWalls = copyFromGun.ignoreWalls;
+            copyToGun.isProjectileGun = copyFromGun.isProjectileGun;
+            copyToGun.isReloading = copyFromGun.isReloading;
+            copyToGun.knockback = copyFromGun.knockback;
+            copyToGun.lockGunToDefault = copyFromGun.lockGunToDefault;
+            copyToGun.multiplySpread = copyFromGun.multiplySpread;
+            copyToGun.numberOfProjectiles = copyFromGun.numberOfProjectiles;
+            copyToGun.objectsToSpawn = copyFromGun.objectsToSpawn.ToArray();
+            copyToGun.overheatMultiplier = copyFromGun.overheatMultiplier;
+            copyToGun.percentageDamage = copyFromGun.percentageDamage;
+            copyToGun.player = copyFromGun.player;
+            copyToGun.projectielSimulatonSpeed = copyFromGun.projectielSimulatonSpeed;
+            copyToGun.projectileColor = copyFromGun.projectileColor;
+            copyToGun.projectiles = copyFromGun.projectiles.ToArray();
+            copyToGun.projectileSize = copyFromGun.projectileSize;
+            copyToGun.projectileSpeed = copyFromGun.projectileSpeed;
+            copyToGun.randomBounces = copyFromGun.randomBounces;
+            copyToGun.recoil = copyFromGun.recoil;
+            copyToGun.recoilMuiltiplier = copyFromGun.recoilMuiltiplier;
+            copyToGun.reflects = copyFromGun.reflects;
+            copyToGun.reloadTime = copyFromGun.reloadTime;
+            copyToGun.reloadTimeAdd = copyFromGun.reloadTimeAdd;
+            copyToGun.shake = copyFromGun.shake;
+            copyToGun.shakeM = copyFromGun.shakeM;
+            copyToGun.size = copyFromGun.size;
+            copyToGun.slow = copyFromGun.slow;
+            copyToGun.smartBounce = copyFromGun.smartBounce;
+            copyToGun.soundDisableRayHitBulletSound = copyFromGun.soundDisableRayHitBulletSound;
+            copyToGun.soundGun = copyFromGun.soundGun;
+            copyToGun.soundImpactModifier = copyFromGun.soundImpactModifier;
+            copyToGun.soundShotModifier = copyFromGun.soundShotModifier;
+            copyToGun.spawnSkelletonSquare = copyFromGun.spawnSkelletonSquare;
+            copyToGun.speedMOnBounce = copyFromGun.speedMOnBounce;
+            copyToGun.spread = copyFromGun.spread;
+            copyToGun.teleport = copyFromGun.teleport;
+            copyToGun.timeBetweenBullets = copyFromGun.timeBetweenBullets;
+            copyToGun.timeToReachFullMovementMultiplier = copyFromGun.timeToReachFullMovementMultiplier;
+            copyToGun.unblockable = copyFromGun.unblockable;
+            copyToGun.useCharge = copyFromGun.useCharge;
+            copyToGun.waveMovement = copyFromGun.waveMovement;
+        }
+
+        public void CopyAttackAction(Gun copyFromGun, Gun copyToGun)
+        {
+            if ((Action)Traverse.Create(copyFromGun).Field("attackAction").GetValue() == null)
+            {
+                return;
+            }
+
+            copyToGun.attackAction = (Action)(((Action)Traverse.Create(copyFromGun).Field("attackAction").GetValue()).Clone());
+        }
+
+        public void CopyShootProjectileAction(Gun copyFromGun, Gun copyToGun)
+        {
+            if (copyFromGun.ShootPojectileAction == null)
+            {
+                return;
+            }
+
+            copyToGun.ShootPojectileAction = (Action<GameObject>)(copyFromGun.ShootPojectileAction.Clone());
         }
     }
 }

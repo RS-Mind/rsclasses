@@ -1,5 +1,8 @@
 ### Patch Notes:
 
+#### 3.2.2:
+- No longer depends on Simulation Chamber. This increases compatibility by allowing Mirror Mage bullets to be affected by mods that patch guns (e.g. Stop Shooting You're Dead)
+
 #### 3.2.1:
 - Comets now start the round with some initial motion.
 - Fixed an issue with card rarity not being properly applied.

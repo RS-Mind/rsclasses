@@ -18,7 +18,6 @@ namespace RSClasses
     [BepInDependency("com.rsmind.rounds.fancycardbar", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.rsmind.rounds.weaponsmanager", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInDependency("com.willuwontu.rounds.simulationChamber", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("com.willuwontu.rounds.tabinfo", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("pykess.rounds.plugins.cardchoicespawnuniquecardpatch", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("pykess.rounds.plugins.moddingutils", BepInDependency.DependencyFlags.HardDependency)]
@@ -31,7 +30,7 @@ namespace RSClasses
     {
         private const string ModId = "com.rsmind.rounds.RSClasses";
         private const string ModName = "RSClasses";
-        public const string Version = "3.2.1";
+        public const string Version = "3.2.2";
         public const string ModInitials = "RSC";
         internal static Harmony harmony;
         public static RSClasses instance { get; private set; }
