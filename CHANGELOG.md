@@ -1,5 +1,8 @@
 ### Patch Notes:
 
+#### 3.2.3:
+- Fixed an issue with Mirror Mage ignoring spread
+
 #### 3.2.2:
 - No longer depends on Simulation Chamber. This increases compatibility by allowing Mirror Mage bullets to be affected by mods that patch guns (e.g. Stop Shooting You're Dead)
 

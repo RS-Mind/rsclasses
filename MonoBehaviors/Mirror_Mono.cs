@@ -168,8 +168,6 @@ namespace RSClasses.MonoBehaviours
 
                 mirrorGun.numberOfProjectiles = 1;
                 mirrorGun.bursts = 0;
-                mirrorGun.spread = 0f;
-                mirrorGun.evenSpread = 0f;
                 mirrorGun.objectsToSpawn = mirrorGun.objectsToSpawn.Concat(StopRecursionSpawn).ToArray();
             }
 
